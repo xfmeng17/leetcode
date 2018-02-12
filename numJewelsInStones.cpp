@@ -21,7 +21,7 @@ public:
     	}
     	return cnt;
     }
-    */
+	*/
 
     // ref
     int numJewelsInStones(string J, string S) {
