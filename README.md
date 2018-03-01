@@ -1,2 +1,0 @@
-# leetcode
-practice makes perfect
