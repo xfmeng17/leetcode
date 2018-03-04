@@ -10,6 +10,12 @@
 class Solution {
 public:
     string tree2str(TreeNode* t) {
+        // return func1(t);
+        return func2(t);
+    }
+
+    // inorder
+    string func1(TreeNode* t) {
         vector<string> queue;
         inorder(t, queue);
         string s;
@@ -38,5 +44,23 @@ public:
     		queue.push_back(")");
     	}
     	return;
+    }
+
+    // ref: more concise
+    string func2(TreeNode* t) {
+        if (t == NULL) {
+            return "";
+        }
+        string s = to_string(t->val);
+        if (t->left) {
+            s.append("(" + func2(t->left) + ")");
+        }
+        if (t->right) {
+            if (t->left == NULL) {
+                s.append("()");
+            }
+            s.append("(" + func2(t->right) + ")");
+        }
+        return s;
     }
 };
