@@ -33,7 +33,9 @@ public:
     		return 0;
     	}
 		unordered_map<TreeNode*, int>::iterator it = map.find(root);
-		int ans = 0;
+		
+        // accept:
+        int ans = 0;
 		if (it != map.end()) {
 			ans = it->second;
 		} else {
@@ -42,6 +44,16 @@ public:
 			map.insert(node);
 		}
 		return ans;
+
+        // runtime error:
+        // if (it != map.end()) {
+        //     return it->second;
+        // } else {
+        //     int ans = root->val + sum(root->left, map) + sum(root->right, map);
+        //     pair<TreeNode*, int> node = make_pair(root, ans);
+        //     map.insert(node);
+        //     return ans;
+        // }
     }
 
     // ref: postorder
