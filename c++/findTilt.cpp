@@ -1,5 +1,7 @@
 #include <iostream>
+#include <sstream>
 #include <unordered_map>
+#include <queue>
 #include <string>
 using namespace std;
 
@@ -39,26 +41,26 @@ public:
 		unordered_map<TreeNode*, int>::iterator it = map.find(root);
 		
         /** accept: **/
-  		// int ans = 0;
-		// if (it != map.end()) {
-		// 	ans = it->second;
-		// } else {
-		// 	ans = root->val + sum(root->left, map) + sum(root->right, map);
-		// 	pair<TreeNode*, int> node = make_pair(root, ans);
-		// 	map.insert(node);
-		// }
-		// return ans;
+  		int ans = 0;
+		if (it != map.end()) {
+			ans = it->second;
+		} else {
+			ans = root->val + sum(root->left, map) + sum(root->right, map);
+			pair<TreeNode*, int> node = make_pair(root, ans);
+			map.insert(node);
+		}
+		return ans;
 		
         /** runtime error: **/
 
-        if (it != map.end()) {
-            return it->second;
-        } else {
-            int ans = root->val + sum(root->left, map) + sum(root->right, map);
-            pair<TreeNode*, int> node = make_pair(root, ans);
-            map.insert(node);
-            return ans;
-        }
+        // if (it != map.end()) {
+        //     return it->second;
+        // } else {
+        //     int ans = root->val + sum(root->left, map) + sum(root->right, map);
+        //     pair<TreeNode*, int> node = make_pair(root, ans);
+        //     map.insert(node);
+        //     return ans;
+        // }
     }
 
     // ref: postorder
@@ -151,3 +153,9 @@ int main() {
     }
     return 0;
 }
+
+// compile use: 'g++ -std=c++14 findTilt.cpp'
+// and run './a.out < 563input.txt'
+// all the ways get same answer
+// it's not my fault
+
