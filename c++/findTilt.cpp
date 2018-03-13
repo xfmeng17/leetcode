@@ -14,19 +14,19 @@ public:
 		// return func2(root);
 	}
 	
-	// if not check root after the else in sum
-	// then I get a runtime error
+	// I think the code in comment are same 
+    // but one gets a runtime error
 	// interesting!
     int func1(TreeNode* root) {
     	unordered_map<TreeNode*, int> map;
-    	return dfs(root, map);
+    	return preorder(root, map);
     }
-    int dfs(TreeNode* root, unordered_map<TreeNode*, int>& map) {
+    int preorder(TreeNode* root, unordered_map<TreeNode*, int>& map) {
     	if (root == NULL) {
     		return 0 ;
     	}
     	int t = abs(sum(root->left, map) - sum(root->right, map));
-		return t + dfs(root->left, map) + dfs(root->right, map);
+		return t + preorder(root->left, map) + preorder(root->right, map);
     }
     int sum(TreeNode* root, unordered_map<TreeNode*, int>& map) {
     	if (root == NULL) {
