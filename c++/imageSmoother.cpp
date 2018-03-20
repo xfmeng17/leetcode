@@ -47,7 +47,8 @@ public:
     vector<vector<int>> imageSmoother(vector<vector<int>>& M) {
         vector<vector<int>> ans(M.size());
         for (int i = 0; i < M.size(); i++) {
-            vector<int> row(M[i].size());   
+            // ans[i] = vector<int>(M[i].size());   
+            vector<int> row(M[i].size());
             for (int j = 0; j < M[i].size(); j++) {
                 int cells = 1;
                 int sum = M[i][j];
@@ -83,11 +84,16 @@ public:
                    sum += M[i][j + 1];
                    cells++;
                 }
-                row.push_back(sum / cells);
+                // ans[i].push_back(sum / cells);
+                // ans[i][j] = sum / cells;
+                row[j] = sum / cells;
             }
-            ans.push_back(copy(row));
+            ans[i] = row;
         }
         return ans;
     }
 
 };
+
+// Did some test for vector init with size
+// The vector will fill with default type_value in number of size
