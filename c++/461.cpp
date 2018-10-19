@@ -7,7 +7,7 @@ public:
   			if (z & 1 == 1) {
   				cnt++;
   			}
-  			z >> 1;
+  			z = z >> 1;
   		}
   		return cnt;
     }
