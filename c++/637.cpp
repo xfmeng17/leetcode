@@ -13,6 +13,8 @@ public:
     	return func1(root);
     }
     vector<double> func1(TreeNode* root) {
+    	queue<TreeNode*> que;
+    	que.push(root);
     	return res;
     }
 };
