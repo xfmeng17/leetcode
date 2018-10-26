@@ -36,7 +36,7 @@ public:
     		que.push(make_tuple(root, 1));
     	}
     	while (que.size()) {
-    		tuple<Node*, int>> t = que.front();
+    		tuple<Node*, int> t = que.front();
     		que.pop();
     		int dep = get<1>(t);
     		if (dep > max) { max = dep; }
