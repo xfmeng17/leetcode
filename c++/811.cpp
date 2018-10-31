@@ -1,6 +1,10 @@
 class Solution {
 public:
     vector<string> subdomainVisits(vector<string>& cpdomains) {
+        // return func1(cpdomains);
+        return func2(cpdomains);
+    }
+    vector<string> func1(vector<string>& cpdomains) {
     	vector<string> res;
         unordered_map<string, int> set;
         for (int i = 0; i < cpdomains.size(); i++) {
@@ -8,10 +12,10 @@ public:
         	int count = atoi(vec_record[0].c_str());
         	vector<string> vec_domain =  subdomain(vec_record[1], '.');
         	for (int j = 0; j < vec_domain.size(); j++) {
-        		if (set.count(vec_domain[i]) <= 0) {
-	        		set.insert({vec_domain[i], count});
+        		if (set.count(vec_domain[j]) <= 0) {
+	        		set.insert({vec_domain[j], count});
 	        	} else {
-	        		set[vec_domain[i]] = set[vec_domain[i]] + count;
+	        		set[vec_domain[j]] = set[vec_domain[j]] + count;
 	        	}
         	}
         	
@@ -20,7 +24,6 @@ public:
         	string str = to_string(i->second) + " " + i->first;
         	res.push_back(str);
         }
-
         return res;
     }
 
@@ -38,7 +41,6 @@ public:
     		pos++;
     	}
     	res.push_back(str.substr(pos - len));
-
     	return res;
     }
     vector<string> subdomain(string domain, char del) {
@@ -47,15 +49,36 @@ public:
     	res.push_back(domain);
     	while (pos < domain.length()) {
     		if (domain[pos] == del) {
-    			domain = substr(pos + 1);
+    			domain = domain.substr(pos + 1);
     			res.push_back(domain);
     			pos = 0;
-    		}
+    		} else {
+                pos++;
+            }
     	}
-    	if (domain != "") {
-    		res.push_back(domain)
-    	}
-    	
     	return res;
+    }
+
+    // ** ref
+    vector<string> func2(vector<string>& cpdomains) {
+        unordered_map<string, int> set;
+        for (auto cd : cpdomains) {
+            int i = cd.find(" ");
+            int n = stoi(cd.substr(0, i));
+            string s = cd.substr(i + 1);
+            for (int i = 0; i < s.size(); i++) {
+                if (s[i] == '.') {
+                    cout << s.substr(i + 1) << endl;
+                    set[s.substr(i + 1)] += n;
+                }
+                
+            }
+            set[s] += n;
+        }
+        vector<string> res;
+        for (auto s : set) {
+            res.push_back(to_string(s.second) + " " + s.first);
+        }
+        return res;
     }
 };
