@@ -1,7 +1,8 @@
 class Solution {
 public:
     int numSpecialEquivGroups(vector<string>& A) {
-        return func1(A);
+        // return func1(A);
+        return func2(A);
     }
 
     int func1(vector<string>& A) {
@@ -38,4 +39,19 @@ public:
     	return res;
     }
 
+    // ** referance sort
+    int func2(vector<string>& A) {
+        unordered_set<string> s;
+        for (const auto& w : A) {
+            string odd, even;
+            for (int i = 0; i < w.length(); i++) {
+                if (i % 2) even += w[i];
+                else odd += w[i];
+            }
+            sort(even.begin(), even.end());
+            sort(odd.begin(), odd.end());
+            s.insert(even + odd);
+        }
+        return s.size();
+    }
 };
