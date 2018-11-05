@@ -1,26 +1,24 @@
 class Solution {
 public:
     vector<string> uncommonFromSentences(string A, string B) {
-  		unordered_map<string, int> map;
-  		string &a = A;
-		string &b = B;	
-  		int p = a.find(' ');
+  		unordered_map<string, int> map;	
+  		int p = A.find(' ');
   		while (p != -1) {
-  			map[a.substr(0, p)]++;
-  			a = a.substr(p);
-  			p = a.find(' ');
-  			cout << "a = " << a << endl;
+  			map[A.substr(0, p)]++;
+  			A = A.substr(p + 1);
+  			p = A.find(' ');
+  			// cout << "A = " << A << endl;
   		}
-  		map[a]++;
+  		map[A]++;
 
-  		p = b.find(' ');
+  		p = B.find(' ');
   		while (p != -1) {
-  			map[b.substr(0, p)]++;
-  			b = b.substr(p);
-  			p = b.find(' ');
-  			cout << "b = " << b << endl;
+  			map[B.substr(0, p)]++;
+  			B = B.substr(p + 1);
+  			p = B.find(' ');
+  			// cout << "B = " << B << endl;
   		}
-  		map[b]++;
+  		map[B]++;
 
   		vector<string> res;
   		for (auto it = map.begin(); it != map.end(); it++) {
