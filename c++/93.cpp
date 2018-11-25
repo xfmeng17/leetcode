@@ -51,7 +51,7 @@ public:
     		
     		// ** cut 2 as head
     		string h2 = str.substr(0, 2);
-    		if (check(h2) && (str.length() > cnt + 1)) {
+    		if (check(h2) && (str.length() >= cnt + 1)) {
     			string r2 = str.substr(2);
 	    		vector<string> sub = helper(r2, cnt - 1);
 	    		if (sub.size() > 0) {
@@ -63,7 +63,7 @@ public:
     		
     		// ** cut 3 as head
     		string h3 = str.substr(0, 3);
-    		if (check(h3) && (str.length() > cnt + 2)) {
+    		if (check(h3) && (str.length() >= cnt + 2)) {
     			string r3 = str.substr(3);
 	    		vector<string> sub = helper(r3, cnt - 1);
 	    		if (sub.size() > 0) {
