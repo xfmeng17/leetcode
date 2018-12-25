@@ -38,5 +38,39 @@ public:
     }
 
     int func2(vector<char>& chars) {
+    	int head = 0, curr = 0, write = 0;
+    	while (curr < chars.size()) {
+    		if (chars[curr] != chars[head] && curr - head > 1) {
+				chars[write++] = chars[head];
+				stack<int> stk;
+				int sum = curr - head;
+				while (sum > 0) {
+					stk.push(sum % 10);
+					sum /= 10;
+				}
+				while (!stk.empty()) {
+					chars[write++] = '0' + stk.top();
+					stk.pop();
+				}
+				head = curr;
+			}
+			curr++;
+    	}
+
+    	if (curr - head >= 1) {
+    		chars[write++] = chars[head];
+			stack<int> stk;
+			int sum = curr - head;
+			while (sum > 0) {
+				stk.push(sum % 10);
+				sum /= 10;
+			}
+			while (!stk.empty()) {
+				chars[write++] = '0' + stk.top();
+				stk.pop();
+			}
+		}
+		chars.resize(write);
+		return write;
     }
 };
