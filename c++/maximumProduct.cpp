@@ -25,3 +25,4 @@ public:
         return max((p1 * p2 * p3), (p1 * n1 * n2));
     }
 };
+
