@@ -17,7 +17,8 @@
 
 ### Problems-Use-Dynamic-Programming
 
-- **303 Range Sum Query - Immutable**
+- **746 Min Cost Climbing Stairs** `classic`
+- **303 Range Sum Query - Immutable** `one-dimensional`
 
 
 
