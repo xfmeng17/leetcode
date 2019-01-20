@@ -4,7 +4,7 @@ public:
     	// return func1(nums);  
     	// return func2(nums);  
     	// return func3(nums);
-    	return func4();
+    	return func4(nums);
     }
     /*
     * basic dp
@@ -66,15 +66,16 @@ public:
 
     // ** use hint, D&C
     int func4(vector<int>& nums) {
-
+    	return helper4(nums, 0, nums.size() - 1);
     }
     int helper4(vector<int>& nums, int lo, int hi) {
+    	if (lo > hi) return 0;
     	if (lo == hi) return nums[lo];
 
     	int mid = (lo + hi) / 2;
     	int left = helper4(nums, lo, mid);
     	int right = helper4(nums, mid+1, hi);
-    	int cross = maxCrossingSum(nums, lo, hi. mid);
+    	int cross = maxCrossingSum(nums, lo, hi, mid);
 
     	return max(left, max(right, cross));
     }
