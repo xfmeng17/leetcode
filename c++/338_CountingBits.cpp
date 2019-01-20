@@ -9,11 +9,11 @@ public:
     	vector<int> res;
 
         for (int i = 0; i <= num; i++) {
-        	int cur = i;
+        	unsigned cur = i;
         	int cnt = 0;
         	while (cur > 0) {
         		cnt += cur & 1;
-        		cur >> 1;
+        		cur = cur >> 1;
         	}
         	res.push_back(cnt);
         }
