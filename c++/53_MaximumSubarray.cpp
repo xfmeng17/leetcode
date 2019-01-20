@@ -82,13 +82,13 @@ public:
     int maxCrossingSum(vector<int>& nums, int lo, int hi, int mid) {
     	int sum = 0;
     	int leftMax = nums[mid];
-    	for (int i = mid; i <= lo; i--) {
+    	for (int i = mid; i >= lo; i--) {
     		sum += nums[i];
     		leftMax = max(leftMax, sum);
     	}
     	sum = 0;
     	int rightMax = nums[mid+1];
-    	for (int i = mid+1; i <= hi, i++) {
+    	for (int i = mid+1; i <= hi; i++) {
     		sum += nums[i];
     		rightMax = max(rightMax, sum);
     	}
