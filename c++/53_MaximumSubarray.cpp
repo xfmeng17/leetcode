@@ -3,7 +3,8 @@ public:
     int maxSubArray(vector<int>& nums) {
     	// return func1(nums);  
     	// return func2(nums);  
-    	return func3(nums);
+    	// return func3(nums);
+    	return func4();
     }
     /*
     * basic dp
@@ -67,10 +68,29 @@ public:
     int func4(vector<int>& nums) {
 
     }
-    int helper4(vector<int>& nums, int n, int m, int link) {
+    int helper4(vector<int>& nums, int lo, int hi) {
+    	if (lo == hi) return nums[lo];
 
+    	int mid = (lo + hi) / 2;
+    	int left = helper4(nums, lo, mid);
+    	int right = helper4(nums, mid+1, hi);
+    	int cross = maxCrossingSum(nums, lo, hi. mid);
+
+    	return max(left, max(right, cross));
     }
-    int maxCrossingSum(vector<int>& nums, int lo, int mid, int hi) {
-    	
+    int maxCrossingSum(vector<int>& nums, int lo, int hi, int mid) {
+    	int sum = 0;
+    	int leftMax = nums[mid];
+    	for (int i = mid; i <= lo; i--) {
+    		sum += nums[i];
+    		leftMax = max(leftMax, sum);
+    	}
+    	sum = 0;
+    	int rightMax = nums[mid+1];
+    	for (int i = mid+1; i <= hi, i++) {
+    		sum += nums[i];
+    		rightMax = max(rightMax, sum);
+    	}
+    	return leftMax + rightMax;
     }
 };
