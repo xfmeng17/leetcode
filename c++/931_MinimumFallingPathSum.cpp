@@ -4,7 +4,8 @@ private:
 public:
     int minFallingPathSum(vector<vector<int>>& A) {
         // return func1(A);
-        return func2(A);
+        // return func2(A);
+        return func3(A);
     }
     // ** recursive top-down
     // ** Time Limit Exceeded
@@ -68,6 +69,49 @@ public:
         int right = helper2(A, row+1, col+1, memo);
         int res = A[row][col] + min(left, min(mid, right));
         memo[row][col] = res;
+
+        return res;
+    }
+
+    // ** iterative + memo (bottom-up)
+    int func3(vector<vector<int>>& A) {
+        if (A.size() <= 0) {
+            return 0;
+        }
+
+        int n = A.size();
+        vector<vector<int>> memo(n);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < A[i].size(); j++) {
+                int pre = MAX_VALUE;
+                // ** left-top
+                if (i - 1 >= 0 && j - 1 >= 0) {
+                    pre = min(pre, memo[i-1][j-1]);
+                }
+                // ** top
+                if (i - 1 >= 0 && j >= 0) {
+                    pre = min(pre, memo[i-1][j]);
+                }
+                // ** right-top
+                if (i - 1 >= 0 && j + 1 < A[i].size()) {
+                    pre = min(pre, memo[i-1][j+1]);
+                }
+                int cur = A[i][j];
+                if (pre < MAX_VALUE) {
+                    cur += pre;
+                }
+                memo[i].push_back(cur);
+            }
+        }
+
+        vector<int>& lastRow = memo[A.size() - 1];
+        if (lastRow.size() <= 0) {
+            return 0;
+        }
+        int res = lastRow[0];
+        for (int i = 0; i < n; i++) {
+            res = min(res,lastRow[i]);
+        }
 
         return res;
     }
