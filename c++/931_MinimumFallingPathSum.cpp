@@ -136,8 +136,8 @@ public:
             }
         }
         int res = memo[0];
-        for (int i = 0; j < n; j++) {
-            res = min(res, memo[i]);
+        for (int j = 0; j < n; j++) {
+            res = min(res, memo[j]);
         }
         return res;
     }
