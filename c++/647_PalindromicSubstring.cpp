@@ -53,6 +53,8 @@ public:
     }
     // ** recursive (top-down) and save palindromic result
     // ** into map, but supper slow.
+    // ** I think the reason is string and unordered_map manipulaition 
+    // ** cost more than O(n) palindormic compare.
     int func4(string s) {
         unordered_map<string, int> map;
         return helper4(s, map);
@@ -116,5 +118,7 @@ public:
 
         return map[s];
     }
+
+    // ** iterative+memo
 };
 
