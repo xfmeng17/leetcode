@@ -20,6 +20,5 @@
 - **746 Min Cost Climbing Stairs** `classic`
 - **303 Range Sum Query - Immutable** `one-dimensional`
 - **53 Maximum Subarray** `one-dimensional` `devide and conquer`
-
-
-
+- **338 Counting Bits** `one-dimensional`
+- 
