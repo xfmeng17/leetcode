@@ -115,5 +115,31 @@ public:
 
         return res;
     }
+    // ** iterative + N variables (bottom-up)
+    int func4(vector<vector<int>>& A) {
+        if (A.size() <= 0 || A[0].size() <= 0) {
+            return 0;
+        }
+
+        int n = A.size();
+        vector<int> memo(A[0].begin(), A[0].end());
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                int cur = memo[j];
+                if (j - 1 >= 0) {
+                    cur = min(cur, memo[j-1]);
+                }
+                if (j + 1 < n) {
+                    cur = min(cur, memo[j+1]);
+                }
+                memo[j] = cur + A[i][j];
+            }
+        }
+        int res = memo[0];
+        for (int i = 0; j < n; j++) {
+            res = min(res, memo[i]);
+        }
+        return res;
+    }
 };
 
