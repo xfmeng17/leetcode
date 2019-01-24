@@ -4,7 +4,9 @@ public:
         // return func1(s); 
         // return func2(s);
         // return func3(s);
-        return func4(s);
+        // return func4(s);
+        // return func5(s);
+        return func6(s);
     }
 
     // ** recursive (top-down)
@@ -71,6 +73,7 @@ public:
         }
         return res;
     }
+
     // ** helper functions
     void allSubString(string s, vector<string>& vec) {
         int len = s.length();
@@ -118,7 +121,62 @@ public:
 
         return map[s];
     }
+    int isPalindromic(string s, int lo, int hi, vector<vector<int>>& vec) {
+        if (lo > hi)  {  return 0; }
+        if (lo < 0 || hi >= s.length()) { return 0; }
+        if (vec[lo][hi] >= 0) { return vec[lo][hi]; }
 
-    // ** iterative+memo
+        if (lo == hi) { // 1
+            vec[lo][hi] = 1;
+        } else if (hi - lo == 1) { // 2
+            vec[lo][hi] = s[lo] == s[hi] ? 1 : 0;
+        } else { // more
+            if (s[lo] != s[hi]) {
+                vec[lo][hi] = 0;
+            } else {
+                vec[lo][hi] = isPalindromic(s, lo+1, hi-1, vec);
+            }
+        }
+
+        return vec[lo][hi];
+    }
+
+    // ** recursive (top-down) + memo, use 2-dimensional int array.
+    int func5(string s) {
+        int n = s.length();
+        vector<vector<int>> vec;
+        for (int i = 0; i < n; i++) {
+            vector<int> row(n, -1);
+            vec.push_back(row);
+        }
+        return helper5(s, 0, n-1, vec);
+    }
+    int helper5(string s, int lo, int hi, vector<vector<int>>& vec) {
+        if (lo > hi)  { return 0; }
+        if (lo == hi) { return 1; }
+
+        int res = helper5(s, lo + 1, hi, vec);
+        for (int i = hi; i >= lo; i--) {
+            res += isPalindromic(s, lo, i, vec);
+        }
+        return res;
+    }
+    // ** recursive (top-down) + memo, use 2-dimensional int array.
+    // ** !BUT! generate all sub strings while check is palindrome.
+    int func6(string s) {
+        int n = s.length();
+        vector<vector<int>> marked(n);
+        for (int i = 0; i < n; i++) {
+            marked[i].assign(n, -1);
+        }
+        int res = 0;
+        for (int end = n - 1; end >= 0; end--) {
+            for (int start = 0; start <= end; start++) {
+                res += isPalindromic(s, start, end, marked);
+            }
+        }
+        return res;
+    }
+    // ** iterative + memo (bottom-up)
 };
 
