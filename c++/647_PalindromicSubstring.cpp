@@ -6,7 +6,8 @@ public:
         // return func3(s);
         // return func4(s);
         // return func5(s);
-        return func6(s);
+        // return func6(s);
+        return func7(s);
     }
 
     // ** recursive (top-down)
@@ -177,6 +178,38 @@ public:
         }
         return res;
     }
-    // ** iterative + memo (bottom-up)
+    // ** iterative + memo (bottom-up), fast
+    int func7(string s) {
+        int n = s.length();
+        vector<vector<bool>> isPalin(n);
+        for (int i = 0; i < n; i++) {
+            isPalin[i].assign(n, false);
+        }
+        int res = 0;
+        // ** window size = 1
+        for (int i = 0; i < n; i++) {
+            isPalin[i][i] = true;
+            res += 1;
+        }
+        // ** window size = 2
+        for (int i = 0; i < n - 1; i++) {
+            if (s[i] == s[i+1]) {
+                isPalin[i][i+1] = true;
+                res += 1;
+            }
+        }
+        // ** window size > 2
+        for (int len = 3; len <= n; len++) {
+            for (int i = 0; i <= n - len; i++) {
+                int j = i + len - 1;
+                if (s[i] == s[j] && isPalin[i+1][j-1]) {
+                    isPalin[i][j] = true;
+                    res += 1;
+                }
+            }
+        }
+
+        return res;
+    }
 };
 
