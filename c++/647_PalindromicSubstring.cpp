@@ -211,5 +211,16 @@ public:
 
         return res;
     }
+
+    // iterative + N variables (bottom-up), fase
+    int func8(string s) {
+        int n = s.length();
+        vector<vector<bool>> isPalin(n);
+        for (int i = 0; i < n; i++) {
+            isPalin[i].assign(n, false);
+        }
+
+        int res = 0;
+    }
 };
 
