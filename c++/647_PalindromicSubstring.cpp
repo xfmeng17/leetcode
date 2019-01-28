@@ -7,7 +7,8 @@ public:
         // return func4(s);
         // return func5(s);
         // return func6(s);
-        return func7(s);
+        // return func7(s);
+        return func8(s);
     }
 
     // ** recursive (top-down)
@@ -221,6 +222,27 @@ public:
         }
 
         int res = 0;
+        // ** base on one char, length of palindrome is idd
+        for (int mid = 0; mid <= n - 1; mid++) {
+            for (int len = 0; len <= (n - 1) / 2; len++) {
+                int lf = mid - len;
+                int rt = mid + len
+                if (lf < 0 || rt >= n) break;
+                if (s[lf] != s[rt]) break;
+                res += 1;
+            }
+        }
+        // ** base on two char, length of palindrome is even
+        for (int mid = 1; mid <= n - 1; mid++) {
+            for (int len = 0; len <= n / 2; len++) {
+                int lf = mid - 1 - len;
+                int rt = mid + len
+                if (lf < 0 || rt >= n) break;
+                if (s[lf] != s[rt]) break;
+                res += 1;
+            }
+        }
+
+        return res;
     }
 };
-
