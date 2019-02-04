@@ -1,7 +1,8 @@
 class Solution {
 public:
     bool stoneGame(vector<int>& piles) {
-        return func1(piles);
+        // return func1(piles);
+        return func2(piles);
     }
     // ** greedy algorithm
     // ** wrong case: 3 2 10 4
@@ -26,5 +27,10 @@ public:
         	}
         }
         return alex > lee;
+    }
+
+    // ** reference
+    bool func2(vector<int>& piles) {
+    	return true;
     }
 };
