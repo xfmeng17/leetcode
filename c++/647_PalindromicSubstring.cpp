@@ -226,7 +226,7 @@ public:
         for (int mid = 0; mid <= n - 1; mid++) {
             for (int len = 0; len <= (n - 1) / 2; len++) {
                 int lf = mid - len;
-                int rt = mid + len
+                int rt = mid + len;
                 if (lf < 0 || rt >= n) break;
                 if (s[lf] != s[rt]) break;
                 res += 1;
@@ -236,7 +236,7 @@ public:
         for (int mid = 1; mid <= n - 1; mid++) {
             for (int len = 0; len <= n / 2; len++) {
                 int lf = mid - 1 - len;
-                int rt = mid + len
+                int rt = mid + len;
                 if (lf < 0 || rt >= n) break;
                 if (s[lf] != s[rt]) break;
                 res += 1;
