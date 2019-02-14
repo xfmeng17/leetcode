@@ -21,4 +21,4 @@
 - **303 Range Sum Query - Immutable** `one-dimensional`
 - **53 Maximum Subarray** `one-dimensional` `devide and conquer`
 - **338 Counting Bits** `one-dimensional`
-- 
+- **983 Minimum Cost For Tickets** `one-dimensional` `interesting`
