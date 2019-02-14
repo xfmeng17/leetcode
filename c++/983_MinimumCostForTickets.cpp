@@ -2,7 +2,8 @@ class Solution {
 public:
     int mincostTickets(vector<int>& days, vector<int>& costs) {
         // return func1(days, costs);
-        return func2(days, costs);        
+        // return func2(days, costs); 
+        return func3(days, costs);       
     }
 
     // ** 1. recursive top-down
@@ -70,5 +71,28 @@ public:
 
     	memo[index] = min(dayCost, min(wekCost, monCost));
     	return memo[index];
+    }
+
+    // ** 3. iterative+memo bottom-up
+    // ** reference
+    int func3(vector<int>& days, vector<int>& costs) {
+        vector<bool> dayIncluded(366, false);
+        for (int day : days) {
+            dayIncluded[day] = true;
+        }
+        vector<int> minCost(366, 0);
+
+        for (int day = 1; day <= 365; day++) {
+            if (!dayIncluded[day]) {
+                minCost[day] = minCost[day - 1];
+                continue;
+            }
+            int cost = minCost[day - 1] + costs[0];
+            cost = min(cost, minCost[max(0, day - 7)] + costs[1]);
+            cost = min(cost, minCost[max(0, day - 30)] + costs[2]);
+            minCost[day] = cost;
+        }
+
+        return minCost[365];
     }
 };
