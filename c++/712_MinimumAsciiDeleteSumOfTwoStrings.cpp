@@ -5,7 +5,7 @@ public:
 	const int LEFT = 3;
 
     int minimumDeleteSum(string s1, string s2) {  
-    	return min(func1(s1, s2), func1(s2, s1));      
+    	return func1(s1, s2);      
     }
     // ** LCS with a extra trace table named 'b'
     // ** O(m*n) space
@@ -42,17 +42,18 @@ public:
     	}
     	int s1AsciiSum = 0;
     	for (int i = 0; i < m; i++) {
-    		s1AsciiSum += s1[i] + 0;
+    		s1AsciiSum += s1[i];
     	}
     	int s2AsciiSum = 0;
     	for (int i = 0; i < n; i++) {
-    		s2AsciiSum += s2[i] + 0;
+    		s2AsciiSum += s2[i];
     	}
 
     	int maxRemainSum = 0;
+    	/*
     	for (int col = n; col >= 1; col--) {
     		if (c[m][col] != c[m][n]) {
-    			continue;
+    			break;
     		}
     		int i = m;
     		int j = col;
@@ -72,7 +73,30 @@ public:
 			maxRemainSum = max(maxRemainSum, remainSum);
 			cout << "col =" << col << " maxRemainSum = " << maxRemainSum << endl;
     	}
+		*/
+    	// return s1AsciiSum + s2AsciiSum - maxRemainSum;
+    	return s1AsciiSum + s2AsciiSum - maxPathAsciiSum(c, b, m, n, s1, s2);
+    }
+    int maxPathAsciiSum(vector<vector<int>> c, vector<vector<int>> b, int i, int j, string s1, string s2) {
+    	if (i <= 0 || j <= 0) {
+    		return 0;
+    	}
+    	if (c[i][j] == 0) {
+    		return 0;
+    	}
 
-    	return s1AsciiSum + s2AsciiSum - maxRemainSum;
+    	if (b[i][j] == UP_LEFT) {
+    		return 0 + s1[i-1] + s2[j-1] + maxPathAsciiSum(c, b, i-1, j-1, s1, s2);
+    	}
+
+    	int up = 0;
+    	if (c[i-1][j] == c[i][j]) {
+    		up = maxPathAsciiSum(c, b, i-1, j, s1, s2);
+    	}
+    	int left = 0;
+    	if (c[i][j-1] == c[i][j]) {
+    		left = maxPathAsciiSum(c, b, i, j-1, s1, s2);
+    	}
+    	return max(up, left);
     }
 };
