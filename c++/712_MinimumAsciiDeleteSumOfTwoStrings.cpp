@@ -8,7 +8,7 @@ public:
     	return func1(s1, s2);      
     }
     // ** LCS with a extra trace table named 'b'
-    // ** O(m*n) space
+    // ** O(m*n) space and Memory Limit Exceeded
 
     int func1(string s1, string s2) {
     	int m = s1.length();
@@ -48,9 +48,11 @@ public:
     	for (int i = 0; i < n; i++) {
     		s2AsciiSum += s2[i];
     	}
-
-    	int maxRemainSum = 0;
+    	// ** 2
+    	return s1AsciiSum + s2AsciiSum - maxPathAsciiSum(c, b, m, n, s1, s2);
+    	// ** 1
     	/*
+    	int maxRemainSum = 0;
     	for (int col = n; col >= 1; col--) {
     		if (c[m][col] != c[m][n]) {
     			break;
@@ -73,11 +75,10 @@ public:
 			maxRemainSum = max(maxRemainSum, remainSum);
 			cout << "col =" << col << " maxRemainSum = " << maxRemainSum << endl;
     	}
-		*/
-    	// return s1AsciiSum + s2AsciiSum - maxRemainSum;
-    	return s1AsciiSum + s2AsciiSum - maxPathAsciiSum(c, b, m, n, s1, s2);
+    	return s1AsciiSum + s2AsciiSum - maxRemainSum;
+    	*/
     }
-    int maxPathAsciiSum(vector<vector<int>> c, vector<vector<int>> b, int i, int j, string s1, string s2) {
+    int maxPathAsciiSum(vector<vector<int>>& c, vector<vector<int>>& b, int i, int j, string s1, string s2) {
     	if (i <= 0 || j <= 0) {
     		return 0;
     	}
@@ -85,8 +86,9 @@ public:
     		return 0;
     	}
 
+    	int upLeft = 0;
     	if (b[i][j] == UP_LEFT) {
-    		return 0 + s1[i-1] + s2[j-1] + maxPathAsciiSum(c, b, i-1, j-1, s1, s2);
+    		upLeft = s1[i-1] + s2[j-1] + maxPathAsciiSum(c, b, i-1, j-1, s1, s2);
     	}
 
     	int up = 0;
@@ -97,6 +99,7 @@ public:
     	if (c[i][j-1] == c[i][j]) {
     		left = maxPathAsciiSum(c, b, i, j-1, s1, s2);
     	}
-    	return max(up, left);
+    	return max(max(upLeft, up), left);
     }
+
 };
