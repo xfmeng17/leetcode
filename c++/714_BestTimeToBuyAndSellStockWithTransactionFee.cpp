@@ -2,7 +2,8 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices, int fee) {
      	// return func1(prices, fee);
-     	return func2(prices, fee);
+     	// return func2(prices, fee);
+     	return func3(prices, fee);
     }
 
     // ** 1. recursion, top-down, time-limit-exceeded
@@ -59,5 +60,23 @@ public:
     	}
 
     	return memo[lo][hi];
+    }
+
+    // ** 3. iteration, bottom-up
+    int func3(vector<int>& prices, int fee) {
+    	int n = prices.size();
+    	vector<vector<int>> memo(n, vector<int>(n, 0));
+
+    	for (int len = 2; len < n; len++) {
+    		for (int lo = 0; lo + len < n; lo++) {
+    			int hi = lo + len - 1;
+    			for (int i = lo; i < hi; i++) {
+    				for (int j = i + 1; j <= hi; j++) {
+    					int p = prices[j] - prices[i] - fee;
+    					memo[lo][hi] = max(memo[lo][hi], p + memo[lo][i-1] + memo[j+1][hi]);
+    				}
+    			}
+    		}
+    	}
     }
 };
