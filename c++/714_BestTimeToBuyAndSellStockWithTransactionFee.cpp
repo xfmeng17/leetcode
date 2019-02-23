@@ -71,7 +71,6 @@ public:
         for (int lo = 0; lo <= n-2; lo++) {
             int hi = lo + 2 - 1;
             memo[lo][hi] = max(0, prices[hi] - prices[lo] - fee);
-            // ret = max(ret, memo[lo][hi]);
         }
         // len = 3 or more
     	for (int len = 3; len <= n; len++) {
