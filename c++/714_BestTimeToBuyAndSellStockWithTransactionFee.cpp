@@ -67,16 +67,24 @@ public:
     	int n = prices.size();
     	vector<vector<int>> memo(n, vector<int>(n, 0));
 
-    	for (int len = 2; len < n; len++) {
-    		for (int lo = 0; lo + len < n; lo++) {
+        // ** len = 2
+        for (int lo = 0; lo <= n-2; lo++) {
+            int hi = lo + 2 - 1;
+            memo[lo][hi] = max(0, prices[hi] - prices[lo] - fee);
+            // ret = max(ret, memo[lo][hi]);
+        }
+        // len = 3 or more
+    	for (int len = 3; len <= n; len++) {
+    		for (int lo = 0; lo <= n - len; lo++) {
     			int hi = lo + len - 1;
-    			for (int i = lo; i < hi; i++) {
-    				for (int j = i + 1; j <= hi; j++) {
-    					int p = prices[j] - prices[i] - fee;
-    					memo[lo][hi] = max(memo[lo][hi], p + memo[lo][i-1] + memo[j+1][hi]);
-    				}
-    			}
+                for (int i = lo; i < hi; i++) {
+                    memo[lo][hi] = max(memo[lo][hi], memo[lo][i] + memo[i+1][hi]);
+                }
+                memo[lo][hi] = max(memo[lo][hi], prices[hi] - prices[lo] - fee);
     		}
+
     	}
+
+        return memo[0][n-1];
     }
 };
