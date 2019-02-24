@@ -63,17 +63,13 @@ public:
     }
 
     // ** 3. iteration, bottom-up
+    // ** TLE O(n^3)
     int func3(vector<int>& prices, int fee) {
     	int n = prices.size();
     	vector<vector<int>> memo(n, vector<int>(n, 0));
 
-        // ** len = 2
-        for (int lo = 0; lo <= n-2; lo++) {
-            int hi = lo + 2 - 1;
-            memo[lo][hi] = max(0, prices[hi] - prices[lo] - fee);
-        }
-        // len = 3 or more
-    	for (int len = 3; len <= n; len++) {
+        // len = 2 or more
+    	for (int len = 2; len <= n; len++) {
     		for (int lo = 0; lo <= n - len; lo++) {
     			int hi = lo + len - 1;
                 for (int i = lo; i < hi; i++) {
