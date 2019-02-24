@@ -4,7 +4,8 @@ public:
         // return func1(prices, fee);
         // return func2(prices, fee);
         // return func3(prices, fee);
-        return func4(prices, fee);
+        // return func4(prices, fee);
+        return func5(prices, fee);
     }
 
     // ** 1. recursion, top-down, time-limit-exceeded
@@ -84,7 +85,7 @@ public:
         return memo[0][n-1];
     }
 
-    // ** 4. not dp
+    // ** 4. not dp, time O(n), WA
     int func4(vector<int>& prices, int fee) {
         int ret = 0;
         int currLo = 0, currHi = 0;
@@ -119,4 +120,64 @@ public:
 
         return ret;
     }
+
+    int func5(vector<int>& prices, int fee) {
+        if (prices.size() < 2) {
+            return 0;
+        }
+
+        int ret = 0;
+        int currMin = 0, currMax = 0;
+        int lastMin = 0, lastMax = 0;
+
+        for (int i = 1; i < prices.size(); i++) {
+            if (prices[currMin] > prices[i]) {
+                currMin = i;
+            }
+            if (prices[currMax] < prices[i]) {
+                currMax = i;
+            }
+            if (currMax < currMin) {
+                currMax = currMin;
+            }
+
+            int currProfit = prices[currMax] - prices[currMin] - fee;
+            // ** fist
+            if (ret == 0 && currProfit > 0) {
+                ret += currProfit;
+                lastMin = currMin;
+                lastMax = currMax;
+                currMin = i + 1;
+                currMax = i + 1;
+                continue;
+            }
+            // ** other
+            if (currProfit > 0) {
+                // ** regert
+                if (prices[currMax] - prices[lastMax] > currProfit) {
+                    ret += prices[currMax] - prices[lastMax];
+                    lastMin = lastMin;
+                    lastMax = currMax;
+                    currMin = i + 1;
+                    currMax = i + 1;
+                } else {
+                    ret += currProfit;
+                    lastMin = currMin;
+                    lastMax = currMax;
+                    currMin = i + 1;
+                    currMax = i + 1;
+                }
+            } else {
+                if (ret > 0 && prices[currMax] > prices[lastMax]) {
+                    ret += prices[currMax] - prices[lastMax];
+                    lastMax = currMax;
+                    currMin = i + 1;
+                    currMax = i + 1;
+                }
+            }
+        }
+
+        return ret;
+    }
+
 };
