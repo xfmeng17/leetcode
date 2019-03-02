@@ -10,8 +10,23 @@ public:
     }
 
     bool func1(vector<int>& nums) {
-    	// TODO
+    	int sum = 0;
+    	for (auto n : nums) { 
+    		sum += n;
+    	}
+    	int play1 = helper1(nums, sum, 0, nums.size() - 1);
+    	int play2 = sum - play1;
+
+    	return play1 >= play2;
     }
-    void helper1(vector<int>& nums, int lo, int hi, bool turn) {
+    int helper1(vector<int>& nums, int sum, int lo, int hi) {
+    	if (lo > hi) return 0;
+
+    	int lfSum = sum - nums[lo];
+    	int lfRet = nums[lo] + (sum - helper1(nums, lfSum, lo + 1, hi));
+    	int rtSum = sum - nums[hi];
+    	int rtRet = nums[hi] + (sum - helper1(nums, rtSum, lo, hi - 1));
+
+    	return max(lfRet, rtRet);
     }
 };
