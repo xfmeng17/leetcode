@@ -8,7 +8,7 @@
 ### Problems-I-Think-Interesting
 
 - **950 Reveal Cards In Increasing Order** `queue`
-
+- **392 Is Subsequence** `dp` `binary search`
 
 ### Problems-Tricky-And-Mysterious
 
