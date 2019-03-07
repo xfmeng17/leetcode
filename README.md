@@ -18,7 +18,8 @@
 ### Problems-Use-Dynamic-Programming
 
 - **746 Min Cost Climbing Stairs** `classic`
-- **303 Range Sum Query - Immutable** `one-dimensional`
-- **53 Maximum Subarray** `one-dimensional` `devide and conquer`
-- **338 Counting Bits** `one-dimensional`
-- **983 Minimum Cost For Tickets** `one-dimensional` `interesting`
+- **303 Range Sum Query - Immutable** 
+- **53 Maximum Subarray** `devide and conquer`
+- **338 Counting Bits** 
+- **983 Minimum Cost For Tickets**  `interesting`
+- **650 2 Keys Keyboard**  `interesting` `Math`
