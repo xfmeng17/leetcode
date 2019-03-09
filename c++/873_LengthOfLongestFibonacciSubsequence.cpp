@@ -1,7 +1,8 @@
 class Solution {
 public:
     int lenLongestFibSubseq(vector<int>& A) {
-    	return func1(A);
+    	// return func1(A);
+    	return func2(A);
     }
 
     // ** recursion top-down
@@ -29,4 +30,9 @@ public:
 
     	return max(pick, notp);
     }
+
+    // ** recursion top-down + memo
+    int func2(vector<int>& A) {
+    }
+
 };
