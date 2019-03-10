@@ -3,7 +3,8 @@ public:
     int lenLongestFibSubseq(vector<int>& A) {
     	// return func1(A);
     	// return func2(A);
-    	return func3(A);
+    	// return func3(A);
+    	return func4(A);
     }
 
     // ** recursion top-down
@@ -43,6 +44,8 @@ public:
     // ** but it is a subsequence of [1,2,3,5,8...].
     // ** Formula should be: subsequence of origin array, 
     // ** but substring of fabonacii arry.
+    // ** Also, as input [1, 11, 12], obviously, has no relation
+    // ** with [1,2,3,5,8....]
     int func3(vector<int>& A) {
     	if (A.size() <= 2) {
     		return 0;
@@ -72,7 +75,27 @@ public:
     			if (dp[j] > maxLen) maxLen = dp[j];
     		}
     	}
-
+    	for (auto x : dp) {
+    		cout << x << endl;
+    	}
     	return maxLen;
+    }
+
+    // ** "Check Pair" from discuss
+    int func4(vector<int>& A) {
+    	unordered_set<int> set(A.begin(), A.end());
+    	int ret = 0;
+    	for (int i = 0; i < A.size(); i++) {
+    		for (int j = i+1; j < A.size(); j++) {
+    			int a = A[i], b = A[j], len = 2;
+    			while (set.count(a+b)) {
+    				b = a + b;
+    				a = b - a;
+    				len++;
+    			}
+    			ret = max(ret, len);
+    		}
+    	}
+    	return ret > 2 ? ret : 0;
     }
 };
