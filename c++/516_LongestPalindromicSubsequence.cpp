@@ -2,8 +2,10 @@ class Solution {
 public:
     int longestPalindromeSubseq(string s) {
         // return func1(s);
-        return func2(s);
+        // return func2(s);
+        return func3(s);
     }
+    
     // ** still starting from recursion
     int func1(string s) {
         return helper1(s, 0, s.length() - 1);
@@ -24,7 +26,7 @@ public:
 
         return max(lf, rt);
     }
-
+    
     // ** recursive + meme
     int func2(string s) {
         int n = s.length();
@@ -51,5 +53,27 @@ public:
         }
         
         return memo[lo][hi];
+    }
+
+    // ** dp
+    int func3(string s) {
+        int n = s.length();
+        vector<vector<int>> dp(n, vector<int>(n, 0));
+        int ret = 0;
+        for (int len = 1; len <= n; len++) {
+            for (int i = 0; i < n; i++) {
+                int j = i + len - 1;
+                if (j >= n) break;
+                if (s[i] == s[j]) {
+                    dp[i][j] = (j > i ? 2 : 1) + (i+1 <= j-1 ? dp[i+1][j-1] : 0);
+                } else {
+                    int lf = i+1 <= j ? dp[i+1][j] : 0;
+                    int rt = i <= j-1 ? dp[i][j-1] : 0;
+                    dp[i][j] = max(lf, rt);
+                }
+                ret = max(ret, dp[i][j]);
+            }
+        }
+        return ret;
     }
 };
