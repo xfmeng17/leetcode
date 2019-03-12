@@ -5,7 +5,8 @@ public:
         // return func2(nums);
         // return func3(nums);
         // return func4(nums);
-        return func5(nums);
+        // return func5(nums);
+        return func6(nums);
     }
 
     // ** top-down recursive, TLE
@@ -142,5 +143,61 @@ public:
             return 0;
         }
         return max(helper5(nums, i-2) + nums[i], helper5(nums, i-1));
+    }
+
+    // ** myself dp
+    // ** not correct in formula
+    // ** test input: [8,7,3,8,1,4,10,10,10,2]
+    int func6(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<int> singleNums;
+        vector<int> singleSize;
+        for (auto n : nums) {
+            if (singleNums.size() > 0 && singleNums.back() == n) {
+                singleSize.back()++;
+            } else {
+                singleNums.push_back(n);
+                singleSize.push_back(1);
+            }
+        }
+        for (int i = 0; i < singleNums.size(); i++) {
+            cout<<singleNums[i]<<", ";
+        }
+        cout<<endl;
+        for (int i = 0; i < singleSize.size(); i++) {
+            cout<<singleSize[i]<<", ";
+        }
+        cout<<endl;
+
+        int n = singleNums.size();
+
+        int p0 = 0, p1 = 0, p2 = 0;
+        for (int i = 0; i < n; i++) {
+            cout<<singleNums[i]<<" ";
+            int pick = singleNums[i] * singleSize[i] + p2;
+            cout<<"pick="<<pick;
+            bool flag = false;
+            if (i-1 >= 0 && singleNums[i]-1 != singleNums[i-1]) {
+                flag = true;
+                if (i-2 >= 0 && singleNums[i-1]-1 == singleNums[i-2]) {
+                    flag = false;
+                }
+            }
+            if (flag) pick += singleNums[i-1] * singleSize[i-1];
+            cout <<", pick="<<pick;
+
+            int notp = p1;
+            cout <<", notp="<<notp;
+            p0 = max(pick, notp);
+            cout <<", p1="<<p1;
+            cout <<", p2="<<p2;
+           
+            p2 = p1;
+            p1 = p0;
+            cout <<", p1="<<p1;
+            cout <<", p2="<<p2<<endl;
+        }
+
+        return p0;
     }
 };
