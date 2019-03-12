@@ -2,7 +2,10 @@ class Solution {
 public:
     int deleteAndEarn(vector<int>& nums) {
         // return func1(nums);
-        return func2(nums);
+        // return func2(nums);
+        // return func3(nums);
+        // return func4(nums);
+        return func5(nums);
     }
 
     // ** top-down recursive, TLE
@@ -99,5 +102,45 @@ public:
         }
 
         return memo[lo][hi];
+    }
+
+    // ** dp from discuss
+    int func3(vector<int>& nums) {
+        vector<int> cnt(100001, 0);
+        for (auto n : nums) cnt[n] += n;
+        
+        vector<int> dp(100003, 0);
+        for (int i = 10000; i >= 0; i--) {
+            dp[i] = max(cnt[i] + dp[i+2], dp[i+1]);
+        }
+        return dp[0];
+    }
+    // ** dp, trim to 2 pointer
+    int func4(vector<int>& nums) {
+        vector<int> cnt(100001, 0);
+        for (auto n : nums) cnt[n] += n;
+        
+        int p0 = 0, p1 = 0, p2 = 0;
+        for (int i = 10000; i >= 0; i--) {
+            p0 = max(cnt[i] + p2, p1);
+            p2 = p1;
+            p1 = p0;
+        }
+        return p0;
+    }
+
+    // ** reduce to the House Robbers question
+    // ** just get TLE
+    int func5(vector<int>& nums) {
+        vector<int> cnt(10001, 0);
+        for (auto n : nums) cnt[n] += n;
+
+        return helper5(cnt, cnt.size() - 1);
+    }
+    int helper5(vector<int>& nums, int i) {
+        if (i < 0) {
+            return 0;
+        }
+        return max(helper5(nums, i-2) + nums[i], helper5(nums, i-1));
     }
 };
