@@ -7,7 +7,6 @@ public:
     int func1(vector<int>& nums, int S) {
         return helper1(nums, 0, S, 0);       
     }
-
     int helper1(vector<int>& nums, int i, int S, int sum) {
         if (i >= nums.size()) {
             return 0;
@@ -24,5 +23,5 @@ public:
         }
 
         return plus + minus;
-    }
+    }    
 };
