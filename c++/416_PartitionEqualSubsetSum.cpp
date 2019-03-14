@@ -2,7 +2,8 @@ class Solution {
 public:
     bool canPartition(vector<int>& nums) {
         // return func1(nums);
-        return func2(nums);     
+        // return func2(nums);
+        return func3(nums);   
     }
     // ** recursive
     bool func1(vector<int>& nums) {
@@ -66,6 +67,7 @@ public:
     }
 
     // ** use 1-dimension
+    // ** amazing implement
     bool func3(vector<int>& nums) {
         int sum = 0;
         for (auto n : nums) {
@@ -75,17 +77,18 @@ public:
             return false;
         }
         sum /= 2;
-        int n = nums.size();
 
         vector<bool> dp(sum+1, false);
         dp[0] = true;
 
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= sum; j++) {
+        for (int i = 1; i <= nums.size(); i++) {
+            for (int j = sum; j > 0; j--) {
                 if (j - nums[i-1] >= 0) {
                     dp[j] = dp[j] || dp[j - nums[i-1]];
                 }
             }
         }
 
+        return dp[sum];
+    }
 };
