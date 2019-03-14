@@ -3,10 +3,11 @@
 ### Problems-Should-Practice-Repeatedly
 
 - **33 Search in Rotated Sorted Array** `binary search`
-- **873 Length of Longest Fibonacci Subsequence** `DP`
+- **873 Length of Longest Fibonacci Subsequence** `dp`
+- **416 Partition Equal Subset Sum** `0/1knapsack` `1-dimension` 
 
 ### Problems-Awesome-Solution-From-Discuss
-- **1008 Construct Binary Search Tree from Preorder Traversal** `Tree` [boundary](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/252232/JavaC%2B%2BPython-O(N)-Solution)
+- **1008 Construct Binary Search Tree from Preorder Traversal** `tree` [boundary](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/252232/JavaC%2B%2BPython-O(N)-Solution)
 
 ### Problems-I-Think-Interesting
 
@@ -25,6 +26,6 @@
 - **53 Maximum Subarray** `devide and conquer`
 - **338 Counting Bits** 
 - **983 Minimum Cost For Tickets**  `interesting`
-- **650 2 Keys Keyboard**  `interesting` `Math`
+- **650 2 Keys Keyboard**  `interesting` `math`
 - **740 Delete and Earn** `transformation`
 
