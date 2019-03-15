@@ -41,6 +41,10 @@ public:
 
     // ** recursive + memoization
     // ** O(K*N^2) time complexity, TLE
+    /* Apparently time complexity is not O(KN^2) cause
+    func3() is real O(KN^2). But how to calculate func2()'s time?
+       I think I need review CLRS some day.
+    */
     double func2(vector<int>& A, int K) {
         int N = A.size();
         if (N <= 0 || K <= 0) {
