@@ -2,7 +2,8 @@ class Solution {
 public:
     double largestSumOfAverages(vector<int>& A, int K) {
         // return func1(A, K);
-        return func2(A, K);
+        // return func2(A, K);
+        return func3(A, K);
     }
 
     double func1(vector<int>& A, int K) {
@@ -82,5 +83,34 @@ public:
         }
 
         return res;
+    }
+
+    // ** memo from discuss
+    // ** How to change to bottom-up dp?
+    double func3(vector<int>& A, int K) {
+        int N = A.size();
+        vector<vector<double>> memo(N+1, vector<double>(K+1, 0.0));
+        double curr = 0.0;
+        for (int i = 0; i < N; i++) {
+            curr += A[i];
+            memo[i+1][1] = curr / (i + 1);
+        }
+        return helper3(A, N, K, memo);
+    }
+    double helper3(vector<int>& A, int n, int k, vector<vector<double>>& memo) {
+        if (memo[n][k] > 0) {
+            return memo[n][k];
+        }
+        if (n < k) {
+            return 0;
+        }
+        double curr = 0.0;
+        for (int i = n-1; i > 0; i--) {
+            curr += A[i];
+            double left = helper3(A, i, k-1, memo);
+            memo[n][k] = max(memo[n][k], left + curr / (n - i));
+        }
+
+        return memo[n][k];
     }
 };
