@@ -37,28 +37,35 @@ public:
     	int lp = 0, rp = 0;
     	while (lp < left.size() && rp < right.size()) {
     		if (left[lp] < right[rp]) {
+    			// ** lo = last L-index, hi = current L-index
     			int lo = lp-1 >= 0 ? left[lp-1] : 0;
     			int hi = left[lp];
     			for (int i = hi; i >= lo; i--) {
     				dominoes[i] = 'L';
     			}
+    			
     			lp++;
     		} else {
+    			// ** lo = first R-index < L-index
     			int lo = right[rp];
     			while(rp < right.size() && right[rp] < left[lp]) {
     				rp++;
     			}
     			rp--;
+    			// ** hi = last R-index < L-index
     			int hi = right[rp];
     			for (int i = lo; i <= hi; i++) {
     				dominoes[i] = 'R';
     			}
+
+    			// ** R-L form
     			int p1 = right[rp] + 1;
     			int p2 = left[lp] - 1;
     			while (p1 < p2) {
     				dominoes[p1++] = 'R';
     				dominoes[p2--] = 'L';
     			}
+
     			lp++;
     			rp++;
     		}
