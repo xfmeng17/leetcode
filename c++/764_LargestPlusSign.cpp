@@ -1,7 +1,8 @@
 class Solution {
 public:
     int orderOfLargestPlusSign(int N, vector<vector<int>>& mines) {
-    	return func1(N, mines);        
+    	// return func1(N, mines);
+    	return func2(N, mines);
     }
 
     // ** straight forward iterative
@@ -32,5 +33,49 @@ public:
     	}
 
     	return 0;
+    }
+
+    // ** 2 array dp
+    int func2(int N, vector<vector<int>>& mines) {
+    	if (N <= 0) {
+    		return 0;
+    	}
+    	if (N * N <= mines.size()) {
+    		return 0;
+    	}
+    	vector<vector<int>> arr(N, vector<int>(N, 1));
+    	vector<vector<int>> dp1(N, vector<int>(N, 1));
+    	vector<vector<int>> dp2(N, vector<int>(N, 1));
+    	for (auto m : mines) {
+    		arr[m[0]][m[1]] = 0;
+    		dp1[m[0]][m[1]] = 0;
+    		dp2[m[0]][m[1]] = 0;
+    	}
+
+    	for (int n = 2; n <= (N+1)/2; n++) {
+    		bool sign = false;
+    		for (int i = 0; i < N; i++) {
+    			for (int j = 0; j < N; j++) {
+    				dp1[i][j] = 1;
+    				if (i - 1 < 0 || arr[i-1][j] == 0) dp1[i][j] = 0;
+    				if (j - 1 < 0 || arr[i][j-1] == 0) dp1[i][j] = 0;
+    				if (i + 1 >= N || arr[i+1][j] == 0) dp1[i][j] = 0;
+    				if (j + 1 >= N || arr[i][j+1] == 0) dp1[i][j] = 0;
+    				if (dp2[i][j] == 0) dp1[i][j] = 0;
+    				if (dp1[i][j] == 1) sign = true;
+    			}
+    		}
+    		if (!sign) {
+    			cout<<"!sign n="<<n<<endl;
+    			return n - 1;
+    		}
+    		for (int i = 0; i < N; i++) {
+    			for (int j = 0; j < N; j++) {
+    				dp2[i][j] = dp1[i][j];
+    			}
+    		}
+    	}
+
+    	return (N+1)/2;
     }
 };
