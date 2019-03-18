@@ -4,7 +4,8 @@ public:
         // return func1(nums, k);
         // return func2(nums, k);
         // return func3(nums, k);
-        return func4(nums, k);
+        // return func4(nums, k);
+        return func5(nums, k);
     }
 
     // ** WA, case [10,10,10,7,7,7,6,6,6]
@@ -149,4 +150,51 @@ public:
 
         return true;
     }
+
+    // ** 0/1 knapsack
+    // ** dp[i][t] = how many ways to get 't' from first 'i' elements from nums
+    // ** this approach will reuse some element, this is a huge bug!
+    // ** Wrong solution already be known even without implementing the code
+    
+    // ** backtracking from discuss, use a 1D array to mark
+    // ** time O(k*2^N), standard backtracking with a marked array
+    // ** 20ms AC
+    bool func5(vector<int>& nums, int k) {
+        int all = 0;
+        for (auto n : nums) {
+            all += n;
+        }
+        if (all % k != 0) {
+            return false;
+        }
+        int target = all / k;
+        vector<int> marked(nums.size(), 0);
+
+        return helper5(nums, marked, 0, k, 0, 0, target);
+
+    }
+    bool helper5(vector<int>& nums, vector<int>& marked, int idx,
+        int k, int sum, int num, int target) {
+
+        if (k == 1) {
+            return true;
+        }
+
+        if (sum == target && num > 0) {
+            return helper5(nums, marked, 0, k-1, 0, 0, target);
+        }
+
+        for (int i = idx; i < nums.size(); i++) {
+            if (!marked[i]) {
+                marked[i] = 1;
+                if (helper5(nums, marked, i + 1, k, sum + nums[i], num + 1, target)) {
+                    return true;
+                }
+                marked[i] = 0;
+            }
+        }
+
+        return false;
+    }
+
 };
