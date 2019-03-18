@@ -3,7 +3,8 @@ public:
     bool canPartitionKSubsets(vector<int>& nums, int k) {
         // return func1(nums, k);
         // return func2(nums, k);
-        return func3(nums, k);
+        // return func3(nums, k);
+        return func4(nums, k);
     }
 
     // ** WA, case [10,10,10,7,7,7,6,6,6]
@@ -112,5 +113,40 @@ public:
         }
 
         return false;
+    }
+
+    // ** pq with sort ?
+    // ** WA case: nums = [2,2,10,5,2,7,2,2,13], k = 3
+    bool func4(vector<int>& nums, int k) {
+        int all = 0;
+        for (auto n : nums) {
+            all += n;
+        }
+        if (all % k != 0) {
+            return false;
+        }
+        int sum = all / k;
+
+        priority_queue<int, vector<int>, greater<int>> pq;
+        sort(nums.begin(), nums.end());
+        for (int i = nums.size()-1; i >= 0; i--) {
+            if (pq.size() < k) {
+                pq.push(nums[i]);
+            } else {
+                int t = pq.top();
+                pq.pop();
+                pq.push(t + nums[i]);
+            }
+        }
+
+        while (!pq.empty()) {
+            int t = pq.top();
+            pq.pop();
+            if (t != sum) {
+                return false;
+            }
+        }
+
+        return true;
     }
 };
