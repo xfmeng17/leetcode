@@ -2,7 +2,8 @@ class Solution {
 public:
     int numSquares(int n) {
         // return func1(n);
-        return func2(n);  
+        // return func2(n);
+        return func3(n);
     }
 
     // ** 0/1 knapsack 2D dp
@@ -47,5 +48,34 @@ public:
         }
 
         return dp[n];
+    }
+
+    // ** methematical solution open my mind!
+    int func3(int n) {
+        int m = sqrt(n);
+        if (n == m * m) {
+            return 1;
+        }
+
+        // ** Legendre's three-square theorem:
+        // ** 4^K * (8*M + 7)
+        int aux = n;
+        while (aux % 4 == 0) {
+            aux /= 4;
+        }
+        if (aux % 8 == 7) {
+            return 4;
+        }
+
+        // ** check 2
+        for (int i = 1; i <= m; i++) {
+            int x = n - i * i;
+            int y = sqrt(x);
+            if (y * y == x) {
+                return 2;
+            }
+        }
+
+        return 3;
     }
 };
