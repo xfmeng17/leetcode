@@ -1,10 +1,12 @@
 class Solution {
 public:
     int findMaxForm(vector<string>& strs, int m, int n) {
-        return func1(strs, m, n);
+        // return func1(strs, m, n);
+        return func2(strs, m, n);
     }
 
     // ** recursive
+    // ** time 0(len * 2^N), len = max length of strs, N = strs.size()
     int func1(vector<string>& strs, int m, int n) {
         return helper1(strs, 0, m, n);
     }
@@ -27,5 +29,45 @@ public:
         }
 
         return max(notp, pick);
+    }
+
+    // ** dp two 2D array
+    int func2(vector<string>& strs, int m, int n) {
+        vector<vector<int>> dp1(m+1, vector<int>(n+1, 0));
+        vector<vector<int>> dp2(m+1, vector<int>(n+1, 0));
+
+        for (int i = 0; i < strs.size(); i++) {
+            int cnt0 = 0;
+            int cnt1 = 0;
+            for (int j = 0; j < strs[i].length(); j++) {
+                if (strs[i][j] == '0') cnt0++;
+                if (strs[i][j] == '1') cnt1++;
+            }
+            for (int x = cnt0; x <= m; x++) {
+                for (int y = cnt1; y <= n; y++) {
+                    dp1[x][y] = max(dp2[x][y], 1 + dp2[x-cnt0][y-cnt1]);
+                }
+            }
+            for (int x = 0; x <= m; x++) {
+                for (int y = 0; y <= n; y++) {
+                    dp2[x][y] = dp1[x][y];
+                }
+            }
+            for (int x = 0; x <= m; x++) {
+                for (int y = 0; y <= n; y++) {
+                    dp2[x][y] = dp1[x][y];
+                    res = max(res, dp2[x][y]);
+                }
+            }
+            // for (int x = 0; x <= m; x++) {
+            //     for (int y = 0; y <= n; y++) {
+            //         cout << dp2[x][y] << " ";
+            //     }
+            //     cout << endl;
+            // }
+            // cout << "-------" << endl;
+        }
+
+        return dp1[m][n];
     }
 };
