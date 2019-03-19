@@ -6,6 +6,7 @@ public:
         // return func3(nums, k);
         // return func4(nums, k);
         return func5(nums, k);
+        // return func6(nums, k);
     }
 
     // ** WA, case [10,10,10,7,7,7,6,6,6]
@@ -180,6 +181,9 @@ public:
             return true;
         }
 
+        if (sum > target) {
+            return false;
+        }
         if (sum == target && num > 0) {
             return helper5(nums, marked, 0, k-1, 0, 0, target);
         }
@@ -197,4 +201,59 @@ public:
         return false;
     }
 
+
+    // ** backtracking from reference, JUST for practicing
+     bool func6(vector<int>& nums, int k) {
+        if (k == 1) {
+            return true;
+        }
+        if (nums.size() < k) {
+            return false;
+        }
+        int all = 0;
+        for (auto n : nums) {
+            all += n;
+        }
+        if (all % k != 0) {
+            return false;
+        }
+        int target = all / k;
+        vector<int> marked(nums.size(), 0);
+        vector<int> subset(k, 0);
+
+        return helper6(nums, 0, subset, 0, marked, k, target);
+    }
+
+    bool helper6(vector<int>& nums, int idxN, vector<int>& subset, int idxS,
+        vector<int>& marked, int k, int target) {
+        
+        if (subset[idxS] == target){
+            if (idxS == k-2) {
+                return true;
+            } else {
+                return helper6(nums, 0, subset, idxS+1, marked, k, target);
+            }
+        }
+
+        for (int i = idxN; i < nums.size(); i++) {
+            if (marked[i] == 1) continue;
+            
+            int curr = subset[idxS] + nums[i];
+            if (curr <= target) {
+                marked[i] = true;
+                subset[idxS] += nums[i];
+                
+                bool next = helper6(nums, i+1, subset, idxS, marked, k, target);
+                
+                marked[i] = false;
+                subset[idxS] -= nums[i];
+                
+                if (next == true) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 };
