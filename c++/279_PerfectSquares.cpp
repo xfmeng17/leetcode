@@ -1,17 +1,18 @@
 class Solution {
 public:
     int numSquares(int n) {
-        return func1(n);  
+        // return func1(n);
+        return func2(n);  
     }
 
     // ** 0/1 knapsack 2D dp
     int func1(int n) {
-        vector<int> squares;
-        for (int i = 1; (i * i) <= n; i++) {
-            squares.push_back(i*i);
-        }
-        vector<vector<int>> dp(squares.size()+1, vector<int>(n+1, n));
-        for (int i = 0; i < squares.size(); i++) {
+        int m = sqrt(n);
+        vector<int> squares(m);
+        vector<vector<int>> dp(m+1, vector<int>(n+1, n));
+
+        for (int i = 0; i < m; i++) {
+            squares[i] = (i+1) * (i+1);
             dp[i+1][squares[i]] = 1;
         }
 
@@ -26,5 +27,25 @@ public:
         }
 
         return dp[squares.size()][n];
+    }
+
+    // ** 1D array
+    int func2(int n) {
+        int m = sqrt(n);
+        vector<int> squares(m);
+        vector<int> dp(n+1, n);
+
+        for (int i = 0; i < m; i++) {
+            squares[i] = (i+1) * (i+1);
+            dp[squares[i]] = 1;
+        }
+        
+        for (int sqr : squares) {
+            for (int j = sqr; j <= n; j++) {
+                dp[j] = min(dp[j], 1 + dp[j - sqr]);
+            }
+        }
+
+        return dp[n];
     }
 };
