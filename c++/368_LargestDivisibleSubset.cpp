@@ -4,7 +4,8 @@ public:
         // return func1(nums);
         // return func2(nums);
         // return func3(nums);
-        return func4(nums);
+        // return func4(nums);
+        return func5(nums);
     }
 
 
@@ -92,24 +93,24 @@ public:
         int len = 0;
 
         for (int i = 0; i < N; i++) {
-            int cnt = 1;
+            int len = 1;
             int lf = nums[i];
             for (int j = i-1; j >= 0; j--) {
                 if (lf % nums[j] == 0) {
                     lf = nums[j];
-                    cnt++;
+                    len++;
                 }
             }
             int rt = nums[i];
             for (int j = i+1; j < N; j++) {
                 if (nums[j] % rt == 0) {
                     rt = nums[j];
-                    cnt++;
+                    len++;
                 }
             }
-            if (cnt > len) {
+            if (len > len) {
                 idx = i;
-                len = cnt;
+                len = len;
             }
         }
 
@@ -195,6 +196,44 @@ public:
                 res.push_back(nums[i]);
                 rt = nums[i];
             }
+        }
+
+        return res;
+    }
+
+    // ** reference
+    // ** two 1D array, len[i] record length,
+    // ** pre[i] record last index
+    vector<int> func5(vector<int>& nums) {
+        int N = nums.size();
+        if (N <= 1) {
+            return vector<int>(nums);
+        }
+        sort(nums.begin(), nums.end());
+
+        vector<int> len(N, 1);
+        vector<int> pre(N, -1);
+
+        int maxLen = 0, maxIdx = -1;
+        for (int i = 0; i < N; i++) {
+            for (int j = i-1; j >= 0; j--) {
+                if (nums[i] % nums[j] == 0) {
+                    if (1 + len[j] > len[i]) {
+                        len[i] = 1 + len[j];
+                        pre[i] = j;
+                    }
+                }
+            }
+            if (len[i] > maxLen) {
+                maxLen = len[i];
+                maxIdx = i;
+            }
+        }
+
+        vector<int> res;
+        while (maxIdx >= 0) {
+            res.push_back(nums[maxIdx]);
+            maxIdx = pre[maxIdx];
         }
 
         return res;
