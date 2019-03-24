@@ -29,3 +29,8 @@
 - **650 2 Keys Keyboard**  `interesting` `math`
 - **740 Delete and Earn** `transformation`
 - **813 Largest Sum of Averages** `interesting` `one-direction-iteration`
+
+### Problems-Should-Use-Hint
+
+- **808 Soup Servings** `when N>4800 just return 1.0`
+
