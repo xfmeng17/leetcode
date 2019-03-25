@@ -50,7 +50,13 @@ public:
     	return table.size();
     }
  	
- 	// ** reference, reduce iteration operations
+ 	/* Reference:
+ 	 * Time complexity reduce to O(30N).
+ 	 * There are at most 30 bits for a positive number 0 <= A[i] <= 10^9.
+ 	 * So there are at most 30 different values in "cur".
+ 	 * 
+ 	 * Impressive time optimized design
+ 	*/
  	int func3(vector<int>& A) {
  		int N = A.size();
  		unordered_set<int> res;
