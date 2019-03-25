@@ -2,7 +2,8 @@ class Solution {
 public:
 	int findSubstringInWraproundString(string p) {
 		// return func1(p);
-		return func2(p);
+		// return func2(p);
+		return func3(p);
 	}
 
 	// ** wa, bad case: "zaba"
@@ -65,11 +66,13 @@ public:
 		return res;
 	}
 
+	// ** use a extra helper function putSubstring()
+	// ** TLE
 	int func2(string p) {
 		if (p.length() <= 0) {
 			return 0;
 		}
-		
+
 		unordered_set<string> table;
 		int lo = 0;
 		int hi = 1;
@@ -101,5 +104,24 @@ public:
 				}
 			}
 		}
+	}
+
+	// ** reference, not dp really
+	int func3(string p) {
+		int count[26] = { 0 };
+		int len = 1;
+		for (int i = 0; i < p.length(); i++) {
+			if (i > 0 && (p[i] + 26 - p[i-1]) % 26 == 1) {
+				len++;
+			} else {
+				len = 1;
+			}
+			count[p[i]-'a'] = max(count[p[i]-'a'], len);
+		}
+
+		int res = 0;
+		for (auto c : count) res += c;
+
+		return res;
 	}
 };
