@@ -34,3 +34,6 @@
 
 - **808 Soup Servings** `when N>4800 just return 1.0`
 
+### Impressive-Time-Optimized-Design
+
+- **898 Bitwise ORs of Subarrays** `func3()`
