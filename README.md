@@ -36,4 +36,5 @@
 
 ### Impressive-Time-Optimized-Design
 
-- **898 Bitwise ORs of Subarrays** `func3()`
+- **898 Bitwise ORs of Subarrays** `DP` `func3()`
+- **837 New 21 Game** `DP` `sliding window`
