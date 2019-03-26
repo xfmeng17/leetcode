@@ -29,6 +29,7 @@
 - **650 2 Keys Keyboard**  `interesting` `math`
 - **740 Delete and Earn** `transformation`
 - **813 Largest Sum of Averages** `interesting` `one-direction-iteration`
+- **322 Coin Change** `Completely 0/1 knapsack` [reference](https://www.kancloud.cn/kancloud/pack/70125)
 
 ### Problems-Should-Use-Hint
 
