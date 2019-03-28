@@ -7,6 +7,7 @@
 - **416 Partition Equal Subset Sum** `0/1knapsack` `1D dp` 
 - **376 Wiggle Subsequence** `1D dp with 0(N) time`
 - **967 Numbers with Same Consecutive Differences** `iterate` `digit manipulate`
+- **300 Longest Increasing Subsequence** `dp` `O(NlongN) Solution`
 
 ### Problems-Awesome-Solution-From-Discuss
 - **1008 Construct Binary Search Tree from Preorder Traversal** `tree` [boundary](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/252232/JavaC%2B%2BPython-O(N)-Solution)
