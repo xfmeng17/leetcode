@@ -11,7 +11,7 @@ public:
     }
     int helper1(int lo, int hi, vector<vector<int>>& memo) {
     	if (lo >= hi) return 1;
-    	// if (lo == hi) return 1;
+    	if (memo[lo][hi] > 0) return memo[lo][hi];
 
     	memo[lo][hi] = 0;
     	for (int mid = lo; mid <= hi; mid++) {
