@@ -1,3 +1,4 @@
+/*
 class MinStack {
 private:
     const int N = 10;
@@ -6,14 +7,13 @@ private:
     int size = 0;
     int minElem = 0;
 public:
-    /** initialize your data structure here. */
+    // ** initialize your data structure here.
     MinStack() {
         array = new int[N];
         capacity = N;
         size = 0;
         minElem = 0;
     }
-    
     void push(int x) {
         array[size] = x;
         size++;
@@ -71,6 +71,56 @@ public:
         }
     }
 };
+*/
+
+// ** Referece, Just store difference
+class MinStack {
+private:
+    stack<long> myStack;
+    long minElem;
+public:
+    MinStack() {
+        myStack = stack<long>();
+        minElem = 0;
+    }
+    void push(int x) {
+        if (myStack.empty()) {
+            myStack.push(0);
+            minElem = x;
+        } else {
+            myStack.push(x - minElem);
+            if (x < minElem) {
+                minElem = x;
+            }
+        }
+    }
+    
+    void pop() {
+        if (myStack.empty()) {
+            return;
+        }
+        long p = myStack.top();
+        if (p < 0) {
+            minElem -= p;
+        }
+        myStack.pop();
+    }
+    
+    int top() {
+        long p = myStack.top();
+        if (p > 0) {
+            return p + minElem;
+        } else {
+            return minElem;
+        }
+
+    }
+    
+    int getMin() {
+        return minElem;
+    }
+};
+
 
 /**
  * Your MinStack object will be instantiated and called as such:
