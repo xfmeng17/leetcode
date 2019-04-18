@@ -4,7 +4,8 @@ public:
         // return func1(triangle);
         // return func2(triangle);
         // return func3(triangle);
-        return func4(triangle);
+        // return func4(triangle);
+        return func5(triangle);
     }
 
     // ** recursive
@@ -111,5 +112,16 @@ public:
         }
 
         return res;
+    }
+
+    // ** https://github.com/soulmachine/leetcode
+    // ** as-short-as-possible
+    int func5(vector<vector<int>>& triangle) {
+        for (int i = triangle.size() - 2; i >= 0; --i) {
+            for (int j = 0; j < i + 1; ++j) {
+                triangle[i][j] += min(triangle[i+1][j], triangle[i+1][j+1]);
+            }
+        }
+        return triangle[0][0];
     }
 };
