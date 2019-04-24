@@ -94,4 +94,19 @@ public:
     	}
     	return leftMax + rightMax;
     }
+
+    // ** 2019-04-24 as-short-as-possible
+    int func5(vector<int>&nums) {
+    	int pre = nums[0];
+	int res = nums[0];
+	for (int i = 1; i < nums.size(); i++) {
+		if (pre < 0) {
+			pre = nums[i];
+		} else {
+			pre += nums[i];
+		}
+		res = max(res, pre);
+	}
+	return res;
+    }
 };
