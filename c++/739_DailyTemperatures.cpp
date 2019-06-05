@@ -2,7 +2,8 @@ class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& T) {
 		// return func1(T);
-		return func2(T);   
+		// return func2(T);
+		return func3(T); 
     }
 
     // ** time O(N^2), Time Limit Exceeded
@@ -44,6 +45,20 @@ public:
 				}
 			}
 			vec[T[i]].pop();
+		}
+		return res;
+	}
+
+	// ** standard stack method reference from discuss
+	vector<int> func3(vector<int>& T) {
+		vector<int> res = vector<int>(T.size(), 0);
+		stack<int> stk;
+		for (int i = 0; i < T.size(); i++) {
+			while (!stk.empty() && T[i] > T[stk.top()]) {
+				res[stk.top()] = i - stk.top();
+				stk.pop();
+			}
+			stk.push(i);
 		}
 		return res;
 	}
