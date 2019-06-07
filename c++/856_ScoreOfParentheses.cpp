@@ -1,7 +1,8 @@
 class Solution {
 public:
     int scoreOfParentheses(string S) {
-        return func1(S);
+        // return func1(S);
+        return func2(S);
     }
     
     int func1(string S) {
@@ -26,6 +27,25 @@ public:
                 }
             } else {
                 stk.push(S[i]);
+            }
+        }
+        return res;
+    }
+
+    int func2(string S) {
+        int res = 0;
+        stack<char> stk;
+        for (int i = 0; i < S.length(); i++) {
+            if (S[i] == '(') {
+                stk.push(S[i]);
+            } else {
+                res += pow(2, stk.size() - 1);
+                int j = i;
+                while (!stk.empty() && j < S.length() && S[j] == ')') {
+                    stk.pop();
+                    i = j;
+                    j++;
+                }
             }
         }
         return res;
