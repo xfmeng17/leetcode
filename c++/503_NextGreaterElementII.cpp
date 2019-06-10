@@ -2,7 +2,8 @@ class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
     	// return func1(nums);
-    	return func2(nums);     
+    	// return func2(nums);
+    	return func3(nums);    
     }
 
     /*
@@ -41,7 +42,7 @@ public:
     	// }
     	return res;
     }
-    
+
     /*
      * Time: O(n), standard stack
      * WA with case: 
@@ -61,6 +62,47 @@ public:
     				stk.pop();
     			}
     			stk.push(i);
+    		}
+    	}
+    	// ** reverse assign
+    	stack<int> tmp;
+    	while (!stk.empty()) {
+    		if (tmp.empty()) {
+    			tmp.push(stk.top());
+    			stk.pop();
+    		} else {
+    			while (!tmp.empty() && nums[stk.top()] > nums[tmp.top()]) {
+    				res[tmp.top()] = nums[stk.top()];
+    				tmp.pop();
+    			}
+    			tmp.push(stk.top());
+    			stk.pop();
+    		}
+    	}
+    	return res;
+    }
+
+    /*
+     * Time: O(n), standard stack, twice iteration
+    */
+    vector<int> func3(vector<int>& nums) {
+    	vector<int> res(nums.size(), -1);
+    	stack<int> stk;
+    	for (int i = 0; i < nums.size(); i++) {
+    		if (stk.empty()) {
+    			stk.push(i);
+    		} else {
+    			while (!stk.empty() && nums[i] > nums[stk.top()]) {
+    				res[stk.top()] = nums[i];
+    				stk.pop();
+    			}
+    			stk.push(i);
+    		}
+    	}
+    	for (int i = 0; i < nums.size(); i++) {
+    		while (!stk.empty() && nums[i] > nums[stk.top()]) {
+    			res[stk.top()] = nums[i];
+    			stk.pop();
     		}
     	}
     	// ** reverse assign
