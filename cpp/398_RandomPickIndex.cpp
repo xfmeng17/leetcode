@@ -26,23 +26,52 @@
 /** 
  * 2. Random choose, O(1) space but O(n) pick
  */
-class Solution {
-public:
+// class Solution {
+// public:
+//     vector<int> arr;
+// public:
+//     Solution(vector<int>& nums) {
+//         arr = nums;
+//         srand(time(NULL));
+//     }
+    
+//     int pick(int target) {
+//         vector<int> candidate;
+//         for (int i = 0; i < arr.size(); i++) {
+//             if (arr[i] == target) {
+//                 candidate.emplace_back(i);
+//             }
+//         }
+//         return candidate[rand() % candidate.size()];
+//     }
+// };
+
+/** 
+ * 3. Random choose, "start = i + 1" is the trick, if not will not be equal random
+ */
+class Solution {                                                                    
+public:                                                                             
     vector<int> arr;
-public:
+    int start = 0;
+public:                                                                             
     Solution(vector<int>& nums) {
         arr = nums;
-        srand(time(NULL));
     }
-    
+
     int pick(int target) {
-        vector<int> candidate;
-        for (int i = 0; i < arr.size(); i++) {
+        for (int i = start; i < arr.size(); i++) {
             if (arr[i] == target) {
-                candidate.emplace_back(i);
+                start = i + 1;
+                return i;
             }
         }
-        return candidate[rand() % candidate.size()];
+        for (int i = 0; i < start; i++) {
+            if (arr[i] == target) {
+                start = i + 1;
+                return i;
+            }
+        }
+        return -1;
     }
 };
 
