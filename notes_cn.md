@@ -21,3 +21,8 @@
 - BST序列化与反序列化，中序遍历
 - 序列化逻辑拆分：1-basic情况检测，2-int->string->char vector，3-recursive左树，然后recursive右子树
 - 反序列化逻辑拆分：1-定义一个全局起始position，传递为指针，2-末尾边界check，3-取整段char转为int，4-pos更新，递归左右
+
+### 138. Copy List with Random Pointer
+
+- 解法1，造个2个map，旧的[pointer, index]，新的[index, pointer]，先遍历一次create，设map，再遍历一次通过2个map找到random
+- 注意random=NULL的特殊情况
