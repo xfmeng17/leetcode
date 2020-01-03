@@ -25,4 +25,8 @@
 ### 138. Copy List with Random Pointer
 
 - 解法1，造个2个map，旧的[pointer, index]，新的[index, pointer]，先遍历一次create，设map，再遍历一次通过2个map找到random
-- 注意random=NULL的特殊情况
+- 注意random=NULL
+
+### 146. LRU Cache
+
+- LRU，hashmap + double linked list
