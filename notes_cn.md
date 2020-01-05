@@ -30,3 +30,8 @@
 ### 146. LRU Cache
 
 - LRU，hashmap + double linked list
+- 对于GET，2种情况，没找到/找到，找到调用PUT刷新last use
+- 对于PUT，3种情况:
+  - key在，delete删除双端链表节点，add添加新节点
+  - key不在，size < cap，直接add
+  - key不在，size = cap，eliminate淘汰最后的，返回淘汰的key，**map同步删除key**，执行add
