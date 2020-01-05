@@ -29,8 +29,13 @@ public:
         tail->prev = head;
     }
     ~LRUCache() {
-        delete head;
-        delete tail;
+        DLinkedList* curr = head;
+        DLinkedList* next = head;
+        while (curr != NULL) {
+            next = curr->next;
+            delete(curr);
+            curr = next;
+        }
     }
 
     int get(int key) {
@@ -62,7 +67,7 @@ public:
         int elimKey = Eliminate(head, tail);
         map.erase(elimKey);
         map[key] = Add(head, key, val);
-        Dump(head, tail);
+        Dump(head, tail); 
         return;
     }
     
