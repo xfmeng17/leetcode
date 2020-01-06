@@ -26,6 +26,10 @@
 
 - 解法1，造个2个map，旧的[pointer, index]，新的[index, pointer]，先遍历一次create，设map，再遍历一次通过2个map找到random
 - 注意random=NULL
+- 解法2，A -> A'-> B -> B'-> C -> C':
+    1. 插入copy
+    2. random=random->next
+    3. 分离
 
 ### 146. LRU Cache
 
