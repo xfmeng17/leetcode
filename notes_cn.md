@@ -39,3 +39,8 @@
   - key在，delete删除双端链表节点，add添加新节点
   - key不在，size < cap，直接add
   - key不在，size = cap，eliminate淘汰最后的，返回淘汰的key，**map同步删除key**，执行add
+
+### 221. Maximal Square
+- DP
+- 如果 matrix[i][j] = '1', [i, j] = min([i+1, j], [i, j+1], [i+1, j+1]) + 1
+- 如果 matrix[i][j] = '0', [i, j] = 0
