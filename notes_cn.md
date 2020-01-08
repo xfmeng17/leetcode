@@ -9,6 +9,9 @@
 
 ### 398. Random Pick Index
 
+- int[] nums = new int[] {1,2,3,3,3};
+Solution solution = new Solution(nums);
+pick(3) should return either index 2, 3, or 4 randomly. Each index should have equal probability of returning.
 - 随机索引，其实想模拟蓄水池问题（Reservoir Sampling）
 - 了解蓄水池问题，理解蓄水池抽样算法中概率均等特点
 - 蓄水池<https://cloud.tencent.com/developer/news/293271>
@@ -20,7 +23,7 @@
 
 - BST序列化与反序列化，中序遍历
 - 序列化逻辑拆分：1-basic情况检测，2-int->string->char vector，3-recursive左树，然后recursive右子树
-- 反序列化逻辑拆分：1-定义一个全局起始position，传递为指针，2-末尾边界check，3-取整段char转为int，4-pos更新，递归左右
+- 反序列化逻辑拆分：1-定义一个全局起始position，传递为指针，2-末尾边界check，3-取整段char转为int，4-position更新，递归左右
 
 ### 138. Copy List with Random Pointer
 
@@ -39,8 +42,10 @@
   - key在，delete删除双端链表节点，add添加新节点
   - key不在，size < cap，直接add
   - key不在，size = cap，eliminate淘汰最后的，返回淘汰的key，**map同步删除key**，执行add
+- [LRU原理和Redis实现——一个今日头条的面试题](https://zhuanlan.zhihu.com/p/34133067?utm_source=wechat_session&utm_medium=social&utm_oi=28320779468800)
 
 ### 221. Maximal Square
+
 - DP
 - 如果 matrix[i][j] = '1', [i, j] = min([i+1, j], [i, j+1], [i+1, j+1]) + 1
 - 如果 matrix[i][j] = '0', [i, j] = 0
