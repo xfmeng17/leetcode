@@ -49,3 +49,22 @@ pick(3) should return either index 2, 3, or 4 randomly. Each index should have e
 - DP
 - 如果 matrix[i][j] = '1', [i, j] = min([i+1, j], [i, j+1], [i+1, j+1]) + 1
 - 如果 matrix[i][j] = '0', [i, j] = 0
+
+### 236. Lowest Common Ancestor of a Binary Tree
+
+```c++
+TreeNode* func2(TreeNode* root, TreeNode* p, TreeNode* q) {
+    if (root == NULL || root == p || root == q) {
+        return root;
+    }
+
+    TreeNode* left = func2(root->left, p, q);
+    TreeNode* right = func2(root->right, p, q);
+
+    if (left != NULL && right != NULL) {
+        return root;
+    }
+
+    return left != NULL ? left : right;
+}
+```
