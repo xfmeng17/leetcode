@@ -53,6 +53,8 @@ pick(3) should return either index 2, 3, or 4 randomly. Each index should have e
 ### 236. Lowest Common Ancestor of a Binary Tree
 
 ```c++
+// 如果p, q落在不同子树，则LCU是当前的root
+// 如果p, q落在相同子树，递归左右的子问题，直至p,q落在不同子树
 TreeNode* func2(TreeNode* root, TreeNode* p, TreeNode* q) {
     if (root == NULL || root == p || root == q) {
         return root;
