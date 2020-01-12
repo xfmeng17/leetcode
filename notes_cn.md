@@ -70,3 +70,8 @@ TreeNode* func2(TreeNode* root, TreeNode* p, TreeNode* q) {
     return left != NULL ? left : right;
 }
 ```
+
+### 300. Longest Increasing Subsequence
+
+1. DP, copy+sort+unique初始数组，然后计算两个数组的LCS的长度，因为longest-common-subsequence时间是O(n^2)的，最终就是O(n^2)的，所以：
+2. **要得到o(nlogn)的时间复杂度，该怎么做呢？**
