@@ -1,5 +1,7 @@
 func lengthOfLIS(nums []int) int {
-    return func1(nums);
+	// return func1(nums);
+	// return func2(nums);
+	return func3(nums);
 }
 
 //** sort + LCS
@@ -47,11 +49,79 @@ func lengthOfLCS(nums1 []int, nums2 []int) int {
 
 	return ret;
 }
-
 func max(a int, b int) int {
 	if a > b {
 		return a;
 	} else {
 		return b;
 	}
+}
+
+//** standard dp
+func func2(nums []int) int {
+	n := len(nums);
+	memo := make([]int, n);
+	for i := 0; i < n; i++ {
+		memo[i] = 1;
+	}
+	ret := 0;
+
+	for i := n-1; i >= 0; i-- {
+		for j := i+1; j < n; j++ {
+			if nums[i] < nums[j] {
+				memo[i] = max(memo[i], memo[j] + 1);
+			}
+		}
+		ret = max(ret, memo[i]);
+	}
+
+	return ret;
+}
+
+//** O(nlogn) binary-search solution, interesting
+func func3(nums []int) int {
+	n := len(nums);
+	arr := make([]int, 0);
+
+	for i := n-1; i >= 0; i-- {
+		idx := findSmallestIntGreaterOrEqualThanTarget(arr, nums[i]);
+		// fmt.Printf("i=%d,nums[i]=%d,idx=%d\n",i,nums[i],idx);
+		if idx >= len(arr) || len(arr) == 0 {
+			arr = append(arr, nums[i])
+            // fmt.Printf("append nums[i]=%d\n", nums[i]);
+		} else if idx == -1 {
+			arr[0] = nums[i]
+		} else {
+			arr[idx] = nums[i];
+		}
+	}
+
+	return len(arr);
+}
+
+/* 
+ * nums is inverted order and return the index that nums[index] is the
+ * smallest element >= target
+ * eg: [19,18,17,16,10], find target=element=index:
+ * 20=NONE=-1, 19=19=0, 18.5=19=1, 9=10=5
+ */
+func findSmallestIntGreaterOrEqualThanTarget(nums []int, target int) int {
+	lo := 0;
+	hi := len(nums) - 1;
+
+	for (lo <= hi) {
+		mid := (lo + hi) / 2;
+		if nums[mid] == target {
+			return mid;
+		} else if nums[mid] > target {
+			lo = mid + 1;
+		} else {
+			hi = mid - 1;
+		}
+	}
+
+	if lo == 0 {
+		return lo - 1;
+	}
+	return lo;
 }
