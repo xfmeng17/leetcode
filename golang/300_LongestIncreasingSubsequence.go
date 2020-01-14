@@ -84,13 +84,11 @@ func func3(nums []int) int {
 	arr := make([]int, 0);
 
 	for i := n-1; i >= 0; i-- {
-		idx := findSmallestIntGreaterOrEqualThanTarget(arr, nums[i]);
+		idx := findLargestLessOrEqualThanTarget(arr, nums[i]);
 		// fmt.Printf("i=%d,nums[i]=%d,idx=%d\n",i,nums[i],idx);
 		if idx >= len(arr) || len(arr) == 0 {
 			arr = append(arr, nums[i])
             // fmt.Printf("append nums[i]=%d\n", nums[i]);
-		} else if idx == -1 {
-			arr[0] = nums[i]
 		} else {
 			arr[idx] = nums[i];
 		}
@@ -101,11 +99,14 @@ func func3(nums []int) int {
 
 /* 
  * nums is inverted order and return the index that nums[index] is the
- * smallest element >= target
- * eg: [19,18,17,16,10], find target=element=index:
- * 20=NONE=-1, 19=19=0, 18.5=19=1, 9=10=5
+ * largest element <= target
+ * eg: [19,18,17,16,10], find target | nums[lo] | nums[hi] | ret:
+ * 20 | nums[0]=19 | nums[-1]=  | 0
+ * 19 | nums[0]=19 | nums[0]=19 | 0
+ * 12 | nums[4]=10 | nums[3]=16 | 4
+ * 09 | nums[5]=   | nums[4]=10 | 5
  */
-func findSmallestIntGreaterOrEqualThanTarget(nums []int, target int) int {
+func findLargestLessOrEqualThanTarget(nums []int, target int) int {
 	lo := 0;
 	hi := len(nums) - 1;
 
@@ -120,8 +121,5 @@ func findSmallestIntGreaterOrEqualThanTarget(nums []int, target int) int {
 		}
 	}
 
-	if lo == 0 {
-		return lo - 1;
-	}
 	return lo;
 }
