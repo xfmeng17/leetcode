@@ -6,6 +6,7 @@
 
 - 2个sorted数组，取第K大的数
 - 用left_k，right_k（left_k + 1）的trick解决奇偶长度的问题
+- 每次取第k/2位置的元素`val1，val2`比较，如果`val1 < val2`，则有`k/2`可以排除了，`arr1`起点`+ k/2`，递归查找第`k-k/2`大的数
 
 ### 398. Random Pick Index
 
