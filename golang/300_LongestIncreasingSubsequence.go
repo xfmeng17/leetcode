@@ -85,10 +85,8 @@ func func3(nums []int) int {
 
 	for i := n-1; i >= 0; i-- {
 		idx := findLargestLessOrEqualThanTarget(arr, nums[i]);
-		// fmt.Printf("i=%d,nums[i]=%d,idx=%d\n",i,nums[i],idx);
-		if idx >= len(arr) || len(arr) == 0 {
+		if idx >= len(arr) {
 			arr = append(arr, nums[i])
-            // fmt.Printf("append nums[i]=%d\n", nums[i]);
 		} else {
 			arr[idx] = nums[i];
 		}
