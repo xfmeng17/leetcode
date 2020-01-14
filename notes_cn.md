@@ -74,4 +74,71 @@ TreeNode* func2(TreeNode* root, TreeNode* p, TreeNode* q) {
 ### 300. Longest Increasing Subsequence
 
 1. DP, copy+sort+unique初始数组，然后计算两个数组的LCS的长度，因为longest-common-subsequence时间是O(n^2)的，最终就是O(n^2)的，所以：
-2. **要得到o(nlogn)的时间复杂度，该怎么做呢？**
+2. **要得到o(nlogn)的时间复杂度，该怎么做呢？** O(nlogn)的解法参考<https://blog.csdn.net/sgbfblog/article/details/7798737>，简述例子如[12, 17, 18, 19, 14, 15, 16]，构筑的逆序数组流程为：
+    - 初始 [16]
+    - 15，二分查找=1 > 数组大小，数组append为[16, 15]
+    - 14，同上[16, 15, 14]
+    - 19，二分查找=0，替换16为19，原因为19对应的长度和16一样，都是1，但是19比16大，如果16对于某一个点是递增的，那么19也一定递增
+    - 18，同上，之后的省略
+    - **注意**，二分查找，为，在一个逆序数组中，找到比target小的最大的元素
+
+    ```golang
+    //** O(nlogn) binary-search solution, interesting
+    func func3(nums []int) int {
+        n := len(nums);
+        arr := make([]int, 0);
+
+        for i := n-1; i >= 0; i-- {
+            idx := findLargestLessOrEqualThanTarget(arr, nums[i]);
+            if idx >= len(arr) {
+                arr = append(arr, nums[i])
+            } else {
+                arr[idx] = nums[i];
+            }
+        }
+
+        return len(arr);
+    }
+
+    /* 
+    * nums is inverted order and return the index that nums[index] is the
+    * largest element <= target
+    * eg: [19,18,17,16,10], find target | nums[lo] | nums[hi] | ret:
+    * 20 | nums[0]=19 | nums[-1]=  | 0
+    * 19 | nums[0]=19 | nums[0]=19 | 0
+    * 12 | nums[4]=10 | nums[3]=16 | 4
+    * 09 | nums[5]=   | nums[4]=10 | 5
+    */
+    func findLargestLessOrEqualThanTarget(nums []int, target int) int {
+        lo := 0;
+        hi := len(nums) - 1;
+
+        for (lo <= hi) {
+            mid := (lo + hi) / 2;
+            if nums[mid] == target {
+                return mid;
+            } else if nums[mid] > target {
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+
+        return lo;
+    }
+    ```
+3. 标准DP，从左到右迭代，dp[i]为，从0到i，以i为结束，最长的LIS，从右到左迭代，dp[i]为，从i到n-1（尾），最长的LIS，时间均为O(n^2)
+
+### 673. Number of Longest Increasing Subsequence
+
+- DP，300求LIS的变种，多比较相等的情况，迭代中，保存每个点的最大的LIS的个数即可，之后，统一用得到的max_length迭代比较进行统计
+
+
+### 通用二分查找整理
+
+无论是找最右，大于target的最小，小于target的最大等等，**不要背代码**，在草纸上，用一个三元组[3, 5, 7]，while条件都是`while (lo <= hi)`**测试以下4种**情况即可：
+
+- 0，比全部都小
+- 9，比全部都大
+- 3，存在值
+- 4，在其间
