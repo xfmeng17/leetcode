@@ -37,7 +37,7 @@ public:
             //** find
             ret.emplace_back(u);
             ret.emplace_back(v);
-            break;            
+            break;
         }
 
         return ret;
