@@ -4,12 +4,12 @@
 结合解题代码和《算法4》1.5，总结一下
 
 ### 1. 并查集目的
-解决 `动态连通性(Dynamic conectivity)` 的问题
+解决 `动态连通性(Dynamic connectivity)` 的问题
 
 ### 2. 应用场景
 
 - Network，网络，2点间建立通信
-- Variable-name equivalence，变量名等价性，编译2个给定的变量名是否等价
+- Variable-name equivalence，变量名等价性，编译时，判定代码中，2个给定的变量名是否等价
 - Mathematical sets，数学集合，判定给定输入p，q是否属于同一个集合
 
 ### 3. 名词概念
@@ -250,45 +250,6 @@ public:
             }
 
             uf.doUnion(p, q);
-        }
-
-        return ret;
-    }
-
-    vector<int> func1(vector<vector<int>>& edges) {
-        vector<int> ret;
-        vector<int> union_find(edges.size()+1, 0);
-
-        for (int i = 0; i < edges.size(); i++) {
-            int u = edges[i][0];
-            int v = edges[i][1];
-
-            if (union_find[u] == 0 && union_find[v] == 0) {
-                union_find[u] = u;
-                union_find[v] = u;
-                continue;
-            }
-            if (union_find[u] != 0 && union_find[v] == 0) {
-                union_find[v] = union_find[u];
-                continue;
-            }
-            if (union_find[u] == 0 && union_find[v] != 0) {
-                union_find[u] = union_find[v];
-                continue;
-            }
-            if (union_find[u] != union_find[v]) {
-                int val = union_find[v];
-                for (int j = 0; j < union_find.size(); j++) {
-                    if (union_find[j] == val) {
-                        union_find[j] = union_find[u];
-                    }
-                }
-                continue;
-            }
-            //** find
-            ret.emplace_back(u);
-            ret.emplace_back(v);
-            break;
         }
 
         return ret;
