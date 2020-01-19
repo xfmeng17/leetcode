@@ -4,7 +4,7 @@ func lengthOfLIS(nums []int) int {
 	return func3(nums);
 }
 
-//** sort + LCS
+//  sort + LCS
 func func1(nums []int) int {
 	if len(nums) <= 0 {
 		return 0;
@@ -57,7 +57,7 @@ func max(a int, b int) int {
 	}
 }
 
-//** standard dp
+//  standard dp
 func func2(nums []int) int {
 	n := len(nums);
 	memo := make([]int, n);
@@ -78,7 +78,7 @@ func func2(nums []int) int {
 	return ret;
 }
 
-//** O(nlogn) binary-search solution, interesting
+//  O(nlogn) binary-search solution, interesting
 func func3(nums []int) int {
 	n := len(nums);
 	arr := make([]int, 0);

@@ -3,7 +3,7 @@ func findNumberOfLIS(nums []int) int {
 	return func2(nums);
 }
 
-//** iterative, from right to left
+//  iterative, from right to left
 func func1(nums []int) int {
 	n := len(nums);
 	length := make([]int, n);
@@ -42,7 +42,7 @@ func func1(nums []int) int {
 	return ret;
 }
 
-//** iterative, from left to right
+//  iterative, from left to right
 func func2(nums []int) int {
 	n := len(nums);
 	length := make([]int, n);
