@@ -4645,96 +4645,96 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">func3</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span><span class="w"></span>
 <span class="err">}</span><span class="w"></span>
 
-<span class="o">/</span><span class="cm">/** sort + LCS</span>
-<span class="cm">func func1(nums []int) int {</span>
-<span class="cm">    if len(nums) &lt;= 0 {</span>
-<span class="cm">        return 0;</span>
-<span class="cm">    }</span>
+<span class="o">//</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">LCS</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">func1</span><span class="p">(</span><span class="n">nums</span><span class="w"> </span><span class="err">[]</span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    sorted := make([]int, len(nums));</span>
-<span class="cm">    for i := 0; i &lt; len(nums); i++ {</span>
-<span class="cm">        sorted[i] = nums[i];</span>
-<span class="cm">    }</span>
-<span class="cm">    sort.Ints(sorted);</span>
+<span class="w">    </span><span class="n">sorted</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">sorted</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">sort</span><span class="p">.</span><span class="n">Ints</span><span class="p">(</span><span class="n">sorted</span><span class="p">);</span><span class="w"></span>
 
-<span class="cm">    unique := make([]int, 1, len(nums));</span>
-<span class="cm">    unique[0] = sorted[0];</span>
-<span class="cm">    for i := 1; i &lt; len(sorted); i++ {</span>
-<span class="cm">        if sorted[i] != unique[len(unique)-1] {</span>
-<span class="cm">            unique = append(unique, sorted[i]);</span>
-<span class="cm">        }</span>
-<span class="cm">    }</span>
+<span class="w">    </span><span class="k">unique</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="k">unique</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sorted</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">sorted</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">sorted</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">unique</span><span class="o">[</span><span class="n">len(unique)-1</span><span class="o">]</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">append</span><span class="p">(</span><span class="k">unique</span><span class="p">,</span><span class="w"> </span><span class="n">sorted</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    return lengthOfLCS(unique, nums);</span>
-<span class="cm">}</span>
-<span class="cm">func lengthOfLCS(nums1 []int, nums2 []int) int {</span>
-<span class="cm">    m := len(nums1);</span>
-<span class="cm">    n := len(nums2);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">lengthOfLCS</span><span class="p">(</span><span class="k">unique</span><span class="p">,</span><span class="w"> </span><span class="n">nums</span><span class="p">);</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">lengthOfLCS</span><span class="p">(</span><span class="n">nums1</span><span class="w"> </span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">nums2</span><span class="w"> </span><span class="err">[]</span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">m</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums2</span><span class="p">);</span><span class="w"></span>
 
-<span class="cm">    ret := 0;</span>
-<span class="cm">    memo := make([][]int, m+1);</span>
-<span class="cm">    for i := 0; i &lt; m+1; i++ {</span>
-<span class="cm">        memo[i] = make([]int, n+1);</span>
-<span class="cm">    }</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">memo</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[][]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    for i := 0; i &lt; m; i++ {</span>
-<span class="cm">        for j := 0; j &lt; n; j++ {</span>
-<span class="cm">            if nums1[i] == nums2[j] {</span>
-<span class="cm">                memo[i+1][j+1] = memo[i][j] + 1;</span>
-<span class="cm">            } else {</span>
-<span class="cm">                memo[i+1][j+1] = max(memo[i][j+1], memo[i+1][j]);</span>
-<span class="cm">            }</span>
-<span class="cm">            ret = max(ret, memo[i+1][j+1])</span>
-<span class="cm">        }</span>
-<span class="cm">    }</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">nums1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nums2</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">memo</span><span class="o">[</span><span class="n">i+1</span><span class="o">][</span><span class="n">j+1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">memo</span><span class="o">[</span><span class="n">i+1</span><span class="o">][</span><span class="n">j+1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j+1</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">i+1</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
+<span class="w">            </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">i+1</span><span class="o">][</span><span class="n">j+1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    return ret;</span>
-<span class="cm">}</span>
-<span class="cm">func max(a int, b int) int {</span>
-<span class="cm">    if a &gt; b {</span>
-<span class="cm">        return a;</span>
-<span class="cm">    } else {</span>
-<span class="cm">        return b;</span>
-<span class="cm">    }</span>
-<span class="cm">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 
-<span class="cm">//** standard dp</span>
-<span class="cm">func func2(nums []int) int {</span>
-<span class="cm">    n := len(nums);</span>
-<span class="cm">    memo := make([]int, n);</span>
-<span class="cm">    for i := 0; i &lt; n; i++ {</span>
-<span class="cm">        memo[i] = 1;</span>
-<span class="cm">    }</span>
-<span class="cm">    ret := 0;</span>
+<span class="o">//</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">standard</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">func2</span><span class="p">(</span><span class="n">nums</span><span class="w"> </span><span class="err">[]</span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">memo</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-<span class="cm">    for i := n-1; i &gt;= 0; i-- {</span>
-<span class="cm">        for j := i+1; j &lt; n; j++ {</span>
-<span class="cm">            if nums[i] &lt; nums[j] {</span>
-<span class="cm">                memo[i] = max(memo[i], memo[j] + 1);</span>
-<span class="cm">            }</span>
-<span class="cm">        }</span>
-<span class="cm">        ret = max(ret, memo[i]);</span>
-<span class="cm">    }</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="c1">-- {</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    return ret;</span>
-<span class="cm">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 
-<span class="cm">//** O(nlogn) binary-search solution, interesting</span>
-<span class="cm">func func3(nums []int) int {</span>
-<span class="cm">    n := len(nums);</span>
-<span class="cm">    arr := make([]int, 0);</span>
+<span class="o">//</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">O</span><span class="p">(</span><span class="n">nlogn</span><span class="p">)</span><span class="w"> </span><span class="nc">binary</span><span class="o">-</span><span class="k">search</span><span class="w"> </span><span class="n">solution</span><span class="p">,</span><span class="w"> </span><span class="n">interesting</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">func3</span><span class="p">(</span><span class="n">nums</span><span class="w"> </span><span class="err">[]</span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">arr</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 
-<span class="cm">    for i := n-1; i &gt;= 0; i-- {</span>
-<span class="cm">        idx := findLargestLessOrEqualThanTarget(arr, nums[i]);</span>
-<span class="cm">        if idx &gt;= len(arr) {</span>
-<span class="cm">            arr = append(arr, nums[i])</span>
-<span class="cm">        } else {</span>
-<span class="cm">            arr[idx] = nums[i];</span>
-<span class="cm">        }</span>
-<span class="cm">    }</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="c1">-- {</span>
+<span class="w">        </span><span class="n">idx</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">findLargestLessOrEqualThanTarget</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">append</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">arr</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    return len(arr);</span>
-<span class="cm">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 
 <span class="cm">/* </span>
 <span class="cm"> * nums is inverted order and return the index that nums[index] is the</span>
@@ -4744,24 +4744,24 @@
 <span class="cm"> * 19 | nums[0]=19 | nums[0]=19 | 0</span>
 <span class="cm"> * 12 | nums[4]=10 | nums[3]=16 | 4</span>
 <span class="cm"> * 09 | nums[5]=   | nums[4]=10 | 5</span>
-<span class="cm"> */</span>
-<span class="cm">func findLargestLessOrEqualThanTarget(nums []int, target int) int {</span>
-<span class="cm">    lo := 0;</span>
-<span class="cm">    hi := len(nums) - 1;</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">findLargestLessOrEqualThanTarget</span><span class="p">(</span><span class="n">nums</span><span class="w"> </span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">lo</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">hi</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 
-<span class="cm">    for (lo &lt;= hi) {</span>
-<span class="cm">        mid := (lo + hi) / 2;</span>
-<span class="cm">        if nums[mid] == target {</span>
-<span class="cm">            return mid;</span>
-<span class="cm">        } else if nums[mid] &gt; target {</span>
-<span class="cm">            lo = mid + 1;</span>
-<span class="cm">        } else {</span>
-<span class="cm">            hi = mid - 1;</span>
-<span class="cm">        }</span>
-<span class="cm">    }</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">lo</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">hi</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">mid</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">lo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">hi</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">lo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">hi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    return lo;</span>
-<span class="cm">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">lo</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 </pre></div>
 </td></tr></table>
                 
