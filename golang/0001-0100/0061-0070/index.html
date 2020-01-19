@@ -4606,80 +4606,80 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">func4</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
 <span class="err">}</span><span class="w"></span>
 
-<span class="o">/</span><span class="cm">/** 1. recursive</span>
-<span class="cm">func func1(m int, n int, i int, j int) int {</span>
-<span class="cm">    if i &lt; 0 || m &lt; i || j &lt; 0 || n &lt; j {</span>
-<span class="cm">        return 0;</span>
-<span class="cm">    }</span>
-<span class="cm">    if m == i &amp;&amp; n == j {</span>
-<span class="cm">        return 1;</span>
-<span class="cm">    }</span>
+<span class="o">//</span><span class="w">  </span><span class="mf">1.</span><span class="w"> </span><span class="k">recursive</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">func1</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    return func1(m, n, i+1, j) + func1(m, n, i, j+1);</span>
-<span class="cm">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">func1</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">func1</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 
-<span class="cm">//** 2. recursive + memo</span>
-<span class="cm">func func2(m int, n int) int {</span>
-<span class="cm">    memo := make([][]int, m);</span>
-<span class="cm">    for i := 0; i &lt; m; i++ {</span>
-<span class="cm">        memo[i] = make([]int, n);</span>
-<span class="cm">        for j := 0; j &lt; n; j++ {</span>
-<span class="cm">            memo[i][j] = -1;</span>
-<span class="cm">        }</span>
-<span class="cm">    }</span>
+<span class="o">//</span><span class="w">  </span><span class="mf">2.</span><span class="w"> </span><span class="k">recursive</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">memo</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">func2</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">memo</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[][]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    return helper2(m-1, n-1, 0, 0, memo);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">helper2</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">memo</span><span class="p">);</span><span class="w"></span>
 
-<span class="cm">}</span>
-<span class="cm">func helper2(m int, n int, i int, j int, memo [][]int) int {</span>
-<span class="cm">    if i &lt; 0 || m &lt; i || j &lt; 0 || n &lt; j {</span>
-<span class="cm">        return 0;</span>
-<span class="cm">    }</span>
-<span class="cm">    if m == i &amp;&amp; n == j {</span>
-<span class="cm">        return 1;</span>
-<span class="cm">    }</span>
+<span class="err">}</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">helper2</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">memo</span><span class="w"> </span><span class="err">[][]</span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    if memo[i][j] != -1 {</span>
-<span class="cm">        return memo[i][j];</span>
-<span class="cm">    }</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    memo[i][j] = helper2(m, n, i+1, j, memo) + helper2(m, n, i, j+1, memo);</span>
-<span class="cm">    return memo[i][j];</span>
-<span class="cm">}</span>
+<span class="w">    </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">helper2</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">memo</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">helper2</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">memo</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 
-<span class="cm">//** 3. iterative + memo, pass</span>
-<span class="cm">//** 4. iterative + 2N variables</span>
-<span class="cm">func func4(m int, n int) int {</span>
-<span class="cm">    memo := make([][]int, 2);</span>
-<span class="cm">    for i := 0; i &lt; 2; i++ {</span>
-<span class="cm">        memo[i] = make([]int, n);</span>
-<span class="cm">        for j := 0; j &lt; n; j++ {</span>
-<span class="cm">            memo[i][j] = 0;</span>
-<span class="cm">        }</span>
-<span class="cm">    }</span>
-<span class="cm">    memo[(m-1)%2][n-1] = 1;</span>
+<span class="o">//</span><span class="w">  </span><span class="mf">3.</span><span class="w"> </span><span class="n">iterative</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">memo</span><span class="p">,</span><span class="w"> </span><span class="n">pass</span><span class="w"></span>
+<span class="o">//</span><span class="w">  </span><span class="mf">4.</span><span class="w"> </span><span class="n">iterative</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="n">N</span><span class="w"> </span><span class="n">variables</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">func4</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">memo</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[][]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">memo</span><span class="o">[</span><span class="n">(m-1)%2</span><span class="o">][</span><span class="n">n-1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 
-<span class="cm">    for i := m-1; i &gt;= 0; i-- {</span>
-<span class="cm">        for j := n-1; j &gt;= 0; j-- {</span>
-<span class="cm">            if i == m-1 &amp;&amp; j == n-1 {</span>
-<span class="cm">                continue;</span>
-<span class="cm">            }</span>
-<span class="cm">            memo[i%2][j] = 0;</span>
-<span class="cm">            if j+1 &lt; n {</span>
-<span class="cm">                memo[i%2][j] += memo[i%2][j+1];</span>
-<span class="cm">            }</span>
-<span class="cm">            if i+1 &lt; m {</span>
-<span class="cm">                memo[i%2][j] += memo[(i+1)%2][j];</span>
-<span class="cm">            }</span>
-<span class="cm">        }</span>
-<span class="cm">    }</span>
-<span class="cm">    // for i := 0; i &lt; 2; i++ {</span>
-<span class="cm">    //  for j := 0; j &lt; n; j++ {</span>
-<span class="cm">    //      fmt.Println(i, j, memo[i][j]);</span>
-<span class="cm">    //  }</span>
-<span class="cm">    // }</span>
-<span class="cm">    return memo[0][0];</span>
-<span class="cm">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="c1">-- {</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="c1">-- {</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
+<span class="w">            </span><span class="n">memo</span><span class="o">[</span><span class="n">i%2</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">memo</span><span class="o">[</span><span class="n">i%2</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">i%2</span><span class="o">][</span><span class="n">j+1</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">memo</span><span class="o">[</span><span class="n">i%2</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">(i+1)%2</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w">      </span><span class="n">fmt</span><span class="p">.</span><span class="n">Println</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">0</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 </pre></div>
 </td></tr></table>
 
@@ -4731,42 +4731,42 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">func4</span><span class="p">(</span><span class="n">obstacleGrid</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
 <span class="err">}</span><span class="w"></span>
 
-<span class="o">/</span><span class="cm">/** 3. iterative + memo, pass</span>
-<span class="cm">//** 4. iterative + 2N variables</span>
-<span class="cm">func func4(obstacleGrid [][]int, m int, n int) int {</span>
-<span class="cm">    memo := make([][]int, 2)</span>
-<span class="cm">    for i := 0; i &lt; 2; i++ {</span>
-<span class="cm">        memo[i] = make([]int, n)</span>
-<span class="cm">        for j := 0; j &lt; n; j++ {</span>
-<span class="cm">            memo[i][j] = 0</span>
-<span class="cm">        }</span>
-<span class="cm">    }</span>
+<span class="o">//</span><span class="w">  </span><span class="mf">3.</span><span class="w"> </span><span class="n">iterative</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">memo</span><span class="p">,</span><span class="w"> </span><span class="n">pass</span><span class="w"></span>
+<span class="o">//</span><span class="w">  </span><span class="mf">4.</span><span class="w"> </span><span class="n">iterative</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="n">N</span><span class="w"> </span><span class="n">variables</span><span class="w"></span>
+<span class="n">func</span><span class="w"> </span><span class="n">func4</span><span class="p">(</span><span class="n">obstacleGrid</span><span class="w"> </span><span class="err">[][]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">memo</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[][]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">    for i := m - 1; i &gt;= 0; i-- {</span>
-<span class="cm">        for j := n - 1; j &gt;= 0; j-- {</span>
-<span class="cm">            if i == m-1 &amp;&amp; j == n-1 {</span>
-<span class="cm">                if obstacleGrid[m-1][n-1] == 1 {</span>
-<span class="cm">                    memo[(m-1)%2][n-1] = 0</span>
-<span class="cm">                } else {</span>
-<span class="cm">                    memo[(m-1)%2][n-1] = 1</span>
-<span class="cm">                }</span>
-<span class="cm">                continue</span>
-<span class="cm">            }</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="c1">-- {</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="c1">-- {</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">obstacleGrid</span><span class="o">[</span><span class="n">m-1</span><span class="o">][</span><span class="n">n-1</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">memo</span><span class="o">[</span><span class="n">(m-1)%2</span><span class="o">][</span><span class="n">n-1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">                </span><span class="err">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">memo</span><span class="o">[</span><span class="n">(m-1)%2</span><span class="o">][</span><span class="n">n-1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">                </span><span class="err">}</span><span class="w"></span>
+<span class="w">                </span><span class="k">continue</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
 
-<span class="cm">            memo[i%2][j] = 0</span>
-<span class="cm">            if obstacleGrid[i][j] == 1 {</span>
-<span class="cm">                continue</span>
-<span class="cm">            }</span>
-<span class="cm">            if j+1 &lt; n {</span>
-<span class="cm">                memo[i%2][j] += memo[i%2][j+1]</span>
-<span class="cm">            }</span>
-<span class="cm">            if i+1 &lt; m {</span>
-<span class="cm">                memo[i%2][j] += memo[(i+1)%2][j]</span>
-<span class="cm">            }</span>
-<span class="cm">        }</span>
-<span class="cm">    }</span>
-<span class="cm">    return memo[0][0]</span>
-<span class="cm">}</span>
+<span class="w">            </span><span class="n">memo</span><span class="o">[</span><span class="n">i%2</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">obstacleGrid</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">continue</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">memo</span><span class="o">[</span><span class="n">i%2</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">i%2</span><span class="o">][</span><span class="n">j+1</span><span class="o">]</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">memo</span><span class="o">[</span><span class="n">i%2</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">(i+1)%2</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">memo</span><span class="o">[</span><span class="n">0</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 </pre></div>
 </td></tr></table>
 
