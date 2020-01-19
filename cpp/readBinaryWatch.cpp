@@ -1,6 +1,4 @@
 class Solution {
 public:
-    vector<string> readBinaryWatch(int num) {
-        
-    }
+  vector<string> readBinaryWatch(int num) {}
 };
