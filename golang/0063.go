@@ -4,8 +4,8 @@ func uniquePathsWithObstacles(obstacleGrid [][]int) int {
 	return func4(obstacleGrid, m, n)
 }
 
-//** 3. iterative + memo, pass
-//** 4. iterative + 2N variables
+//  3. iterative + memo, pass
+//  4. iterative + 2N variables
 func func4(obstacleGrid [][]int, m int, n int) int {
 	memo := make([][]int, 2)
 	for i := 0; i < 2; i++ {
