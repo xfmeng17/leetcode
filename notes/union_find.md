@@ -28,7 +28,7 @@
 4. 3的基础上，加入路径压缩(path compression)，在find时，再套一层while循环将ID都指向根，摊还是O(1)，leetcode上可能因为测试样例不足，想过不如3明显
 
 ```cpp
-//** 1. Quick-find, O(1) find, 0(n) union
+// ** 1. Quick-find, O(1) find, 0(n) union
 class UF1 {
   private:
     vector<int> id;
@@ -72,7 +72,7 @@ class UF1 {
         count--;
     }
 };
-//** 2. Quick-union, O(n) find, O(1) union
+// ** 2. Quick-union, O(n) find, O(1) union
 class UF2 {
   private:
     vector<int> id;
@@ -115,7 +115,7 @@ class UF2 {
         count--;
     }
 };
-//** 3. Weighted-quick-union, O(lgN) find, O(lgN) union
+// ** 3. Weighted-quick-union, O(lgN) find, O(lgN) union
 class UF3 {
   private:
     vector<int> id;
@@ -166,7 +166,7 @@ class UF3 {
         count--;
     }
 };
-//** 4.Weighted-quick-union-with-path-compression, amoritized O(1)
+// ** 4.Weighted-quick-union-with-path-compression, amoritized O(1)
 class UF4 {
   private:
     vector<int> id;
