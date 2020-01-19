@@ -4569,6 +4569,11 @@
 </td></tr></table>
 
 <h2 id="4-median-of-two-sorted-arrays-starstarstar">4. Median of Two Sorted Arrays <a href="https://leetcode.com/problems/median-of-two-sorted-arrays">$\star\star\star$</a></h2>
+<ul>
+<li>2个sorted数组，取第K大的数</li>
+<li>用left_k，right_k（left_k + 1）的trick解决奇偶长度的问题</li>
+<li>每次取第k/2位置的元素<code>val1，val2</code>比较，如果<code>val1 &lt; val2</code>，则有<code>k/2</code>可以排除了，<code>arr1</code>起点<code>+ k/2</code>，递归查找第<code>k-k/2</code>大的数</li>
+</ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -4598,37 +4603,35 @@
 27
 28
 29
-30
-31</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="kt">double</span> <span class="n">findMedianSortedArrays</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums1</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">const</span> <span class="kt">int</span> <span class="n">n1</span> <span class="o">=</span> <span class="n">nums1</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-    <span class="k">const</span> <span class="kt">int</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">nums2</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">n1</span> <span class="o">&gt;</span> <span class="n">n2</span><span class="p">)</span> <span class="k">return</span> <span class="n">findMedianSortedArrays</span><span class="p">(</span><span class="n">nums2</span><span class="p">,</span> <span class="n">nums1</span><span class="p">);</span>
-
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">n1</span><span class="p">;</span>
-
-    <span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kt">int</span> <span class="n">partition1</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-      <span class="kt">int</span> <span class="n">partition2</span> <span class="o">=</span> <span class="p">(</span><span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">partition1</span><span class="p">;</span>
-      <span class="kt">int</span> <span class="n">maxLeft1</span> <span class="o">=</span> <span class="n">partition1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">INT_MIN</span> <span class="p">:</span> <span class="n">nums1</span><span class="p">[</span><span class="n">partition1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-      <span class="kt">int</span> <span class="n">maxLeft2</span> <span class="o">=</span> <span class="n">partition2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">INT_MIN</span> <span class="p">:</span> <span class="n">nums2</span><span class="p">[</span><span class="n">partition2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-      <span class="kt">int</span> <span class="n">minRight1</span> <span class="o">=</span> <span class="n">partition1</span> <span class="o">==</span> <span class="n">n1</span> <span class="o">?</span> <span class="nl">INT_MAX</span> <span class="p">:</span> <span class="n">nums1</span><span class="p">[</span><span class="n">partition1</span><span class="p">];</span>
-      <span class="kt">int</span> <span class="n">minRight2</span> <span class="o">=</span> <span class="n">partition2</span> <span class="o">==</span> <span class="n">n2</span> <span class="o">?</span> <span class="nl">INT_MAX</span> <span class="p">:</span> <span class="n">nums2</span><span class="p">[</span><span class="n">partition2</span><span class="p">];</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">maxLeft1</span> <span class="o">&lt;=</span> <span class="n">minRight2</span> <span class="o">&amp;&amp;</span> <span class="n">maxLeft2</span> <span class="o">&lt;=</span> <span class="n">minRight1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
-                   <span class="o">?</span> <span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">maxLeft1</span><span class="p">,</span> <span class="n">maxLeft2</span><span class="p">)</span> <span class="o">+</span> <span class="n">min</span><span class="p">(</span><span class="n">minRight1</span><span class="p">,</span> <span class="n">minRight2</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.5</span>
-                   <span class="o">:</span> <span class="n">max</span><span class="p">(</span><span class="n">maxLeft1</span><span class="p">,</span> <span class="n">maxLeft2</span><span class="p">);</span>
-      <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">maxLeft1</span> <span class="o">&gt;</span> <span class="n">minRight2</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">partition1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="k">else</span>
-        <span class="n">l</span> <span class="o">=</span> <span class="n">partition1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+30</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="kt">double</span> <span class="n">findMedianSortedArrays</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums1</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums2</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">lk</span> <span class="o">=</span> <span class="p">(</span><span class="n">nums1</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="n">nums2</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">rk</span> <span class="o">=</span> <span class="p">(</span><span class="n">nums1</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="n">nums2</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+      <span class="kt">double</span> <span class="n">lret</span> <span class="o">=</span> <span class="n">findKth</span><span class="p">(</span><span class="n">nums1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nums2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lk</span><span class="p">);</span>
+      <span class="kt">double</span> <span class="n">rret</span> <span class="o">=</span> <span class="n">findKth</span><span class="p">(</span><span class="n">nums1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nums2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">rk</span><span class="p">);</span>
+      <span class="k">return</span> <span class="p">(</span><span class="n">lret</span> <span class="o">+</span> <span class="n">rret</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
     <span class="p">}</span>
+    <span class="kt">double</span> <span class="n">findKth</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums2</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">nums1</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">nums2</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="n">nums2</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">nums1</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">min</span><span class="p">(</span><span class="n">nums1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nums2</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+      <span class="p">}</span>
 
-    <span class="k">throw</span><span class="p">;</span>
-  <span class="p">}</span>
+      <span class="kt">int</span> <span class="n">val1</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">nums1</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="o">?</span> <span class="n">nums1</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="n">INT_MAX</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">val2</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">nums2</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="o">?</span> <span class="n">nums2</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="n">INT_MAX</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">val1</span> <span class="o">&lt;</span> <span class="n">val2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">findKth</span><span class="p">(</span><span class="n">nums1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">nums2</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">findKth</span><span class="p">(</span><span class="n">nums1</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">nums2</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
 </td></tr></table>
