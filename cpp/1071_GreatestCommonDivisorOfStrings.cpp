@@ -12,7 +12,7 @@ public:
         continue;
       }
 
-      //** check pattern
+      // ** check pattern
       int patSectionNum = pat.length() / len;
       bool patDoCheck = true;
       for (int sec = 0; sec < patSectionNum && patDoCheck; sec++) {
@@ -26,7 +26,7 @@ public:
       if (!patDoCheck) {
         continue;
       }
-      //** check text
+      // ** check text
       int txtSectionNum = txt.length() / len;
       bool txtDoCheck = true;
       for (int sec = 0; sec < txtSectionNum && txtDoCheck; sec++) {

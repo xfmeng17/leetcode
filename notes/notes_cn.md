@@ -84,7 +84,7 @@ TreeNode* func2(TreeNode* root, TreeNode* p, TreeNode* q) {
     - **注意**，二分查找，为，在一个逆序数组中，找到比target小的最大的元素
 
     ```golang
-    //** O(nlogn) binary-search solution, interesting
+    // ** O(nlogn) binary-search solution, interesting
     func func3(nums []int) int {
         n := len(nums);
         arr := make([]int, 0);
