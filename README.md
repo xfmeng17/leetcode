@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://xfmeng17.github.io/leetcode/"><img src="./assets/leetcode.png" height="50" title="LeetCode" alt="LeetCode"></a>
+  <a href="https://xfmeng17.github.io/leetcode/"><img src="./docs/assets/leetcode.png" height="50" title="LeetCode" alt="LeetCode"></a>
 </p>
 
 # LeetCode Solutions
