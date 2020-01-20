@@ -360,7 +360,7 @@ Revised on Dec 25, 2019.
 |0319|[Bulb Switcher](https://leetcode.com/problems/bulb-switcher)|[C++](./cpp/0319.cpp), [Python3](./solutions/python3/0319.py)|Medium|
 |0320|[Generalized Abbreviation](https://leetcode.com/problems/generalized-abbreviation) 🔒||Medium|
 |0321|[Create Maximum Number](https://leetcode.com/problems/create-maximum-number)||Hard|
-|0322|[Coin Change](https://leetcode.com/problems/coin-change)||Medium|
+|0322|[Coin Change](https://leetcode.com/problems/coin-change)|[Go](./golang/0322.go)|Medium|
 |0323|[Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph) 🔒||Medium|
 |0324|[Wiggle Sort II](https://leetcode.com/problems/wiggle-sort-ii)||Medium|
 |0325|[Maximum Size Subarray Sum Equals k](https://leetcode.com/problems/maximum-size-subarray-sum-equals-k) 🔒||Medium|
