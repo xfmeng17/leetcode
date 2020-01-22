@@ -362,3 +362,8 @@ nav:
           - 1301-1310: golang/1301-1400/1301-1310.md
           - 1311-1320: golang/1301-1400/1311-1320.md
           - 1321-1321: golang/1301-1400/1321-1330.md
+  - Notes:
+    - Dynamic Programming: notes/dp.md
+    - Knapsack Problem: notes/kp.md
+    - Union Find: notes/uf.md
+    - Others: notes/others.md

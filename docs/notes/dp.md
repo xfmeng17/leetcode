@@ -2,7 +2,7 @@
 
 ## 2019-01 整理
 
-### 动态规划的理解
+### 1. 动态规划的理解
 
 - 动态规划，和分治法(divide-and-conquer)一样，都是将大问题拆分成小问题，通过计算更容易得到的小问题的解，再汇集成大问题的解。
 - 分治法是把问题拆分成`相互独立`的子问题，适用于拆分的子问题是互不影响的。相反，动规适用于子问题是`不相互独立的`，可能两个子问题都包含同一个子子问题，在这种情况下，使用分治法，在递归中容易没必要的反复计算某一个子问题。
@@ -15,13 +15,13 @@
     4. 通过得到的每一步的最优解，回溯出得到最终最优解的路径（或选择，或过程）
 
 
-### 动态规划的判定
+### 2. 动态规划的判定
 
 1. 求，最优问题(optimization problems) *人话：问题有很多个解，找个最好的，比如现实问题中，操作次数最少的，花费金额最少的等等*
 2. 有，最优子结构(optimal sunstructure) *人话：求一个0...N的问题，其最优解由更小规模的0...N-1子问题的某个比较优秀的解得到，如果用子问题的最优解一定能得到问题的最优解，那就是贪心了*
 3. 有，重叠子问题(overlapping subproblems) *人话：某两个N规模的问题，可能用到通一个N-1规模的子问题，那就求解这个子问题一次就OK*
 
-### LeetCode解题流程
+### 3. LeetCode解题流程
 
 参考自LeetCode上一个题解[From good to great. How to approach most of DP problems](https://leetcode.com/problems/house-robber/discuss/156523/From-good-to-great.-How-to-approach-most-of-DP-problems.)，简单来说，就是解决常见的DP问题，**分5步走**
 
@@ -33,32 +33,32 @@
 
 当足够熟练时，基本上思考一个1，就能得到递归方程式，就能在脑海中得到2和3的代码，就能知道时空复杂度，进而验证1的想法可行与否，然后直接去写4的代码，在写的过程中，就知道如何压缩用到的存储，进而去写5的代码，得到最好的实现。
 
-### LeetCode例题简述
+### 4. LeetCode例题简述
 
 #### [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
-- [CPP](../cpp/1143.cpp), [golang](../golang/1143.go)
+- [CPP](https://github.com/xfmeng17/leetcode/blob/master/cpp/1143.cpp)
 - 标准LCS
 
 #### [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
 
-- [CPP](../cpp/0300.cpp), [golang](../golang/0300.go)
+- [CPP](https://github.com/xfmeng17/leetcode/blob/master/cpp/0300.cpp), [golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0300.go)
 - 标准LIC，最长递增子序列，可以先排序，然后求排序好的和初始的LCS
 - TODO，整理二分O(nlogn)的解法
 
 #### [673. Number of Longest Increasing Subsequence](https://leetcode.com/problems/number-of-longest-increasing-subsequence/)
 
-- [CPP](../cpp/0673.cpp), [golang](../golang/0673.go)
+- [CPP](https://github.com/xfmeng17/leetcode/blob/master/cpp/0673.cpp), [golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0673.go)
 - 同理300，无法二分，只能用标准DP
 
 #### [397. Integer Replacement](https://leetcode.com/problems/integer-replacement/)
 
-- [CPP](../cpp/0397.cpp), [golang](../golang/0397.go)
+- [CPP](https://github.com/xfmeng17/leetcode/blob/master/cpp/0397.cpp), [golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0397.go)
 - 简单DP，注意N=int32是，最大值溢出，使用long
 
 #### [139. Word Break](https://leetcode.com/problems/word-break/)
 
-- [CPP](../cpp/0139.cpp), [golang](../golang/0139.go)
+- [CPP](https://github.com/xfmeng17/leetcode/blob/master/cpp/0139.cpp), [golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0139.go)
 - 一维`dp[i]`表示string从`0...i`的子结果
 - 二维`dp[i][j]`表示string从`i...j`的子结果
 - 二维是O(n^3)的time，一维是O(n^2)的，`一维要好很多，证明了想对递归关系，非常关键`
