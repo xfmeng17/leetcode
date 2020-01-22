@@ -1,4 +1,4 @@
-# Union-Find 并查集
+# Union Find 并查集
 
 ## 2019-01 解决leetcode 684
 结合解题代码和《算法4》1.5，总结一下
