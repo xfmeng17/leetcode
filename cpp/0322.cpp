@@ -22,7 +22,7 @@ public:
 
   // Update at 2020-01-24 use same code style
   // Same problem to 528
-  int func1(vector<int> &coins, int amount) {
+  int func2(vector<int> &coins, int amount) {
     vector<int> kp(amount+1, amount+1);
     kp[0] = 0;
 
