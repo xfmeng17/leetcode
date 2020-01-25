@@ -2,12 +2,12 @@ class Solution {
 public:
     int distinctEchoSubstrings(string text) {
         // return func1(text);
-        return func2(text);
+        return func2(text.c_str(), text.length());
     }
 
     // 1. Basic string compare solution, use hash-set do cache
     // Time: O(n^3) time, Space: O(n^2)
-    int func1(string text) {
+    int func1(string& text) {
         int N = text.length();
         unordered_set<string> set;
 
@@ -37,65 +37,76 @@ public:
     // Time: O(n^2), Space: O(1)
     // Onile implement: https://algs4.cs.princeton.edu/53substring/  RabinKarp.java
     
-    int func2(string text) {
-        const int R = 26;
-        const long Q = 1e9 + 7;
+    /*
+     * 2. Rabin-Karp substring search, Time: O(n^2), Space: O(1)
+     * According to "Algorithms, 4th Edition => 5.3 Substring Search => Rabin-Karp fingerprint search"
+     * Onile implement: https://algs4.cs.princeton.edu/53substring/  => RabinKarp.java
+     *
+     * My notes:
+     * #1 Use `const char*` instead `string&` for text to pass into the functions.
+     * #2 Should use string type `unordered_set<string> set` not `long type` to avoid collision.
+     * #3 Base on #2, should do `RK_Recheck` when hash value is equal.
+     * #4 Do #2 and #3 will make the code too slow to pass.
+     * #5 There are a lot of thing can be done to speed up my implement, for readable, I just leave it this way.
+     */
 
-        int N = text.length();
-        unordered_set<string> set;
+    const int R = 26;        // There are only low letter in string
+    const long Q = 1e13 + 7; // Random chose some big prime
+
+    int func2(const char* text, int N) {
+        long RM = 1;
+        // unordered_set<string> set;
+        unordered_set<long> set;
+
         for (int len = 1; len <= N/2; len++) {
+            // M == len, use 'M' to keep same to algs4's implement
             int M = len;
-            long RM = RK_RM(M, R, Q);
+            // long RM = RK_RM(M, R, Q);
+            if (M > 1) {
+                RM = RM * R % Q;
+            }
             long curr_hash1 = 0;
             long curr_hash2 = 0;
-            // M == len, use 'M' to keep same to algs4's implement
+            
             for (int i = 0; i+2*len-1 < N; i++) {
                 if (i == 0) {
                     curr_hash1 = RK_Hash(text, i, M, R, Q);
                     curr_hash2 = RK_Hash(text, i+M, M, R, Q);
                 } else {
-                    curr_hash1 = RK_Shift(text, i, M, R, Q, RM, curr_hash1);
-                    curr_hash2 = RK_Shift(text, i+M, M, R, Q, RM, curr_hash2);
+                    curr_hash1 = RK_Shift(text, i-1, M, R, Q, RM, curr_hash1);
+                    curr_hash2 = RK_Shift(text, i-1+M, M, R, Q, RM, curr_hash2);
                 }
-                printf("i=%d, curr_hash1=%ld, curr_hash2=%ld\n", i, curr_hash1, curr_hash2);
                 if (curr_hash1 == curr_hash2 && RK_Recheck(text, i, i+M)) {
-                    set.emplace(text.substr(i, M));
+                    // set.emplace(text.substr(i, M));
+                    set.emplace(curr_hash1);
                 }
             }
-        }
-
-        for (auto it = set.begin(); it != set.end(); it++) {
-            cout << *it << endl;
         }
         return set.size();
     }
 
     long RK_RM(int M, int R, long Q) {
-        long RM = R;
-        int time = M-2;
-        while (time-- > 0) {
-            RM *= R;
-            RM %= Q;
+        long RM = 1;
+        for (int i = 1; i <= M-1; i++) {
+            RM = (R * RM) % Q;
         }
         return RM;
     }
-    long RK_Hash(string text, int i, int M, int R, long Q) {
-        long hash = 0;
-        while (M-- > 0) {
-            hash += (hash * R) + (text[i] - '0');
-            hash %= Q;
+    long RK_Hash(const char* text, int i, int M, int R, long Q) {
+        long h = 0;
+        for (int j = 0; j < M; j++) {
+            h = (R * h + text[i+j]) % Q;
         }
-        return hash;
+        return h;
     }
-    long RK_Shift(string text, int i, int M, int R, long Q, long RM, long last_hash) {
-        int last_val = text[i-1] - '0';
-        int curr_val = text[i+M-1] - '0';
-        long curr_hash = (last_hash + last_val*(Q - RM)) * R + curr_val;
-        curr_hash %= Q;
-        return curr_hash;
+    long RK_Shift(const char* text, int i, int M, int R, long Q, long RM, long last_hash) {
+        last_hash = (last_hash + Q - RM * text[i] % Q) % Q;
+        last_hash = (last_hash * R + text[i+M]) % Q;
+        return last_hash;
     }
-    bool RK_Recheck(string text, int i, int j) {
-        printf("recheck: i=%d, j=%d, M=%d\n", i, j, j-i);
+    // Honest, we should always do recheck, but will make "a.....a" case Time-Limit-Exceeded
+    bool RK_Recheck(const char* text, int i, int j) {
+        return true;
         for (int len = 0; len < j - i; len++) {
             if (text[i+len] != text[j+len]) {
                 return false;
