@@ -59,9 +59,13 @@ public:
                 }
                 printf("i=%d, curr_hash1=%ld, curr_hash2=%ld\n", i, curr_hash1, curr_hash2);
                 if (curr_hash1 == curr_hash2 && RK_Recheck(text, i, i+M)) {
-                    set.emplace(text.substr(i, i+M));
+                    set.emplace(text.substr(i, M));
                 }
             }
+        }
+
+        for (auto it = set.begin(); it != set.end(); it++) {
+            cout << *it << endl;
         }
         return set.size();
     }
@@ -77,7 +81,7 @@ public:
     }
     long RK_Hash(string text, int i, int M, int R, long Q) {
         long hash = 0;
-        while (i++ < M) {
+        while (M-- > 0) {
             hash += (hash * R) + (text[i] - '0');
             hash %= Q;
         }
@@ -91,6 +95,7 @@ public:
         return curr_hash;
     }
     bool RK_Recheck(string text, int i, int j) {
+        printf("recheck: i=%d, j=%d, M=%d\n", i, j, j-i);
         for (int len = 0; len < j - i; len++) {
             if (text[i+len] != text[j+len]) {
                 return false;
