@@ -34,11 +34,11 @@ extra:
     - type: 'github'
       link: 'https://github.com/xfmeng17'
     - type: 'quote-left'
-      link: 'httphttps://xfmeng17.github.io/blog'
+      link: 'https://github.com/xfmeng17'
     - type: 'book'
-      link: 'httphttps://xfmeng17.github.io/CLRS'
+      link: 'https://github.com/xfmeng17'
     - type: 'linkedin'
-      link: 'https://www.linkedin.com/in/peng-yu-jay-chen-57852313a/'
+      link: 'https://github.com/xfmeng17'
 
 extra_css:
   - 'css/katex.css'
@@ -367,3 +367,7 @@ nav:
     - Knapsack Problem: notes/kp.md
     - Union Find: notes/uf.md
     - Others: notes/others.md
+  - Contest:
+    - Biweekly Contest 17: notes/biweekly_contest/0017.md
+    - Biweekly Contest 16: notes/biweekly_contest/0016.md
+    
