@@ -4,6 +4,8 @@
 
 # LeetCode Solutions
 
+> This is a total ***COPY*** from [walkccc](https://github.com/walkccc/LeetCode/), Thanks a lot.
+
 ## Getting Started
 
 In this repository, I'll work on solutions to **_all_** [LeetCode](https://leetcode.com/problemset/all/) problems by C++, Java, and Python.

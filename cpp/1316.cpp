@@ -32,11 +32,6 @@ public:
         return set.size();
     }
 
-    // 2. Rabin-Karp substring search
-    // According to "Algorithms, 4th Edition => 5.3 Substring Search => Rabin-Karp fingerprint search"
-    // Time: O(n^2), Space: O(1)
-    // Onile implement: https://algs4.cs.princeton.edu/53substring/  RabinKarp.java
-    
     /*
      * 2. Rabin-Karp substring search, Time: O(n^2), Space: O(1)
      * According to "Algorithms, 4th Edition => 5.3 Substring Search => Rabin-Karp fingerprint search"
@@ -45,11 +40,10 @@ public:
      * My notes:
      * #1 Use `const char*` instead `string&` for text to pass into the functions.
      * #2 Should use string type `unordered_set<string> set` not `long type` to avoid collision.
-     * #3 Base on #2, should do `RK_Recheck` when hash value is equal.
+     * #3 Base on #2, should do `RK_Recheck` when hash value is equal for sure.
      * #4 Do #2 and #3 will make the code too slow to pass.
      * #5 There are a lot of thing can be done to speed up my implement, for readable, I just leave it this way.
      */
-
     const int R = 26;        // There are only low letter in string
     const long Q = 1e13 + 7; // Random chose some big prime
 
@@ -104,7 +98,7 @@ public:
         last_hash = (last_hash * R + text[i+M]) % Q;
         return last_hash;
     }
-    // Honest, we should always do recheck, but will make "a.....a" case Time-Limit-Exceeded
+    // Honest, we should always do Recheck, but will make "a.....a" case Time-Limit-Exceeded
     bool RK_Recheck(const char* text, int i, int j) {
         return true;
         for (int len = 0; len < j - i; len++) {
