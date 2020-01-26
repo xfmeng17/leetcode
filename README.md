@@ -4,7 +4,8 @@
 
 # LeetCode Solutions
 
-> This is a total ***COPY*** from [walkccc](https://github.com/walkccc/LeetCode/), Thanks a lot.
+> This framework is a total ***COPY*** from [walkccc](https://github.com/walkccc/LeetCode/), Thanks a lot.
+> And I will fill it with my code and notes.
 
 ## Getting Started
 
