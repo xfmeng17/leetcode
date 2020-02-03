@@ -1,6 +1,7 @@
 func maxProfit(prices []int) int {
 	// return func1(prices);
-	return func2(prices);
+	// return func2(prices);
+	return func3(prices);
 }
 
 func func1(prices []int) int {
@@ -77,6 +78,24 @@ func func2(prices []int) int {
 	}
 	
 	return T[n-1][1][0];
+}
+// Like func2(), but O(1) space
+func func3(prices []int) int {
+	if len(prices) <= 0 {
+		return 0;
+	}
+
+	n := len(prices);
+
+	T_1_0 := 0;
+	T_1_1 := 0 - prices[0];
+
+	for i := 1; i < n; i++ {
+		T_1_0 = max(T_1_0, T_1_1 + prices[i]);
+		T_1_1 = max(T_1_1, 0 - prices[i]);
+	}
+
+	return T_1_0;
 }
 
 // Helper functions
