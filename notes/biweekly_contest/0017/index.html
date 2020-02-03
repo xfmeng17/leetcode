@@ -4573,8 +4573,9 @@
 <li><a href="https://github.com/xfmeng17/leetcode/blob/master/cpp/1316.cpp">Cpp</a></li>
 <li>有时<code>Time Limit Exceeded</code>，有时<code>AC</code></li>
 <li><code>func2</code>中，必须缓存得到的全部的子字符串，即在循环顶部就求sub：<code>string s = text.substr(i, len);</code>，但是同样这样操作string会比较慢</li>
-<li>Discuss里面全是用hash做字符串比较的，我感觉不是很好</li>
-<li>尝试下DP的思想，<code>dp[i][j]=true/false</code>保存子字符串i...j的结果，然后遍历dp找到为true的，在substr，放入set排重</li>
+<li>~~尝试下DP的思想，<code>dp[i][j]=true/false</code>保存子字符串i...j的结果，然后遍历dp找到为true的，在substr，放入set排重~~</li>
+<li>~~Discuss里面全是用hash做字符串比较的，我感觉不是很好。~~<strong><em>看实现，实现了Rabin-karp子字符串查找算法</em></strong></li>
+<li>对于实战Rabin-karp算法，目前我遇到的最好的题，用rk子字符串查找就能AC</li>
 </ul>
 <p>总结，第一次做contest，还是在压力下编程比较提升人，虽然是做的<code>Virtual</code>，继续参加！</p>
                 
