@@ -1,7 +1,8 @@
 func maxProfit(prices []int) int {
 	// return func1(prices);
 	// return func2(prices);
-	return func3(prices);
+	// return func3(prices);
+	return func4(prices);
 }
 
 func func1(prices []int) int {
@@ -96,6 +97,22 @@ func func3(prices []int) int {
 	}
 
 	return T_1_0;
+}
+// Like func3(), but start from i=-1, keep same to reference
+func func4(prices []int) int {
+    if len(prices) <= 0 {
+        return 0;
+    }
+
+    T_i10 := 0;
+    T_i11 := INT_MIN;
+
+    for i := 0; i < len(prices); i++ {
+        T_i10 = max(T_i10, T_i11 + prices[i]);
+        T_i11 = max(T_i11, 0 - prices[i]);
+    }
+
+    return T_i10;
 }
 
 // Helper functions
