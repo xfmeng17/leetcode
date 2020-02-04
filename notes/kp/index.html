@@ -4343,8 +4343,90 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#2019-01" class="md-nav__link">
-    2019-01 整理
+  <a href="#2019-02" class="md-nav__link">
+    2019-02 整理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-01zeroonepack" class="md-nav__link">
+    1. 01背包(ZeroOnePack)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    题目说明
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    基本思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    优化空间
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    初始化细节
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-completepack" class="md-nav__link">
+    2. 完全背包(CompletePack)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    题目说明
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    基本思路
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-multiplepack" class="md-nav__link">
+    3. 多重背包问题(MultiplePack)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode" class="md-nav__link">
+    LeetCode上的背包问题
   </a>
   
 </li>
@@ -4494,8 +4576,90 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#2019-01" class="md-nav__link">
-    2019-01 整理
+  <a href="#2019-02" class="md-nav__link">
+    2019-02 整理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-01zeroonepack" class="md-nav__link">
+    1. 01背包(ZeroOnePack)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    题目说明
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    基本思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    优化空间
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    初始化细节
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-completepack" class="md-nav__link">
+    2. 完全背包(CompletePack)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    题目说明
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    基本思路
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-multiplepack" class="md-nav__link">
+    3. 多重背包问题(MultiplePack)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode" class="md-nav__link">
+    LeetCode上的背包问题
   </a>
   
 </li>
@@ -4520,7 +4684,84 @@
                 
                 
                 <h1 id="knapsack-problem">Knapsack Problem 背包问题</h1>
-<h2 id="2019-01">2019-01 整理</h2>
+<h2 id="2019-02">2019-02 整理</h2>
+<blockquote>
+<p>主要参考自<a href="https://www.kancloud.cn/kancloud/pack/70124">背包9讲</a>，这里做个备份</p>
+</blockquote>
+<h2 id="1-01zeroonepack">1. 01背包(ZeroOnePack)</h2>
+<h3 id="_1">题目说明</h3>
+<p>有N件物品，和一个容量为V的背包，求解将哪些物品放到背包中能获得最大的价值。<strong>每件物品只能放一次，即<code>放</code>或者<code>不放</code>。</strong> 第i件物品的费用（重量等，付出）是c[i]，第i件物品的价值（得到）是w[i]。</p>
+<h3 id="_2">基本思路</h3>
+<p>最基础的背包问题，特点是物品只能放到背包一次，自有放还是不放的状态。动态转移方程为：
+<code>f[i][v] = max(f[i-1][v], f[i-1][v-c[i]] + w[i])</code></p>
+<p>最重要的方程，先说明下各个变量：f[i][v]表示，第0...i个物品，放到一个容量为v的背包中，能获得的最大收益。v表示背包容量，c[i]表示第i个物品的消耗，w[i]表示第i个物品的获得。</p>
+<p>迭代时，面对一个物品i，只有两中操作，取或者不取。所以，在面对第i个物品，背包容量为v时，不取便是f[i-1][v]，取便是f[i-1][v-c[i]] + w[i]</p>
+<h3 id="_3">优化空间</h3>
+<p>注意，转移方程中，取时，用的是<code>f[i-1][v-c[i]] + w[i]</code>，需要之前一个容量更小背包的值。<strong>所以当我们从<code>V...0</code>计算时，就可以优化掉f[i]这维，这是理解所有背包问题的关键，需要时间消化。</strong> 优化后有如下伪代码：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="n">N</span>
+    <span class="k">for</span> <span class="n">v</span><span class="o">=</span><span class="n">V</span><span class="o">..</span><span class="mi">0</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="nb">max</span><span class="p">{</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="o">-</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]}</span>
+</pre></div>
+</td></tr></table>
+
+<p>使用一维背包的代码过程以后会被多次用到，抽象出来：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">procedure</span> <span class="n">ZeroOnePack</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">V</span><span class="o">...</span><span class="n">cost</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="o">-</span><span class="n">cost</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>这样，01背包便成为：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> <span class="mf">1.</span><span class="o">..</span><span class="n">N</span>
+    <span class="n">ZeroOnePack</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="_4">初始化细节</h3>
+<p>我们看到的求最优解的背包问题题目中，事实上有两种不太相同的问法。<strong>有的题目要求“恰好装满背包”时的最优解，有的题目则并没有要求必须把背包装满。</strong> 一种区别这两种问法的实现方法是在初始化的时候有所不同。</p>
+<p>如果是第一种问法，要求恰好装满背包，那么在初始化时除了f[0]为0其它f[1..V]均设为-INF，这样就可以保证最终得到的f[N]是一种恰好装满背包的最优解，-INF表示无法恰好装满。</p>
+<p>如果并没有要求必须把背包装满，而是只希望价格尽量大，初始化时应该将f[0..V]全部设为0。</p>
+<h2 id="2-completepack">2. 完全背包(CompletePack)</h2>
+<h3 id="_5">题目说明</h3>
+<p>有N件物品，和一个容量为V的背包，求解将哪些物品放到背包中能获得最大的价值。<strong>每件物品可以放无限次，即<code>放0...+INF</code>次。</strong> 第i件物品的费用（重量等，付出）是c[i]，第i件物品的价值（得到）是w[i]。</p>
+<h3 id="_6">基本思路</h3>
+<p>仿照01背包问题，递归方程应该是:
+<code>f[i][v] = f[i-1][v-k*c[i]]+k*w[i]), 0 &lt;= k*c[i] &lt;= v</code>
+但是用上面递归方程复杂度基本就是GG了，那么最trick的来啦，完全背包问题可以直接转换为01背包问题得到O(VN)的算法：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mf">1.</span><span class="o">.</span><span class="n">N</span>
+    <span class="k">for</span> <span class="n">v</span><span class="o">=</span><span class="mf">0.</span><span class="o">.</span><span class="n">V</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="nb">max</span><span class="p">{</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="o">-</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]}</span>
+</pre></div>
+</td></tr></table>
+
+<p>完全背包的实现只和01背包在V的迭代次序上不同，01背包是从<code>V...0</code>，而完全背包是从<code>0...V</code>，具体理解可以参考背包9讲的原文。目前我觉得我能理解，但是还说不明白。</p>
+<p>所以完全背包的递归方程为：
+<code>f[i][v] = max(f[i-1][v], f[i][v-c[i]] + w[i])</code></p>
+<p>伪代码为：
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">procedure</span> <span class="n">CompletePack</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">v</span><span class="o">=</span><span class="n">cost</span><span class="o">...</span><span class="n">V</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="nb">max</span><span class="p">{</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="o">-</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">+</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]}</span>
+</pre></div>
+</td></tr></table></p>
+<h2 id="3-multiplepack">3. 多重背包问题(MultiplePack)</h2>
+<p>2020-02-04，暂时整理到这，LeetCode上还只有01和完全背包问题</p>
+<h2 id="leetcode">LeetCode上的背包问题</h2>
+<ol>
+<li><a href="https://leetcode.com/problems/partition-equal-subset-sum/">416. Partition Equal Subset Sum</a>，标准<code>01背包</code>，入门题目，<a href="https://github.com/xfmeng17/leetcode/blob/master/golang/0416.go">Golang</a></li>
+<li><a href="https://leetcode.com/problems/coin-change/">322. Coin Change</a>，标准<code>完全背包</code>，入门题目，<a href="https://github.com/xfmeng17/leetcode/blob/master/golang/0322.go">Golang</a></li>
+<li><a href="https://leetcode.com/problems/coin-change-2/">518. Coin Change 2</a>，<code>完全背包</code>，求解组成的可能数，<a href="https://github.com/xfmeng17/leetcode/blob/master/Cpp/0518.go">Cpp</a></li>
+</ol>
                 
                   
                 
