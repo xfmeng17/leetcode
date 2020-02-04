@@ -42,6 +42,7 @@ func func1(prices []int) int {
  * 3. T[i][1] = max(T[i-1][1], T[i][0]   - prices[i])
  * For both condition in 1, ALWAYS get same 2 and 3
  */
+
 const INT_MAX = int(^uint(0) >> 1);
 const INT_MIN = ^INT_MAX;
 

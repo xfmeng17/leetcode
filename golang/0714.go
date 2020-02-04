@@ -31,6 +31,7 @@ func func4(prices []int, fee int) int {
  * T[i][0] = max(T[i-1][0], T[i-1][1] + prices[i])
  * T[i][1] = max(T[i-1][1], T[i-1][0] - prices[i] - fee)
  */
+
 const INT_MAX = int(^uint(0) >> 1);
 const INT_MIN = ^INT_MAX;
 func func5(prices []int, fee int) int {

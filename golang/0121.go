@@ -62,7 +62,7 @@ func func2(prices []int) int {
 		}
 	}
 
-	// base
+	// Base
 	T[0][0][0] = 0;
 	T[0][0][1] = INT_MIN;
 	T[0][1][0] = 0;
