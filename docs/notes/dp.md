@@ -2,7 +2,7 @@
 
 ## 2019-01 整理
 
-### 1. 动态规划的理解
+## 1. 动态规划的理解
 
 - 动态规划，和分治法(divide-and-conquer)一样，都是将大问题拆分成小问题，通过计算更容易得到的小问题的解，再汇集成大问题的解。
 - 分治法是把问题拆分成`相互独立`的子问题，适用于拆分的子问题是互不影响的。相反，动态规划适用于子问题是`相互重叠`的，即存在两个子问题可能都包含同一个子子问题，在这种情况下，仍用分治法，在递归中容易反复计算某一个子问题，造成不必要的浪费。
@@ -15,13 +15,13 @@
     4. 通过得到的每一步的最优解，回溯出得到最终最优解的路径（或选择，或过程）
 
 
-### 2. 动态规划的判定
+## 2. 动态规划的判定
 
 1. 求，最优问题(optimization problems) *人话：问题有很多个解，找个最好的，比如现实问题中，操作次数最少的，花费金额最少的等等*
 2. 有，最优子结构(optimal sunstructure) *人话：求一个0...N的问题，其最优解由更小规模的0...N-1子问题的某个比较优秀的解得到，如果用子问题的最优解一定能得到问题的最优解，那就是贪心了*
 3. 有，重叠子问题(overlapping subproblems) *人话：某两个N规模的问题，可能用到同一个N-1规模的子问题，那就求解这个子问题一次就OK*
 
-### 3. LeetCode解题流程
+## 3. LeetCode解题流程
 
 参考自LeetCode上一个题解[From good to great. How to approach most of DP problems](https://leetcode.com/problems/house-robber/discuss/156523/From-good-to-great.-How-to-approach-most-of-DP-problems.)，简单来说，就是解决常见的DP问题，**分5步走**
 
@@ -33,7 +33,9 @@
 
 当足够熟练时，基本上思考出一个步骤#1，就能得到递归方程式，就能在脑海中得到步骤#2和步骤#3的代码，就能知道时空复杂度，进而验证步骤#1的想法可行与否，然后直接去写步骤#4的代码，在写的过程中，就知道如何压缩用到的存储，进而去写步骤#5的代码，得到最好的实现。
 
-### 4. LeetCode例题简述
+## 4. LeetCode例题简述
+
+### 2020-01
 
 #### [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
@@ -62,3 +64,15 @@
 - 一维`dp[i]`表示string从`0...i`的子结果
 - 二维`dp[i][j]`表示string从`i...j`的子结果
 - 二维是O(n^3)的time，一维是O(n^2)的，`一维要好很多，证明了想对递归关系，非常关键`
+
+### 2020-02
+
+#### [377. Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/)
+
+- [Cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0377.cpp), [Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0377.go)
+- 简单DP，其实有Integer溢出隐患
+
+#### [474. Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)
+
+- [Cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0474.cpp), [Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0474.go)
+- `dp[i][m][n]` 表示数组内第i个数，m个0，n个1的结果，实现上直接砍掉dp[i]那维，用`dp1`，`dp2`。
