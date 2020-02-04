@@ -2,7 +2,8 @@ func maxProfit(prices []int) int {
 	// return func1(prices);
 	// return func2(prices);
 	// return func3(prices);
-	return func4(prices);
+	// return func4(prices);
+	return func5(prices);
 }
 
 // Sell at day i
@@ -111,8 +112,35 @@ func func4(prices []int) int {
 
 	return memo[n-1];
 }
+/*
+ * The series-of-stock problems solution, k = +INF
+ * T[i][0] = max(T[i-1][0], T[i-1][1] + prices[i])
+ * T[i][1] = max(T[i-1][1], T[i-2][0] - prices[i])
+ */
 
-// Helper functions
+const INT_MAX = int(^uint(0) >> 1);
+const INT_MIN = ^INT_MAX;
+
+func func5(prices []int) int {
+	if len(prices) <= 0 {
+		return 0;
+	}
+
+	T_ik0 := 0;
+	T_ik0_pre := 0;
+	T_ik1 := INT_MIN;
+
+	for i := 0; i < len(prices); i++ {
+		T_ik0_aux := T_ik0;
+		T_ik0 = max(T_ik0, T_ik1 + prices[i]);
+		T_ik1 = max(T_ik1, T_ik0_pre - prices[i]);
+		T_ik0_pre = T_ik0_aux;
+	}
+
+	return T_ik0;
+}
+
+ // Helper functions
 func max(a int, b int) int {
 	if a > b {
 		return a;
