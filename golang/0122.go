@@ -35,6 +35,12 @@ func func1(prices []int) int {
  * you want, k is no longer a constraint here, therefore you can just take [k]
  * and [k-1] out of the equation and let it be constrained by the size of the
  * prices array.
+ *
+ * T_ik0_aux is unnecessary:
+ * 1. T[i][0] = max(T[i-1][0], T[i-1][1] + prices[i])
+ * 2. T[i][1] = max(T[i-1][1], T[i-1][0] - prices[i])
+ * 3. T[i][1] = max(T[i-1][1], T[i][0]   - prices[i])
+ * For both condition in 1, ALWAYS get same 2 and 3
  */
 const INT_MAX = int(^uint(0) >> 1);
 const INT_MIN = ^INT_MAX;
