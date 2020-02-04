@@ -366,8 +366,11 @@ nav:
     - Dynamic Programming: notes/dp.md
     - Knapsack Problem: notes/kp.md
     - Union Find: notes/uf.md
+    - Serices Of Stock Problems: notes/buy_sell_stock.md
     - Others: notes/others.md
   - Contest:
+    - Veekly Contest 173: notes/weekly_contest/0173.md
+    - Biweekly Contest 18: notes/biweekly_contest/0018.md
     - Biweekly Contest 17: notes/biweekly_contest/0017.md
     - Biweekly Contest 16: notes/biweekly_contest/0016.md
     
