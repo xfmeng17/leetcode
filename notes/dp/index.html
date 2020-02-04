@@ -4800,6 +4800,7 @@
 <li>一维<code>dp[i]</code>表示string从<code>0...i</code>的子结果</li>
 <li>二维<code>dp[i][j]</code>表示string从<code>i...j</code>的子结果</li>
 <li>二维是O(n^3)的time，一维是O(n^2)的，<code>一维要好很多，证明了想对递归关系，非常关键</code></li>
+<li><strong>2020-02-04补充</strong>：如果二维<code>dp[i][j]</code>表示string从<code>i...j</code>的子结果，那么迭代时，直接把<code>substring[0...i-1]</code>和<code>substring[j+1...n-1]</code>当成一个word判定，那么其实也是O(n^2)的Time</li>
 </ul>
 <h3 id="2020-02">2020-02</h3>
 <h4 id="377-combination-sum-iv"><a href="https://leetcode.com/problems/combination-sum-iv/">377. Combination Sum IV</a></h4>
