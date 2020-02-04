@@ -76,4 +76,6 @@
 #### [474. Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)
 
 - [Cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0474.cpp), [Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0474.go)
-- `dp[i][m][n]` 表示数组内第i个数，m个0，n个1的结果，实现上直接砍掉dp[i]那维，用`dp1`，`dp2`。
+- `dp[i][m][n]` 表示数组内第i个数，m个0，n个1的结果，实现上直接砍掉dp[i]那维，用`dp1`，`dp2`
+
+#### [Best Time to Buy and Sell Stock 系列](https://xfmeng17.github.io/leetcode/notes/buy-sell-stock/)
