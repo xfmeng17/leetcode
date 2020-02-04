@@ -6,7 +6,7 @@
 
 ## Most consistent ways of dealing with the series of stock problems
 
-Note: this is a repost of my original post here with updated solutions for this problem [714. Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/). If you are only looking for solutions, you can go directly to each section in part `II -- Applications to specific cases`.
+Note: this is a repost of my original post here with updated solutions for this problem [714. Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/). If you are only looking for solutions, you can go directly to each section in part **II -- Applications to specific cases**.
 
 ------
 
@@ -34,11 +34,11 @@ The most straightforward way would be looking at actions taken on the i-th day. 
 Therefore our definition of `T[i][k]` should really be split into two: `T[i][k][0]` and `T[i][k][1]`, where the former denotes the maximum profit **at the end of the i-th day** with at most k transactions and with 0 stock in our hand **AFTER taking the action**, while the latter denotes the maximum profit at the end of the i-th day with at most k transactions and with 1 stock in our hand AFTER taking the action. Now the base cases and the recurrence relations can be written as:
 
 1. Base cases:
-`T[-1][k][0] = 0, T[-1][k][1] = -Infinity`
-`T[i][0][0] = 0, T[i][0][1] = -Infinity`
+    - `T[-1][k][0] = 0, T[-1][k][1] = -Infinity`
+    - `T[i][0][0] = 0, T[i][0][1] = -Infinity`
 2. Recurrence relations:
-`T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
-`T[i][k][1] = max(T[i-1][k][1], T[i-1][k-1][0] - prices[i])`
+    - `T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
+    - `T[i][k][1] = max(T[i-1][k][1], T[i-1][k-1][0] - prices[i])`
   
 For the base cases, `T[-1][k][0] = T[i][0][0] = 0` has the same meaning as before while `T[-1][k][1] = T[i][0][1] = -Infinity` emphasizes the fact that it is impossible for us to have 1 stock in hand if there is no stock available or no transactions are allowed.
 
@@ -56,8 +56,8 @@ The aforementioned six stock problems are classified by the value of `k`, which 
 
 For this case, we really have two unknown variables on each day: `T[i][1][0]` and `T[i][1][1]`, and the recurrence relations say:
 
-`T[i][1][0] = max(T[i-1][1][0], T[i-1][1][1] + prices[i])`
-`T[i][1][1] = max(T[i-1][1][1], T[i-1][0][0] - prices[i]) = max(T[i-1][1][1], -prices[i])`
+- `T[i][1][0] = max(T[i-1][1][0], T[i-1][1][1] + prices[i])`
+- `T[i][1][1] = max(T[i-1][1][1], T[i-1][0][0] - prices[i]) = max(T[i-1][1][1], -prices[i])`
 
 where we have taken advantage of the base case `T[i][0][0] = 0` for the second equation.
 
@@ -82,8 +82,8 @@ Now let's try to gain some insight of the solution above. If we examine the part
 
 If `k` is positive infinity, then there isn't really any difference between `k` and `k - 1` (wonder why? see my comment below), which implies `T[i-1][k-1][0] = T[i-1][k][0]` and `T[i-1][k-1][1] = T[i-1][k][1]`. Therefore, we still have two unknown variables on each day: `T[i][k][0]` and `T[i][k][1]` with `k = +Infinity`, and the recurrence relations say:
 
-`T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
-`T[i][k][1] = max(T[i-1][k][1], T[i-1][k-1][0] - prices[i]) = max(T[i-1][k][1], T[i-1][k][0] - prices[i])`
+- `T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
+- `T[i][k][1] = max(T[i-1][k][1], T[i-1][k-1][0] - prices[i]) = max(T[i-1][k][1], T[i-1][k][0] - prices[i])`
 
 where we have taken advantage of the fact that `T[i-1][k-1][0] = T[i-1][k][0]` for the second equation. The O(n) time and O(1) space solution is as follows:
 
@@ -109,10 +109,10 @@ This solution suggests a greedy strategy of gaining maximum profit: as long as p
 
 Similar to the case where `k = 1`, except now we have four variables instead of two on each day: `T[i][1][0]`, `T[i][1][1]`, `T[i][2][0]`, `T[i][2][1]`, and the recurrence relations are:
 
-`T[i][2][0] = max(T[i-1][2][0], T[i-1][2][1] + prices[i])`
-`T[i][2][1] = max(T[i-1][2][1], T[i-1][1][0] - prices[i])`
-`T[i][1][0] = max(T[i-1][1][0], T[i-1][1][1] + prices[i])`
-`T[i][1][1] = max(T[i-1][1][1], -prices[i])`
+- `T[i][2][0] = max(T[i-1][2][0], T[i-1][2][1] + prices[i])`
+- `T[i][2][1] = max(T[i-1][2][1], T[i-1][1][0] - prices[i])`
+- `T[i][1][0] = max(T[i-1][1][0], T[i-1][1][1] + prices[i])`
+- `T[i][1][1] = max(T[i-1][1][1], -prices[i])`
 
 where again we have taken advantage of the base case `T[i][0][0] = 0` for the last equation. The O(n) time and O(1) space solution is as follows:
 
@@ -177,13 +177,13 @@ The solution is similar to the one found in this post. Here I used backward loop
 
 This case resembles **Case II** very much due to the fact that they have the same k value, except now the recurrence relations have to be modified slightly to account for the "cooldown" requirement. The original recurrence relations for **Case II** are given by
 
-`T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
-`T[i][k][1] = max(T[i-1][k][1], T[i-1][k][0] - prices[i])`
+- `T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
+- `T[i][k][1] = max(T[i-1][k][1], T[i-1][k][0] - prices[i])`
 
 But with "cooldown", **we cannot buy on the i-th day if a stock is sold on the (i-1)-th day**. Therefore, in the second equation above, instead of `T[i-1][k][0]`, we should actually use `T[i-2][k][0]` if we intend to buy on the i-th day. Everything else remains the same and the new recurrence relations are
 
-`T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
-`T[i][k][1] = max(T[i-1][k][1], T[i-2][k][0] - prices[i])`
+- `T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
+- `T[i][k][1] = max(T[i-1][k][1], T[i-2][k][0] - prices[i])`
 
 And here is the O(n) time and O(1) space solution:
 
@@ -208,18 +208,18 @@ public int maxProfit(int[] prices) {
 
 Again this case resembles **Case II** very much as they have the same `k` value, except now the recurrence relations need to be modified slightly to account for the "transaction fee" requirement. The original recurrence relations for **Case II** are given by
 
-`T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
-`T[i][k][1] = max(T[i-1][k][1], T[i-1][k][0] - prices[i])`
+- `T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
+- `T[i][k][1] = max(T[i-1][k][1], T[i-1][k][0] - prices[i])`
 
 Since now we need to pay some fee (denoted as fee) for each transaction made, the profit after buying or selling the stock on the i-th day should be subtracted by this amount, therefore the new recurrence relations will be either
 
-`T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
-`T[i][k][1] = max(T[i-1][k][1], T[i-1][k][0] - prices[i] - fee)`
+- `T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i])`
+- `T[i][k][1] = max(T[i-1][k][1], T[i-1][k][0] - prices[i] - fee)`
 
 or
 
-`T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i] - fee)`
-`T[i][k][1] = max(T[i-1][k][1], T[i-1][k][0] - prices[i])`
+- `T[i][k][0] = max(T[i-1][k][0], T[i-1][k][1] + prices[i] - fee)`
+- `T[i][k][1] = max(T[i-1][k][1], T[i-1][k][0] - prices[i])`
 
 Note we have two options as for when to subtract the fee. This is because (as I mentioned above) each transaction is characterized by two actions coming as a pair - - buy and sell. The fee can be paid either when we buy the stock (corresponds to the first set of equations) or when we sell it (corresponds to the second set of equations). The following are the O(n) time and O(1) space solutions corresponding to these two options, where for the second solution we need to pay attention to possible overflows.
 
