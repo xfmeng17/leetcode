@@ -114,7 +114,25 @@ procedure MultiplePack(cost, weight, amount)
 
 ## 4. 混合三种背包问题(MixedPack)
 
-## 5. 二维费用背包问题(2DimensionPack)
+### 4.1 题目说明
+
+有N件物品，和一个容量为V的背包，求解将哪些物品放到背包中能获得最大的价值。**有的物品只可以取一次（01背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限（多重背包）** ，第i件物品的费用（重量等，付出）是c[i]，物品获取的上限是n[i]，第i件物品的价值（得到）是w[i]。
+
+### 5.2 基本思路
+
+这就体会到编程抽象的力量了：
+
+```python
+    for i=1...N
+        if 第i件物品属于01背包
+            ZeroOnePack(c[i], w[i])
+        else if 第i件物品属于完全背包
+            CompletePack(c[i], w[i])
+        else if 第i件物品属于多重背包
+            MultiplePack(c[i], w[i], n[i])
+```
+
+## 5. 二维费用背包问题(TwoDimensionPack)
 
 ### 5.1 题目说明
 
@@ -125,13 +143,23 @@ procedure MultiplePack(cost, weight, amount)
 费用加了一维，状态的存储也加一维即可，与01背包问题相似。动态转移方程为：
 `f[i][v][u] = max(f[i-1][v][u], f[i-1][v-a[i]][u-b[i]] + w[i])`
 
+所以伪代码为：
+
+```python
+procedure TwoDimensionPack(cost1, cost2, weight) {
+    for V...cost1
+        for U...cost2
+            f[v][u] = max(f[v][u], f[v-cost1][u-cost2] + weight)
+}
+```
+
 ### 5.3 隐式说明
 
 有时候，“二位费用”的条件是以一种隐含的方式给出：**最多只能取M件物品**。这事实上相当于没件物品多了一个“件数”的费用，每个物品的件数费用均为1，可以付出的最大为M。类比其他背包问题，这里就不赘述了。
 
 ## 附录1：LeetCode上的背包问题
 
-1. [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)，标准 `01背包`，入门题目，[golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0416.go)
-2. [322. Coin Change](https://leetcode.com/problems/coin-change/)，标准 `完全背包`，入门题目，[golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0322.go)
+1. [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)，标准 `01背包`，入门题目，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0416.go)
+2. [322. Coin Change](https://leetcode.com/problems/coin-change/)，标准 `完全背包`，入门题目，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0322.go)
 3. [518. Coin Change 2](https://leetcode.com/problems/coin-change-2/)，`完全背包`，求解组成的可能数，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0518.go)
-4. [474. Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)，标准 `二维01背包`，`f[i][m][n]=xxx`，[golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0474.go)
+4. [474. Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)，标准 `二维01背包`，`f[i][m][n]=xxx`，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0474.go)

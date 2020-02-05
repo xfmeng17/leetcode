@@ -3,9 +3,10 @@ public:
   bool canPartition(vector<int> &nums) {
     // return func1(nums);
     // return func2(nums);
-    return func3(nums);
+    // return func3(nums);
+    return func4(nums);
   }
-  // ** recursive
+  // Recursive
   bool func1(vector<int> &nums) {
     int n = nums.size();
     int sum = 0;
@@ -33,7 +34,7 @@ public:
     return pick || notp;
   }
 
-  // ** 0/1 knapsack problem
+  // 0/1 knapsack problem
   bool func2(vector<int> &nums) {
     int sum = 0;
     for (auto n : nums) {
@@ -66,8 +67,8 @@ public:
     return dp[n][sum];
   }
 
-  // ** use 1-dimension
-  // ** amazing implement
+  // Use 1-dimension
+  // Amazing implement
   bool func3(vector<int> &nums) {
     int sum = 0;
     for (auto n : nums) {
@@ -90,5 +91,36 @@ public:
     }
 
     return dp[sum];
+  }
+
+  // 2020-02-05 review
+  bool func4(vector<int>& nums) {
+    if (nums.size() <= 0) {
+      return false;
+    }
+
+    int V = 0;
+    for (auto n : nums) {
+      V += n; 
+    }
+    if (V & 1 == 1) {
+      return false;
+    }
+    
+    V /= 2;
+    vector<bool> kp(V+1);
+    kp[0] = true;
+
+    for (int i = 0; i < nums.size(); i++) {
+      zeroOnePack(kp, V, nums[i]);
+    }
+
+    return kp[V];
+  }
+  void zeroOnePack(vector<bool>& kp, int V, int cost) {
+    for (int i = V; i >= cost; i--) {
+      kp[i] = kp[i] || kp[i-cost];
+    }
+    return;
   }
 };

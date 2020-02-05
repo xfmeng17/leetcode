@@ -3,11 +3,12 @@ public:
   int findMaxForm(vector<string> &strs, int m, int n) {
     // return func1(strs, m, n);
     // return func2(strs, m, n);
-    return func3(strs, m, n);
+    // return func3(strs, m, n);
+    return func4(strs, m, n);
   }
 
-  // ** recursive
-  // ** time 0(len * 2^N), len = max length of strs, N = strs.size()
+  // Recurrence
+  // Time 0(len * 2^N), len = max length of strs, N = strs.size()
   int func1(vector<string> &strs, int m, int n) {
     return helper1(strs, 0, m, n);
   }
@@ -34,7 +35,7 @@ public:
     return max(notp, pick);
   }
 
-  // ** dp two 2D array
+  // DP two 2D array
   int func2(vector<string> &strs, int m, int n) {
     vector<vector<int>> dp1(m + 1, vector<int>(n + 1, 0));
     vector<vector<int>> dp2(m + 1, vector<int>(n + 1, 0));
@@ -70,7 +71,7 @@ public:
     return dp1[m][n];
   }
 
-  // ** dp one 2D array
+  // DP one 2D array
   int func3(vector<string> &strs, int m, int n) {
     vector<vector<int>> dp1(m + 1, vector<int>(n + 1, 0));
 
@@ -91,5 +92,35 @@ public:
     }
 
     return dp1[m][n];
+  }
+
+  // 2020-02-05, review
+  int func4(vector<string>& strs, int m, int n) {
+    vector<vector<int>> kp(m+1, vector<int>(n+1, 0));
+    int V0 = m;
+    int V1 = n;
+
+    for (auto s : strs) {
+      int cnt0 = 0;
+      int cnt1 = 0;
+      for (auto c : s) {
+        if (c == '0') {
+          cnt0++;
+        } else if (c == '1') {
+          cnt1++;
+        }
+      }
+      TwoDimensionPack(kp, V0, V1, cnt0, cnt1);
+    }
+
+    return kp[m][n];
+  }
+  void TwoDimensionPack(vector<vector<int>>& kp, int V0, int V1, int cost0, int cost1) {
+    for (int i = V0; i >= cost0; i--) {
+      for (int j = V1; j >= cost1; j--) {
+        kp[i][j] = max(kp[i][j], kp[i-cost0][j-cost1] + 1);
+      }
+    }
+    return;
   }
 };

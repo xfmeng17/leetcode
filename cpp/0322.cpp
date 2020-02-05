@@ -2,7 +2,8 @@ class Solution {
 public:
   int coinChange(vector<int> &coins, int amount) {
     // return func1(coins, amount);
-    return func2(coins, amount);
+    // return func2(coins, amount);
+    return func3(coins, amount);
   }
 
   // ** standard completely 0/1 knapsack
@@ -33,5 +34,24 @@ public:
     }
 
     return kp[amount] < amount+1 ? kp[amount] : -1;
+  }
+
+  // 2020-02-05, review
+  int func3(vector<int>& coins, int amount) {
+    int V = amount;
+    vector<int> kp(V+1, amount + 1);
+    kp[0] = 0;
+
+    for (auto coin : coins) {
+      completePack(kp, V, coin);
+    }
+
+    return kp[V] >= amount + 1 ? -1 : kp[V];
+  }
+  void completePack(vector<int>& kp, int V, int cost) {
+    for (int i = cost; i <= V; i++) {
+      kp[i] = min(kp[i], kp[i-cost] + 1);
+    }
+    return;
   }
 };
