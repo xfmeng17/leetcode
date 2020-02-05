@@ -4456,11 +4456,31 @@
     4. 混合三种背包问题(MixedPack)
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 题目说明
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 基本思路
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-2dimensionpack" class="md-nav__link">
-    5. 二维费用背包问题(2DimensionPack)
+  <a href="#5-twodimensionpack" class="md-nav__link">
+    5. 二维费用背包问题(TwoDimensionPack)
   </a>
   
     <nav class="md-nav">
@@ -4474,7 +4494,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#52" class="md-nav__link">
+  <a href="#52_1" class="md-nav__link">
     5.2 基本思路
   </a>
   
@@ -4757,11 +4777,31 @@
     4. 混合三种背包问题(MixedPack)
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 题目说明
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 基本思路
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-2dimensionpack" class="md-nav__link">
-    5. 二维费用背包问题(2DimensionPack)
+  <a href="#5-twodimensionpack" class="md-nav__link">
+    5. 二维费用背包问题(TwoDimensionPack)
   </a>
   
     <nav class="md-nav">
@@ -4775,7 +4815,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#52" class="md-nav__link">
+  <a href="#52_1" class="md-nav__link">
     5.2 基本思路
   </a>
   
@@ -4923,20 +4963,53 @@
 <h3 id="33-ovn">3.3 O(VN)算法</h3>
 <p>楼天成的“男人八题”幻灯片里面最简单的那个题，0.0</p>
 <h2 id="4-mixedpack">4. 混合三种背包问题(MixedPack)</h2>
-<h2 id="5-2dimensionpack">5. 二维费用背包问题(2DimensionPack)</h2>
+<h3 id="41">4.1 题目说明</h3>
+<p>有N件物品，和一个容量为V的背包，求解将哪些物品放到背包中能获得最大的价值。<strong>有的物品只可以取一次（01背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限（多重背包）</strong> ，第i件物品的费用（重量等，付出）是c[i]，物品获取的上限是n[i]，第i件物品的价值（得到）是w[i]。</p>
+<h3 id="52">5.2 基本思路</h3>
+<p>这就体会到编程抽象的力量了：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="n">N</span>
+        <span class="k">if</span> <span class="n">第i件物品属于01背包</span>
+            <span class="n">ZeroOnePack</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="n">第i件物品属于完全背包</span>
+            <span class="n">CompletePack</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="n">第i件物品属于多重背包</span>
+            <span class="n">MultiplePack</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</td></tr></table>
+
+<h2 id="5-twodimensionpack">5. 二维费用背包问题(TwoDimensionPack)</h2>
 <h3 id="51">5.1 题目说明</h3>
 <p>有N件物品，和一个容量为V的背包，求解将哪些物品放到背包中能获得最大的价值。<strong>每件物品有2种费用需要花费</strong> 第i件物品的费用（重量等，付出）是<code>a[i]</code>，<code>b[i]</code>，第i件物品的价值（得到）是w[i]。</p>
-<h3 id="52">5.2 基本思路</h3>
+<h3 id="52_1">5.2 基本思路</h3>
 <p>费用加了一维，状态的存储也加一维即可，与01背包问题相似。动态转移方程为：
 <code>f[i][v][u] = max(f[i-1][v][u], f[i-1][v-a[i]][u-b[i]] + w[i])</code></p>
+<p>所以伪代码为：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">procedure</span> <span class="n">TwoDimensionPack</span><span class="p">(</span><span class="n">cost1</span><span class="p">,</span> <span class="n">cost2</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">V</span><span class="o">...</span><span class="n">cost1</span>
+        <span class="k">for</span> <span class="n">U</span><span class="o">...</span><span class="n">cost2</span>
+            <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">u</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="o">-</span><span class="n">cost1</span><span class="p">][</span><span class="n">u</span><span class="o">-</span><span class="n">cost2</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
 <h3 id="53">5.3 隐式说明</h3>
 <p>有时候，“二位费用”的条件是以一种隐含的方式给出：<strong>最多只能取M件物品</strong>。这事实上相当于没件物品多了一个“件数”的费用，每个物品的件数费用均为1，可以付出的最大为M。类比其他背包问题，这里就不赘述了。</p>
 <h2 id="1leetcode">附录1：LeetCode上的背包问题</h2>
 <ol>
-<li><a href="https://leetcode.com/problems/partition-equal-subset-sum/">416. Partition Equal Subset Sum</a>，标准 <code>01背包</code>，入门题目，<a href="https://github.com/xfmeng17/leetcode/blob/master/golang/0416.go">golang</a></li>
-<li><a href="https://leetcode.com/problems/coin-change/">322. Coin Change</a>，标准 <code>完全背包</code>，入门题目，<a href="https://github.com/xfmeng17/leetcode/blob/master/golang/0322.go">golang</a></li>
+<li><a href="https://leetcode.com/problems/partition-equal-subset-sum/">416. Partition Equal Subset Sum</a>，标准 <code>01背包</code>，入门题目，<a href="https://github.com/xfmeng17/leetcode/blob/master/cpp/0416.go">cpp</a></li>
+<li><a href="https://leetcode.com/problems/coin-change/">322. Coin Change</a>，标准 <code>完全背包</code>，入门题目，<a href="https://github.com/xfmeng17/leetcode/blob/master/cpp/0322.go">cpp</a></li>
 <li><a href="https://leetcode.com/problems/coin-change-2/">518. Coin Change 2</a>，<code>完全背包</code>，求解组成的可能数，<a href="https://github.com/xfmeng17/leetcode/blob/master/cpp/0518.go">cpp</a></li>
-<li><a href="https://leetcode.com/problems/ones-and-zeroes/">474. Ones and Zeroes</a>，标准 <code>二维01背包</code>，<code>f[i][m][n]=xxx</code>，<a href="https://github.com/xfmeng17/leetcode/blob/master/golang/0474.go">golang</a></li>
+<li><a href="https://leetcode.com/problems/ones-and-zeroes/">474. Ones and Zeroes</a>，标准 <code>二维01背包</code>，<code>f[i][m][n]=xxx</code>，<a href="https://github.com/xfmeng17/leetcode/blob/master/cpp/0474.go">cpp</a></li>
 </ol>
                 
                   
