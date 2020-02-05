@@ -159,7 +159,7 @@ procedure TwoDimensionPack(cost1, cost2, weight) {
 
 ## 附录1：LeetCode上的背包问题
 
-1. [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)，标准 `01背包`，入门题目，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0416.go)
-2. [322. Coin Change](https://leetcode.com/problems/coin-change/)，标准 `完全背包`，入门题目，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0322.go)
-3. [518. Coin Change 2](https://leetcode.com/problems/coin-change-2/)，`完全背包`，求解组成的可能数，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0518.go)
-4. [474. Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)，标准 `二维01背包`，`f[i][m][n]=xxx`，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0474.go)
+1. [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)，标准 `01背包`，入门题目，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0416.cpp)
+2. [322. Coin Change](https://leetcode.com/problems/coin-change/)，标准 `完全背包`，入门题目，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0322.cpp)
+3. [518. Coin Change 2](https://leetcode.com/problems/coin-change-2/)，`完全背包`，求解组成的可能数，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0518.cpp)
+4. [474. Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)，标准 `二维01背包`，`f[i][m][n]=xxx`，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0474.cpp)
