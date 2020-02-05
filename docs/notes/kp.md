@@ -131,7 +131,7 @@ procedure MultiplePack(cost, weight, amount)
 
 ## 附录1：LeetCode上的背包问题
 
-1. [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)，标准 `01背包`，入门题目，[Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0416.go)
-2. [322. Coin Change](https://leetcode.com/problems/coin-change/)，标准 `完全背包`，入门题目，[Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0322.go)
-3. [518. Coin Change 2](https://leetcode.com/problems/coin-change-2/)，`完全背包`，求解组成的可能数，[Cpp](https://github.com/xfmeng17/leetcode/blob/master/Cpp/0518.go)
-4. [474. Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)，标准 `二维01背包`，`f[i][m][n]=xxx`，[Golang](https://github.com/xfmeng17/leetcode/blob/master/Golang/0474.go)
+1. [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)，标准 `01背包`，入门题目，[golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0416.go)
+2. [322. Coin Change](https://leetcode.com/problems/coin-change/)，标准 `完全背包`，入门题目，[golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0322.go)
+3. [518. Coin Change 2](https://leetcode.com/problems/coin-change-2/)，`完全背包`，求解组成的可能数，[cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0518.go)
+4. [474. Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)，标准 `二维01背包`，`f[i][m][n]=xxx`，[golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0474.go)

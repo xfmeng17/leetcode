@@ -39,28 +39,28 @@
 
 #### [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 
-- [Cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/1143.cpp)
+- [cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/1143.cpp)
 - 标准LCS
 
 #### [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
 
-- [Cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0300.cpp), [Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0300.go)
+- [cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0300.cpp), [golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0300.go)
 - 标准LIC，最长递增子序列，可以先排序，然后求排序好的和初始的LCS
 - TODO，整理二分O(nlogn)的解法
 
 #### [673. Number of Longest Increasing Subsequence](https://leetcode.com/problems/number-of-longest-increasing-subsequence/)
 
-- [Cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0673.cpp), [Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0673.go)
+- [cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0673.cpp), [golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0673.go)
 - 同理300，无法二分，只能用标准DP
 
 #### [397. Integer Replacement](https://leetcode.com/problems/integer-replacement/)
 
-- [Cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0397.cpp), [Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0397.go)
+- [cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0397.cpp), [golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0397.go)
 - 简单DP，注意N=int32是，最大值溢出，使用long
 
 #### [139. Word Break](https://leetcode.com/problems/word-break/)
 
-- [Cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0139.cpp), [Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0139.go)
+- [cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0139.cpp), [golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0139.go)
 - 一维`dp[i]`表示string从`0...i`的子结果
 - 二维`dp[i][j]`表示string从`i...j`的子结果
 - 二维是O(n^3)的time，一维是O(n^2)的，`一维要好很多，证明了想对递归关系，非常关键`
@@ -70,12 +70,12 @@
 
 #### [377. Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/)
 
-- [Cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0377.cpp), [Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0377.go)
+- [cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0377.cpp), [golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0377.go)
 - 简单DP，其实有Integer溢出隐患
 
 #### [474. Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)
 
-- [Cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0474.cpp), [Golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0474.go)
+- [cpp](https://github.com/xfmeng17/leetcode/blob/master/cpp/0474.cpp), [golang](https://github.com/xfmeng17/leetcode/blob/master/golang/0474.go)
 - `dp[i][m][n]` 表示数组内第i个数，m个0，n个1的结果，实现上直接砍掉dp[i]那维，用`dp1`，`dp2`
 
 #### [Best Time to Buy and Sell Stock 系列](https://xfmeng17.github.io/leetcode/notes/buy-sell-stock/)
