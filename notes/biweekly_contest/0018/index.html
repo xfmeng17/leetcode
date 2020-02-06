@@ -4610,7 +4610,29 @@
 <ul>
 <li><a href="https://github.com/xfmeng17/leetcode/blob/master/cpp/1330.cpp">cpp</a></li>
 <li>O(N^2)二维查找比较，TLE，尚未解决</li>
+<li><strong>2020-02-06</strong>，参考discuss，AC：
+<a href="https://leetcode.com/problems/reverse-subarray-to-maximize-array-value/discuss/489929/O(n)-time-O(1)-space.-In-depth-Explanation.">参考</a></li>
 </ul>
+<p>关键点是，在旋转子数组时，假设是[L, R]，得出新的Value公式为
+<code>S - abs(a[L-1]-a[L]) - abs(a[R] - a[R+1]) + abs(a[L-1]-a[R]) + abs(a[L] - a[R+1])</code></p>
+<p>不考虑边界情况(L=0，导致L-1 = -1)，分四个情况：
+1. <code>a[L-1] &lt; a[R] and a[L] &lt; a[R+1]</code>
+2. <code>a[L-1] &gt; a[R] and a[L] &lt; a[R+1]</code>
+3. <code>a[L-1] &lt; a[R] and a[L] &gt; a[R+1]</code>
+4. <code>a[L-1] &gt; a[R] and a[L] &gt; a[R+1]</code></p>
+<p>然后拆分出来：</p>
+<p><code>S - abs(a[L] - a[L-1]) - abs(a[R] - a[R+1]) + (a[R] - a[L-1]) + (a[R+1] - a[l])</code></p>
+<p><strong>=&gt;</strong> </p>
+<p><code>S - abs(a[L] - a[L-1]) -  a[L-1] - a[L] - abs(a[R] - a[R+1]) +  a[R] + a[R+1]</code></p>
+<p>在第1种情况下：</p>
+<p><code>X = 0 - abs(a[L] - a[L-1]) - a[L-1] - a[L]</code></p>
+<p><code>Y = 0 - abs(a[R] - a[R+1]) + a[R] + a[R+1]</code></p>
+<p><code>value = S + X + Y</code></p>
+<p>这样，发现L和R就没啥关系，不需要绑定到一起做二维的迭代计算，使得我们可以一维个算个的，然后取最大的S+X+Y即可。4个case下X，Y的表示不同，但是也都只需要1维循环数组一次就能得到结果。</p>
+<blockquote>
+<p>这个题，我在2020-02-06花费了小一天去梳理，主要原因是这种转化为<strong>数学公式后，分离变量，降维迭代的思维</strong>是第一次遇到，记得到校招时做过一道TopCoder上一个好像叫<strong>袜子匹配啥啥的题</strong>，解法是，转换后在所有可能结果的范围内，如[0, N]里面通过二维查找判定是不是可行解的思维，当时如果记得整理就好了！</p>
+</blockquote>
+<hr />
 <p>要睡觉了做的，除了最后一题，前三题均没卡壳，已经可以了。</p>
                 
                   
