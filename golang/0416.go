@@ -2,6 +2,7 @@ func canPartition(nums []int) bool {
 	// return func1(nums);
 	return func2(nums);
 }
+
 /* pack[i][v] means:
  * 1. The i-th item, weight=nums[i-1]
  * 2. The v capacity package
