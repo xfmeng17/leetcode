@@ -79,3 +79,12 @@
 - `dp[i][m][n]` 表示数组内第i个数，m个0，n个1的结果，实现上直接砍掉dp[i]那维，用`dp1`，`dp2`
 
 #### [Best Time to Buy and Sell Stock 系列](https://xfmeng17.github.io/leetcode/notes/buy-sell-stock/)
+
+#### [887. Super Egg Drop](https://leetcode.com/problems/super-egg-drop/)
+
+- 著名的高楼扔鸡蛋问题，给K个鸡蛋和一个N层高的楼，如何用最少的尝试次数，测试出鸡蛋不会摔碎的楼层？
+- `dp[m][k]` denotes that given `k` eggs and `m` moves, what is the maximum number
+of floors that we can check.
+- And the trick key to understand `dp[m-1][k-1] + dp[m-1][k]` , the plus, is, no matter egg break or not break, we always can know the other condition in the same time.
+- 只要做了投鸡蛋的动作，即使鸡蛋还在空中，我们就已经能确定知道鸡蛋碎了，还是没碎这两种情况下的全部结果了。
+- 2020-02-08，上述的表达不够清晰，明日再行解释
