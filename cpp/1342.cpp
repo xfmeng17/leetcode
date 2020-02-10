@@ -1,21 +1,15 @@
 class Solution {
 public:
-    int minSetSize(vector<int>& arr) {
-        vector<int> set(100001, 0);
-        for (auto a : arr) {
-            set[a]++;
+    int numberOfSteps (int num) {
+        int ret = 0;
+        while (num > 0) {
+            ret++;
+            if (num & 1) {
+                num -= 1;
+            } else {
+                num /= 2;
+            }
         }
-        
-        sort(set.begin(), set.end(), [](auto a, auto b) {
-            return a > b;
-        });
-        
-        int target = arr.size() / 2;
-        int i = 0;
-        while (target > 0) {
-            target -= set[i++];
-        }
-        
-        return i;
+        return ret;
     }
 };
