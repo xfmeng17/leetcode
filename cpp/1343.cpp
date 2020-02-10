@@ -1,39 +1,27 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 class Solution {
 public:
-    const long MOD = 10e9 + 7;
-
-    int maxProduct(TreeNode* root) {
-        unordered_map<TreeNode*, long> map;
-        long s = sum(root, map);
-        long ret = 0;
-        
-        for (auto it = map.begin(); it != map.end(); it++) {
-            ret = max(ret, it->second * (s - it->second) % MOD);
-        }
-        
-        return (int)ret;
-    }
-    
-    long sum(TreeNode* root, unordered_map<TreeNode*, long>& map) {
-        if (root == NULL) {
+    int numOfSubarrays(vector<int>& arr, int k, int threshold) {
+        int n = arr.size();
+        if (k > n) {
             return 0;
         }
-        if (map.find(root) != map.end()) {
-            return map[root];
+
+        int ret = 0;
+        int sum = 0;
+        for (int i = 0; i < k; i++) {
+            sum += arr[i];
         }
-        
-        long left = sum(root->left, map);
-        long right = sum(root->right, map);
-        map[root] = left + right + root->val;
-        return map[root];
+        if (sum / k >= threshold) {
+            ret++;
+        }
+
+        for (int i = k; i < n; i++) {
+            sum = sum - arr[i-k] + arr[i];
+            if (sum / k >= threshold) {
+                ret++;
+            }
+        }
+
+        return ret;
     }
 };
