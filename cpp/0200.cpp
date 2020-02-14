@@ -51,7 +51,8 @@ public:
 class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {        
-        return func1(grid);
+        // return func1(grid);
+        return func2(grid);
     }
     int func1(vector<vector<char>>& grid) {
         int M = grid.size();
@@ -83,6 +84,31 @@ public:
             }
         }
         return uf.getCount() - count0;
+    }
+    int func2(vector<vector<char>>& grid) {
+        int ret = 0;
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid[i].size(); j++) {
+                ret += helper2(grid, i, j);
+            }
+        }
+        return ret;
+    }
+    int helper2(vector<vector<char>>& grid, int i, int j) {
+        if (i < 0 || i >= grid.size() ||
+            j < 0 || j >= grid[i].size() ||
+            grid[i][j] == '0') {
+        
+            return 0;
+        }
+
+        grid[i][j] = '0';
+        helper2(grid, i-1, j);
+        helper2(grid, i+1, j);
+        helper2(grid, i, j-1);
+        helper2(grid, i, j+1);
+        
+        return 1;
     }
 };
 
