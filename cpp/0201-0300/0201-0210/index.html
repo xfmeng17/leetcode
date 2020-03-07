@@ -40,7 +40,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../../docs/assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     <meta name="format-detection" content="telephone=no">
 
@@ -50,7 +50,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/application.1b62728e.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.adb8469c.css">
       
         <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.a8b3c06d.css">
       
@@ -61,7 +61,7 @@
       
     
     
-      <script src="../../../assets/javascripts/modernizr.268332fc.js"></script>
+      <script src="../../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -124,7 +124,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#201-bitwise-and-of-numbers-range-starstar" tabindex="1" class="md-skip">
+      <a href="#201-bitwise-and-of-numbers-range-starstar" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -133,7 +133,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://xfmeng17.github.io/leetcode" title="LeetCode Solutions" class="md-header-nav__button md-logo">
+        <a href="https://xfmeng17.github.io/leetcode" title="LeetCode Solutions" aria-label="LeetCode Solutions" class="md-header-nav__button md-logo">
           
             <i class="md-icon">code</i>
           
@@ -164,7 +164,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -278,7 +278,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../notes/weekly_contest/0173/" class="md-tabs__link">
+        <a href="../../../notes/weekly_contest/0175/" class="md-tabs__link">
           Contest
         </a>
       
@@ -4499,8 +4499,44 @@
 
 
   <li class="md-nav__item">
+    <a href="../../../notes/weekly_contest/0175/" title="Weekly Contest 175" class="md-nav__link">
+      Weekly Contest 175
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/weekly_contest/0174/" title="Weekly Contest 174" class="md-nav__link">
+      Weekly Contest 174
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../../notes/weekly_contest/0173/" title="Weekly Contest 173" class="md-nav__link">
       Weekly Contest 173
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../notes/biweekly_contest/0019/" title="Biweekly Contest 19" class="md-nav__link">
+      Biweekly Contest 19
     </a>
   </li>
 
@@ -4661,13 +4697,13 @@
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="kt">int</span> <span class="n">rangeBitwiseAnd</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">?</span> <span class="n">rangeBitwiseAnd</span><span class="p">(</span><span class="n">m</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span> <span class="o">:</span> <span class="n">m</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <h2 id="202-happy-number-star">202. Happy Number <a href="https://leetcode.com/problems/happy-number">$\star$</a></h2>
@@ -4697,7 +4733,7 @@
 24
 25
 26
-27</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+27</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="kt">bool</span> <span class="n">isHappy</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">helper</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
@@ -4724,7 +4760,7 @@
     <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <h2 id="203-remove-linked-list-elements-star">203. Remove Linked List Elements <a href="https://leetcode.com/problems/remove-linked-list-elements">$\star$</a></h2>
@@ -4744,7 +4780,7 @@
 14
 15
 16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="n">ListNode</span><span class="o">*</span> <span class="n">removeElements</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">ListNode</span> <span class="n">dummy</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -4761,7 +4797,7 @@
     <span class="k">return</span> <span class="n">dummy</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <h2 id="204-count-primes-star">204. Count Primes <a href="https://leetcode.com/problems/count-primes">$\star$</a></h2>
@@ -4780,7 +4816,7 @@
 13
 14
 15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="kt">int</span> <span class="n">countPrimes</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -4796,7 +4832,7 @@
     <span class="k">return</span> <span class="nf">count</span><span class="p">(</span><span class="n">prime</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">prime</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="nb">true</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <h2 id="205-isomorphic-strings-star">205. Isomorphic Strings <a href="https://leetcode.com/problems/isomorphic-strings">$\star$</a></h2>
@@ -4814,7 +4850,7 @@
 12
 13
 14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="kt">bool</span> <span class="n">isIsomorphic</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">,</span> <span class="n">string</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">map_s</span><span class="p">;</span>
@@ -4829,7 +4865,7 @@
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <h2 id="206-reverse-linked-list-star">206. Reverse Linked List <a href="https://leetcode.com/problems/reverse-linked-list">$\star$</a></h2>
@@ -4848,7 +4884,7 @@
 13
 14
 15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="n">ListNode</span><span class="o">*</span> <span class="n">reverseList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">ListNode</span><span class="o">*</span> <span class="n">prev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
@@ -4864,7 +4900,7 @@
     <span class="k">return</span> <span class="n">prev</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <h2 id="207-course-schedule-starstar">207. Course Schedule <a href="https://leetcode.com/problems/course-schedule">$\star\star$</a></h2>
@@ -4897,7 +4933,7 @@
 27
 28
 29
-30</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+30</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="kt">bool</span> <span class="n">canFinish</span><span class="p">(</span><span class="kt">int</span> <span class="n">numCourses</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">prerequisites</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">graph</span><span class="p">(</span><span class="n">numCourses</span><span class="p">);</span>
@@ -4927,7 +4963,7 @@
     <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <h2 id="208-implement-trie-prefix-tree-starstar">208. Implement Trie (Prefix Tree) <a href="https://leetcode.com/problems/implement-trie-prefix-tree">$\star\star$</a></h2>
@@ -4972,7 +5008,7 @@
 39
 40
 41
-42</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Trie</span> <span class="p">{</span>
+42</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Trie</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="n">string</span> <span class="n">word</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">TrieNode</span><span class="o">*</span> <span class="n">node</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">root</span><span class="p">;</span>
@@ -5014,7 +5050,7 @@
     <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <h2 id="209-minimum-size-subarray-sum-starstar">209. Minimum Size Subarray Sum <a href="https://leetcode.com/problems/minimum-size-subarray-sum">$\star\star$</a></h2>
@@ -5034,7 +5070,7 @@
 14
 15
 16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="kt">int</span> <span class="n">minSubArrayLen</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
@@ -5051,7 +5087,7 @@
     <span class="k">return</span> <span class="n">ans</span> <span class="o">!=</span> <span class="n">INT_MAX</span> <span class="o">?</span> <span class="nl">ans</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
 
 <h2 id="210-course-schedule-ii-starstar">210. Course Schedule II <a href="https://leetcode.com/problems/course-schedule-ii">$\star\star$</a></h2>
@@ -5087,7 +5123,7 @@
 30
 31
 32
-33</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+33</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">findOrder</span><span class="p">(</span><span class="kt">int</span> <span class="n">numCourses</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">prerequisites</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">;</span>
@@ -5120,7 +5156,7 @@
     <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
                 
                   
@@ -5184,22 +5220,22 @@
           </div>
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
   <div class="md-footer-social">
     <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
     
-      <a href="https://github.com/xfmeng17" class="md-footer-social__link fa fa-github"></a>
+      <a href="https://github.com/xfmeng17" target="_blank" rel="noopener" title="github" class="md-footer-social__link fa fa-github"></a>
     
-      <a href="https://github.com/xfmeng17" class="md-footer-social__link fa fa-quote-left"></a>
+      <a href="https://github.com/xfmeng17" target="_blank" rel="noopener" title="quote-left" class="md-footer-social__link fa fa-quote-left"></a>
     
-      <a href="https://github.com/xfmeng17" class="md-footer-social__link fa fa-book"></a>
+      <a href="https://github.com/xfmeng17" target="_blank" rel="noopener" title="book" class="md-footer-social__link fa fa-book"></a>
     
-      <a href="https://github.com/xfmeng17" class="md-footer-social__link fa fa-linkedin"></a>
+      <a href="https://github.com/xfmeng17" target="_blank" rel="noopener" title="linkedin" class="md-footer-social__link fa fa-linkedin"></a>
     
   </div>
 
@@ -5209,9 +5245,9 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/application.808e90bb.js"></script>
+      <script src="../../../assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"../../.."}})</script>
       
         <script src="../../../js/katex.js"></script>
       
