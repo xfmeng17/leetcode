@@ -4,4 +4,12 @@
 
 ### 138. Copy List with Random Pointer
 
-![avatar](./pictures/linkedlist_138.jpg)
+![avatar](./pictures/linkedlist_0138.jpg)
+
+### 143. Reorder List
+
+![avatar](./pictures/linkedlist_0143.jpg)
+
+### 92. Reorder List
+
+![avatar](./pictures/linkedlist_0092.jpg)
