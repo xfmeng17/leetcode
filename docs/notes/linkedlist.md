@@ -17,3 +17,7 @@
 ### 328. Odd Even Linked List
 
 ![avatar](./pictures/linkedlist_0328.jpg)
+
+### 237. Delete Node in a Linked List
+
+![avatar](./pictures/linkedlist_0237.jpg)
