@@ -58,8 +58,7 @@ public:
             curr1 = next1;
             curr2 = next2;
         }
-        // 4. cornar case
-        if (curr1)
+
         return;
     }
 
