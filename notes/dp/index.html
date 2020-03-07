@@ -265,7 +265,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" class="md-tabs__link md-tabs__link--active">
+        <a href="../linkedlist/" class="md-tabs__link md-tabs__link--active">
           Notes
         </a>
       
@@ -4302,6 +4302,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../linkedlist/" title="Linked List" class="md-nav__link">
+      Linked List
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -4439,6 +4451,13 @@
           <li class="md-nav__item">
   <a href="#best-time-to-buy-and-sell-stock" class="md-nav__link">
     Best Time to Buy and Sell Stock 系列
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#887-super-egg-drop" class="md-nav__link">
+    887. Super Egg Drop
   </a>
   
 </li>
@@ -4722,6 +4741,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#887-super-egg-drop" class="md-nav__link">
+    887. Super Egg Drop
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4828,6 +4854,15 @@
 <li><code>dp[i][m][n]</code> 表示数组内第i个数，m个0，n个1的结果，实现上直接砍掉dp[i]那维，用<code>dp1</code>，<code>dp2</code></li>
 </ul>
 <h4 id="best-time-to-buy-and-sell-stock"><a href="https://xfmeng17.github.io/leetcode/notes/buy-sell-stock/">Best Time to Buy and Sell Stock 系列</a></h4>
+<h4 id="887-super-egg-drop"><a href="https://leetcode.com/problems/super-egg-drop/">887. Super Egg Drop</a></h4>
+<ul>
+<li>著名的高楼扔鸡蛋问题，给K个鸡蛋和一个N层高的楼，如何用最少的尝试次数，测试出鸡蛋不会摔碎的楼层？</li>
+<li><code>dp[m][k]</code> denotes that given <code>k</code> eggs and <code>m</code> moves, what is the maximum number
+of floors that we can check.</li>
+<li>And the trick key to understand <code>dp[m-1][k-1] + dp[m-1][k]</code> , the plus, is, no matter egg break or not break, we always can know the other condition in the same time.</li>
+<li>只要做了投鸡蛋的动作，即使鸡蛋还在空中，我们就已经能确定知道鸡蛋碎了，还是没碎这两种情况下的全部结果了。</li>
+<li>2020-02-08，上述的表达不够清晰，明日再行解释</li>
+</ul>
                 
                   
                 
@@ -4849,7 +4884,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../golang/1301-1400/1321-1330/" title="1321-1321" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../linkedlist/" title="Linked List" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -4858,7 +4893,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                1321-1321
+                Linked List
               </span>
             </div>
           </a>
