@@ -10,7 +10,8 @@ class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
         // return func1(head);
-        return func2(head);
+        // return func2(head);
+        return func3(head);
     }
 
     // O(n) space, 2 pass time
@@ -49,5 +50,45 @@ public:
     // O(1) space, 1 pass time ?
     ListNode* func2(ListNode* head) {
         // give up -.-
+        return NULL;
+    }
+
+    // O(1) space, 1 pass time ?
+    // 2020-03-10, re-try
+    ListNode* func3(ListNode* head) {
+        if (head == NULL || head->next == NULL) {
+            return head;
+        }
+
+        ListNode* dummy_node = new ListNode(0);
+        dummy_node->next = head;
+
+        ListNode* tail = dummy_node;
+        ListNode* curr = head;
+        ListNode* next = NULL;
+
+        bool has_same = false;
+        while (curr != NULL) {
+            has_same = false;
+            next = curr->next;
+            while (next != NULL && curr->val == next->val) {
+                next = next->next;
+            }
+            if (curr->next == next) {
+                tail->next = curr;
+                tail = tail->next;
+                curr = next;
+            } else {
+                curr = next;
+                has_same = true;
+            }
+        }
+        // case: 1->1->null
+        if (has_same) {
+            tail->next = curr;
+            tail = tail->next;
+        }
+
+        return dummy_node->next;
     }
 };
