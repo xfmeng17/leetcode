@@ -12,7 +12,7 @@ BACKUP_BRANCH_NAME="backup-$(date +%s)"
 git branch "$BACKUP_BRANCH_NAME"
 
 # 运行过滤分支命令
-git filter-branch --env-filter "
+git filter-branch -f --env-filter "
 if [ \"\$GIT_AUTHOR_NAME\" = '$OLD_AUTHOR_NAME' ]
 then
     export GIT_AUTHOR_NAME='$NEW_AUTHOR_NAME'
