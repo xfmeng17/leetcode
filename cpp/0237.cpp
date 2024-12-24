@@ -8,15 +8,13 @@
  */
 class Solution {
 public:
-    void deleteNode(ListNode* node) {
-        return func1(node);
-    }
+  void deleteNode(ListNode *node) { return func1(node); }
 
-    void func1(ListNode* node) {
-        ListNode* next = node->next;
-        node->val = next->val;
-        node->next = next->next;
-        delete next;
-        return;
-    }
+  void func1(ListNode *node) {
+    ListNode *next = node->next;
+    node->val = next->val;
+    node->next = next->next;
+    delete next;
+    return;
+  }
 };

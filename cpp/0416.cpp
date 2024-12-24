@@ -94,21 +94,21 @@ public:
   }
 
   // 2020-02-05 review
-  bool func4(vector<int>& nums) {
+  bool func4(vector<int> &nums) {
     if (nums.size() <= 0) {
       return false;
     }
 
     int V = 0;
     for (auto n : nums) {
-      V += n; 
+      V += n;
     }
     if (V & 1 == 1) {
       return false;
     }
-    
+
     V /= 2;
-    vector<bool> kp(V+1);
+    vector<bool> kp(V + 1);
     kp[0] = true;
 
     for (int i = 0; i < nums.size(); i++) {
@@ -117,9 +117,9 @@ public:
 
     return kp[V];
   }
-  void zeroOnePack(vector<bool>& kp, int V, int cost) {
+  void zeroOnePack(vector<bool> &kp, int V, int cost) {
     for (int i = V; i >= cost; i--) {
-      kp[i] = kp[i] || kp[i-cost];
+      kp[i] = kp[i] || kp[i - cost];
     }
     return;
   }

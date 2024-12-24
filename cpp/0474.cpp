@@ -95,8 +95,8 @@ public:
   }
 
   // 2020-02-05, review
-  int func4(vector<string>& strs, int m, int n) {
-    vector<vector<int>> kp(m+1, vector<int>(n+1, 0));
+  int func4(vector<string> &strs, int m, int n) {
+    vector<vector<int>> kp(m + 1, vector<int>(n + 1, 0));
     int V0 = m;
     int V1 = n;
 
@@ -115,10 +115,11 @@ public:
 
     return kp[m][n];
   }
-  void TwoDimensionPack(vector<vector<int>>& kp, int V0, int V1, int cost0, int cost1) {
+  void TwoDimensionPack(vector<vector<int>> &kp, int V0, int V1, int cost0,
+                        int cost1) {
     for (int i = V0; i >= cost0; i--) {
       for (int j = V1; j >= cost1; j--) {
-        kp[i][j] = max(kp[i][j], kp[i-cost0][j-cost1] + 1);
+        kp[i][j] = max(kp[i][j], kp[i - cost0][j - cost1] + 1);
       }
     }
     return;

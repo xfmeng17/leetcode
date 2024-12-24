@@ -8,23 +8,23 @@
  */
 class Solution {
 public:
-    ListNode* getIntersectionNode(ListNode *headA, ListNode *headB) {
-        return func1(headA, headB);
+  ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    return func1(headA, headB);
+  }
+
+  ListNode *func1(ListNode *headA, ListNode *headB) {
+    unordered_set<ListNode *> set;
+    while (headA != NULL) {
+      set.insert(headA);
+      headA = headA->next;
+    }
+    while (headB != NULL) {
+      if (set.find(headB) != set.end()) {
+        return headB;
+      }
+      headB = headB->next;
     }
 
-    ListNode* func1(ListNode* headA, ListNode* headB) {
-        unordered_set<ListNode*> set;
-        while (headA != NULL) {
-            set.insert(headA);
-            headA = headA->next;
-        }
-        while (headB != NULL) {
-            if (set.find(headB) != set.end()) {
-                return headB;
-            }
-            headB = headB->next;
-        }
-
-        return NULL;
-    }
+    return NULL;
+  }
 };

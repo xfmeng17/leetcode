@@ -8,12 +8,12 @@
  */
 class Solution {
 public:
-  ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+  ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
     // return func1(l1, l2);
     return func2(l1, l2);
   }
 
-  ListNode* func1(ListNode* l1, ListNode* l2) {
+  ListNode *func1(ListNode *l1, ListNode *l2) {
     if (l1 == NULL) {
       return l2;
     }
@@ -54,7 +54,7 @@ public:
   }
 
   // 2020-03-07, recursive
-  ListNode* func2(ListNode* l1, ListNode* l2) {
+  ListNode *func2(ListNode *l1, ListNode *l2) {
     if (l1 == NULL) {
       return l2;
     }
@@ -70,5 +70,4 @@ public:
     }
     return NULL;
   }
-  
 };

@@ -8,19 +8,19 @@
  */
 class Solution {
 public:
-  ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+  ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
     // return func1(l1, l2);
     return func2(l1, l2);
   }
 
-  ListNode* func1(ListNode* l1, ListNode* l2) {
+  ListNode *func1(ListNode *l1, ListNode *l2) {
     // l1 = listReverse(l1);
     // l2 = listReverse(l2);
     l1 = listNonRecursiveReverse(l1);
     l2 = listNonRecursiveReverse(l2);
 
-    ListNode* head = NULL;
-    ListNode* curr = NULL;
+    ListNode *head = NULL;
+    ListNode *curr = NULL;
     int carry = 0;
 
     while (l1 != NULL || l2 != NULL || carry > 0) {
@@ -48,7 +48,7 @@ public:
   }
 
   // stack, 2020-03-05
-  ListNode* func2(ListNode* l1, ListNode* l2) {
+  ListNode *func2(ListNode *l1, ListNode *l2) {
     if (l1 == NULL) {
       return l2;
     }
@@ -56,8 +56,8 @@ public:
       return l1;
     }
 
-    stack<ListNode*> stk1;
-    stack<ListNode*> stk2;
+    stack<ListNode *> stk1;
+    stack<ListNode *> stk2;
 
     while (l1 != NULL) {
       stk1.push(l1);
@@ -82,7 +82,7 @@ public:
         sum += stk2.top()->val;
         stk2.pop();
       }
-      curr = new ListNode(sum%10);
+      curr = new ListNode(sum % 10);
       carry = sum / 10;
 
       if (head == NULL) {
@@ -103,34 +103,33 @@ public:
 
 private:
   // ** recursive
-  ListNode* listReverse(ListNode* node) {
+  ListNode *listReverse(ListNode *node) {
     if (node == NULL || node->next == NULL) {
       return node;
     }
-    ListNode* second = node->next;
-    ListNode* newHead = listReverse(second);
+    ListNode *second = node->next;
+    ListNode *newHead = listReverse(second);
     second->next = node;
     node->next = NULL;
     return newHead;
   }
   // ** non-recursive
-  ListNode* listNonRecursiveReverse(ListNode* node) {
+  ListNode *listNonRecursiveReverse(ListNode *node) {
     if (node == NULL) {
       return NULL;
     }
 
-    vector<ListNode*> vec;
+    vector<ListNode *> vec;
     while (node != NULL) {
       vec.push_back(node);
       node = node->next;
     }
 
     for (int i = vec.size() - 1; i > 0; i--) {
-      vec[i]->next = vec[i-1];
+      vec[i]->next = vec[i - 1];
     }
     vec[0]->next = NULL;
 
     return vec[vec.size() - 1];
   }
 };
-
